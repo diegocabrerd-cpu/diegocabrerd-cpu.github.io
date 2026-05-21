@@ -3,11 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Diego Cabrera - Líder en Operaciones y Facility Management con más de 15 años de experiencia">
-    <title>Diego Cabrera - Líder en Operaciones y Facility Management</title>
+    <meta name="description" content="Diego Cabrera - Business Operations & Infrastructure Strategy Leader. +17 años liderando estrategia, infraestructura y transformación de negocio.">
+    <title>Diego Cabrera - Business Operations & Infrastructure Strategy Leader</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <style>
         :root {
             --primary: #1a3a5f;
@@ -94,18 +93,19 @@
             font-size: 1.5rem;
             font-weight: 400;
             margin-bottom: 25px;
-            max-width: 800px;
+            max-width: 900px;
             margin-left: auto;
             margin-right: auto;
-            opacity: 0.9;
+            opacity: 0.95;
         }
         
         .tagline {
             font-size: 1.2rem;
-            max-width: 700px;
+            max-width: 800px;
             margin: 0 auto 30px;
             font-style: italic;
             opacity: 0.9;
+            line-height: 1.5;
         }
         
         .cta-button {
@@ -156,7 +156,6 @@
             background-color: rgba(255, 255, 255, 0.1);
         }
         
-        /* Scroll indicator */
         .scroll-indicator {
             position: absolute;
             bottom: 20px;
@@ -186,7 +185,6 @@
             100% { transform: translateY(10px); opacity: 0; }
         }
         
-        /* Section common styles */
         section {
             padding: 100px 0;
             position: relative;
@@ -208,6 +206,20 @@
             background-color: var(--accent);
             margin: 15px auto;
             border-radius: 2px;
+        }
+        
+        /* About Section */
+        .about {
+            background-color: white;
+        }
+        
+        .about-text {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 1.1rem;
+            line-height: 1.9;
+            color: var(--gray);
         }
         
         /* Expertise Section */
@@ -324,7 +336,7 @@
         }
         
         .result-value {
-            font-size: 3rem;
+            font-size: 2.8rem;
             font-weight: 700;
             margin-bottom: 5px;
         }
@@ -489,12 +501,6 @@
             text-align: center;
         }
         
-        .chart-container {
-            width: 100%;
-            max-width: 400px;
-            margin: 0 auto;
-        }
-        
         .competency-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -644,12 +650,12 @@
             z-index: 1;
         }
         
-        /* CV ATS Section */
-        .cv-ats-section {
+        /* CV Section (sin referencia ATS) */
+        .cv-section-block {
             background-color: white;
         }
 
-        .cv-ats-content {
+        .cv-content {
             max-width: 800px;
             margin: 0 auto;
             background: #f8f9fa;
@@ -662,7 +668,7 @@
             transition: var(--transition);
         }
 
-        .cv-ats-content:hover {
+        .cv-content:hover {
             box-shadow: var(--shadow-hover);
         }
 
@@ -784,7 +790,6 @@
             font-size: 0.9rem;
         }
 
-        /* Progress Bar */
         .progress-container {
             position: fixed;
             top: 0;
@@ -802,7 +807,6 @@
             transition: width 0.3s ease;
         }
         
-        /* Back to top button */
         .back-to-top {
             position: fixed;
             bottom: 30px;
@@ -836,12 +840,10 @@
             box-shadow: var(--shadow-hover);
         }
         
-        /* Responsive Adjustments */
         @media (max-width: 992px) {
             .header-content h1 {
                 font-size: 2.8rem;
             }
-            
             .section-title {
                 font-size: 2.2rem;
             }
@@ -851,39 +853,31 @@
             .header-content h1 {
                 font-size: 2.2rem;
             }
-            
             .header-content h2 {
                 font-size: 1.2rem;
             }
-            
             .section-title {
                 font-size: 1.8rem;
             }
-            
             .contact-links {
                 flex-direction: column;
                 align-items: center;
             }
-            
             .timeline::before {
                 left: 20px;
             }
-            
             .timeline-content {
                 width: calc(100% - 50px);
                 margin-left: 50px !important;
                 margin-right: 0 !important;
             }
-            
             .timeline-content::after {
                 left: -40px !important;
                 transform: translateX(0) !important;
             }
-
-            .cv-ats-content {
+            .cv-content {
                 padding: 20px;
             }
-            
             section {
                 padding: 70px 0;
             }
@@ -893,13 +887,11 @@
             .header-content h1 {
                 font-size: 1.8rem;
             }
-            
             .cta-button {
                 display: block;
                 width: 100%;
                 margin: 10px 0;
             }
-            
             .expertise-grid,
             .results-grid,
             .education-grid {
@@ -909,33 +901,42 @@
     </style>
 </head>
 <body>
-    <!-- Progress Bar -->
     <div class="progress-container">
         <div class="progress-bar" id="progressBar"></div>
     </div>
 
-    <!-- Back to top button -->
     <button class="back-to-top" id="backToTop">
         <i class="fas fa-chevron-up"></i>
     </button>
 
-    <!-- Header Section -->
     <header>
         <div class="container">
             <div class="header-content">
                 <h1>DIEGO CABRERA</h1>
-                <h2>Líder en Operaciones y Facility Management</h2>
-                <p class="tagline">"Transformo Riesgos en Eficiencia. Historial Comprobado en Optimización Logística, Seguridad Patrimonial y Negociación Sindical."</p>
+                <h2>Business Operations & Infrastructure Strategy Leader</h2>
+                <p class="tagline">"Transformo operaciones complejas en modelos escalables de eficiencia, rentabilidad y crecimiento. Especializado en monetizar infraestructura y convertir problemas sistémicos en resultados de negocio."</p>
                 <div>
                     <a href="#results" class="cta-button">Ver Logros SMART</a>
-                    <button id="download-cv-main" class="cta-button secondary">Descargar CV ATS</button>
+                    <button id="download-cv-main" class="cta-button secondary">Descargar CV</button>
                 </div>
             </div>
         </div>
         <div class="scroll-indicator"></div>
     </header>
 
-    <!-- Expertise Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <h2 class="section-title">Acerca de Mí</h2>
+            <div class="about-text">
+                <p>Construí mi carrera liderando operaciones complejas en logística, seguridad, mantenimiento e infraestructura crítica, evolucionando desde roles operativos hasta posiciones estratégicas orientadas a resultados de negocio.</p>
+                <br>
+                <p>Mi diferencial está en conectar operación, tecnología, personas y estrategia para transformar problemas sistémicos en eficiencia, rentabilidad y crecimiento sostenible.</p>
+                <br>
+                <p>Hoy enfoco mi trabajo en el desarrollo de nuevas unidades de negocio, optimización de activos e infraestructura, control de gestión y negociación estratégica con stakeholders públicos y privados.</p>
+            </div>
+        </div>
+    </section>
+
     <section class="expertise" id="expertise">
         <div class="container">
             <h2 class="section-title">Mis Áreas de Expertise</h2>
@@ -980,15 +981,45 @@
                         <li>Gestión del Cambio</li>
                     </ul>
                 </div>
+                <div class="expertise-card">
+                    <div class="expertise-icon"><i class="fas fa-chart-line"></i></div>
+                    <h3>Estrategia y Nuevos Negocios</h3>
+                    <ul>
+                        <li>Revenue Optimization</li>
+                        <li>Modelos de Negocio</li>
+                        <li>Dark Fiber & Infrastructure</li>
+                        <li>Control de Gestión</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Results Section -->
+    <!-- Results Section: sin menciones monetarias explícitas -->
     <section class="results" id="results">
         <div class="container">
             <h2 class="section-title">Mis Resultados de Negocio</h2>
             <div class="results-grid">
+                <div class="result-card">
+                    <div class="result-header">
+                        <div class="result-value">+20%</div>
+                        <div class="result-title">Ingreso por comunicación vial</div>
+                    </div>
+                    <div class="result-content">
+                        <h3>Comunicación Vial Inteligente</h3>
+                        <p>Transformación del modelo de publicidad vial hacia un ecosistema de comunicación inteligente, generando ingresos recurrentes adicionales con canon del 20%.</p>
+                    </div>
+                </div>
+                <div class="result-card">
+                    <div class="result-header">
+                        <div class="result-value">Alto potencial</div>
+                        <div class="result-title">Monetización de infraestructura</div>
+                    </div>
+                    <div class="result-content">
+                        <h3>Dark Fiber</h3>
+                        <p>Reconversión estratégica del modelo Ducts Leasing hacia Dark Fiber, potenciando la monetización de activos existentes y abriendo nuevas líneas de ingresos.</p>
+                    </div>
+                </div>
                 <div class="result-card">
                     <div class="result-header">
                         <div class="result-value">30%</div>
@@ -1002,7 +1033,7 @@
                 <div class="result-card">
                     <div class="result-header">
                         <div class="result-value">7% → 1%</div>
-                        <div class="result-title">Reducción</div>
+                        <div class="result-title">Mejora en cobro</div>
                     </div>
                     <div class="result-content">
                         <h3>Control de Pérdidas</h3>
@@ -1012,20 +1043,20 @@
                 <div class="result-card">
                     <div class="result-header">
                         <div class="result-value">40%</div>
-                        <div class="result-title">Reducción</div>
+                        <div class="result-title">Reducción de riesgos</div>
                     </div>
                     <div class="result-content">
-                        <h3>Seguridad y Riesgos</h3>
-                        <p>Disminución de riesgos en Trabajo en Altura y Autoelevadores mediante capacitación en Metalúrgica La Toma.</p>
+                        <h3>Seguridad y Capacitación</h3>
+                        <p>Disminución de riesgos en Trabajo en Altura y Autoelevadores mediante capacitación especializada.</p>
                     </div>
                 </div>
                 <div class="result-card">
                     <div class="result-header">
                         <div class="result-value">15%</div>
-                        <div class="result-title">Reducción</div>
+                        <div class="result-title">Ahorro de costos</div>
                     </div>
                     <div class="result-content">
-                        <h3>Optimización de Costos</h3>
+                        <h3>Optimización Integral</h3>
                         <p>Reducción de costos operativos y rotación de personal del 30% en Falabella.</p>
                     </div>
                 </div>
@@ -1033,14 +1064,27 @@
         </div>
     </section>
 
-    <!-- Experience Section -->
     <section class="experience" id="experience">
         <div class="container">
             <h2 class="section-title">Experiencia Profesional</h2>
             <div class="timeline">
                 <div class="timeline-item">
                     <div class="timeline-content">
-                        <div class="timeline-date"><i class="far fa-calendar-alt"></i> Agosto 2022 - Presente</div>
+                        <div class="timeline-date"><i class="far fa-calendar-alt"></i> 2025 - Presente</div>
+                        <div class="timeline-company">Autopistas del Sol / GCO</div>
+                        <div class="timeline-position">Responsable de Negocios Auxiliares</div>
+                        <ul class="timeline-achievements">
+                            <li>Transformación del modelo de publicidad vial hacia comunicación vial inteligente (generación de nuevo canon del 20%)</li>
+                            <li>Desarrollo de estrategia Dark Fiber para monetización de infraestructura de ducts</li>
+                            <li>Seguimiento económico y contractual de unidades de negocio</li>
+                            <li>Interacción con ente regulador y stakeholders estratégicos</li>
+                            <li>Impulso de nuevos proyectos de monetización de infraestructura</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date"><i class="far fa-calendar-alt"></i> Agosto 2022 - 2025</div>
                         <div class="timeline-company">Autopistas Del Sol</div>
                         <div class="timeline-position">Coordinador de Operaciones</div>
                         <ul class="timeline-achievements">
@@ -1081,7 +1125,6 @@
         </div>
     </section>
 
-    <!-- Validation Section -->
     <section class="validation" id="validation">
         <div class="container">
             <h2 class="section-title">Validación y Competencias</h2>
@@ -1137,7 +1180,6 @@
         </div>
     </section>
 
-    <!-- Education Section -->
     <section class="education" id="education">
         <div class="container">
             <h2 class="section-title">Formación Académica</h2>
@@ -1170,14 +1212,14 @@
         </div>
     </section>
 
-    <!-- CV ATS Section -->
-    <section id="cv-ats" class="cv-ats-section">
+    <!-- CV Section (sin mención a ATS) -->
+    <section id="cv" class="cv-section-block">
         <div class="container">
-            <h2 class="section-title">CV Optimizado para ATS</h2>
-            <div class="cv-ats-content" id="cv-ats-content">
+            <h2 class="section-title">Currículum Vitae</h2>
+            <div class="cv-content" id="cv-content">
                 <div class="cv-header">
                     <h1>DIEGO CABRERA</h1>
-                    <h2>Líder de Operaciones, Facility Management y Estrategia Patrimonial</h2>
+                    <h2>Business Operations & Infrastructure Strategy Leader</h2>
                     <p>+54 11 3246-4964 | cabrerd1@me.com | Buenos Aires, Argentina</p>
                     <p>LinkedIn: www.linkedin.com/in/diego-angel-cabrera-</p>
                     <p>Portfolio: https://diegocabrerd-cpu.github.io/</p>
@@ -1185,20 +1227,30 @@
                 
                 <div class="cv-section">
                     <h3 class="cv-section-title">RESUMEN EJECUTIVO</h3>
-                    <p>Profesional con más de 15 años de experiencia ascendente en Liderazgo Operacional, Facility Management, Seguridad Patrimonial y Logística. Experto en Optimización de Procesos, Gestión de Crisis, Mejora Continua y Negociación Sindical.</p>
-                    <p><strong>Palabras Clave ATS:</strong> Liderazgo de Equipos Multidisciplinarios, KPIs, Reducción de Costos, Optimización Logística, Gestión de Presupuesto, Normas ISO, Lean Management, WMS, SAP, Resolución de Conflictos, Resiliencia, Planificación Estratégica, Seguridad e Higiene, Continuidad de Negocio.</p>
+                    <p>Profesional con más de 17 años de experiencia evolucionando desde la gestión operacional de infraestructura crítica hacia el desarrollo estratégico de negocio, monetización de activos y transformación de modelos comerciales. Experto en integrar operaciones, tecnología, regulación y generación de ingresos para convertir activos subutilizados en flujos de valor escalables.</p>
+                    <p><strong>Competencias clave:</strong> Transformación de Negocio, Optimización de Ingresos, Monetización de Infraestructura, Dark Fiber, Control de Gestión, Negociación Estratégica, KPIs, Reducción de Costos, Optimización Logística, Normas ISO, Lean Management, SAP.</p>
                 </div>
                 
                 <div class="cv-section">
                     <h3 class="cv-section-title">EXPERIENCIA PROFESIONAL</h3>
                     
                     <div class="cv-job">
-                        <div class="cv-job-title">Coordinador de Operaciones</div>
-                        <div class="cv-job-company">Autopistas del Sol | Agosto 2022 – Actualidad</div>
+                        <div class="cv-job-title">Responsable de Negocios Auxiliares</div>
+                        <div class="cv-job-company">Autopistas del Sol / GCO | 2025 – Presente</div>
                         <ul class="cv-list">
-                            <li>Lideré la negociación con sindicatos para optimización de dotaciones, resultando en 30% menos liberaciones de tránsito</li>
-                            <li>Implementé KPIs de quiebres en troncales, mejorando tasa de cobro en 7% y reduciendo quiebre del 7% a 1%</li>
-                            <li>Coordinación de 15 supervisores y 90 peajistas para cobertura óptima de estaciones de peaje</li>
+                            <li>Redefinición de la estrategia comercial del modelo de publicidad vial hacia comunicación vial inteligente (nuevo canon del 20%)</li>
+                            <li>Reconversión del modelo Ducts Leasing hacia Dark Fiber para monetización de infraestructura</li>
+                            <li>Participación en evaluación de oportunidades de negocio, análisis económico-financiero y articulación regulatoria</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="cv-job">
+                        <div class="cv-job-title">Coordinador de Operaciones</div>
+                        <div class="cv-job-company">Autopistas del Sol | Agosto 2022 – 2025</div>
+                        <ul class="cv-list">
+                            <li>Lideré negociación con sindicatos resultando en 30% menos liberaciones de tránsito</li>
+                            <li>Implementé KPIs de quiebres mejorando tasa de cobro en 7% (reducción del 7% a 1%)</li>
+                            <li>Coordinación de 15 supervisores y 90 peajistas</li>
                         </ul>
                     </div>
                     
@@ -1206,9 +1258,9 @@
                         <div class="cv-job-title">Jefe de Monitoreo</div>
                         <div class="cv-job-company">Metalúrgica La Toma | Marzo 2022 – Agosto 2022</div>
                         <ul class="cv-list">
-                            <li>Implementación de KPIs de seguridad con seguimiento semanal, logrando reducción del 30% en incidentes</li>
-                            <li>Reorganización de circuito CCTV (25 cámaras IP añadidas) logrando cero evasiones</li>
-                            <li>Capacitaciones en Trabajo en Altura y Manejo seguro de autoelevadores, reduciendo riesgos en 40%</li>
+                            <li>Reducción del 30% en incidentes vía KPIs de seguridad</li>
+                            <li>Cero evasiones tras reorganizar CCTV (25 cámaras IP añadidas)</li>
+                            <li>40% reducción de riesgos en Trabajo en Altura y autoelevadores</li>
                         </ul>
                     </div>
                     
@@ -1216,10 +1268,9 @@
                         <div class="cv-job-title">Jefe de Seguridad y Mantenimiento</div>
                         <div class="cv-job-company">Falabella SA | Junio 2008 – Octubre 2021</div>
                         <ul class="cv-list">
-                            <li>Gestión de presupuesto, CCTV y equipos (90 vigilancia, 10 mantenimiento)</li>
-                            <li>Logré reducción de costos del 15% y rotación de personal del 30%</li>
+                            <li>Reducción de costos del 15% y rotación de personal del 30%</li>
                             <li>Creación de manual operativo (mejora compliance 20%)</li>
-                            <li>Sistema de escaneo de envíos: optimización del 20% en vigilancia física</li>
+                            <li>Optimización del 20% en vigilancia física y reducción de Lead Time 30%</li>
                         </ul>
                     </div>
                 </div>
@@ -1237,22 +1288,21 @@
                 <div class="cv-section">
                     <h3 class="cv-section-title">REFERENCIAS</h3>
                     <ul class="cv-list">
-                        <li><strong>Julio Pages</strong> - Actual: Consultor experto en Falabella Cl - Tel: 11 4042-7092</li>
-                        <li><strong>Sebastián Marquart</strong> - Actual: Gerente regional Mercado Pago - Tel: 11 3687-9912</li>
-                        <li><strong>Marco Ortolino</strong> - Actual: Intendente Nordelta en AVN - Tel: 11 3926-5601</li>
+                        <li><strong>Julio Pages</strong> - Consultor experto Falabella Cl | 11 4042-7092</li>
+                        <li><strong>Sebastián Marquart</strong> - Gerente regional Mercado Pago | 11 3687-9912</li>
+                        <li><strong>Marco Ortolino</strong> - Intendente Nordelta AVN | 11 3926-5601</li>
                     </ul>
                 </div>
                 
                 <div style="text-align: center; margin-top: 30px;">
                     <button id="download-cv-pdf" class="cta-button">
-                        <i class="fas fa-download"></i> Descargar CV ATS (PDF)
+                        <i class="fas fa-download"></i> Descargar CV (PDF)
                     </button>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
     <section class="contact" id="contact">
         <div class="container">
             <h2 class="section-title" style="color: white;">Contacto</h2>
@@ -1275,7 +1325,7 @@
                 </a>
                 <button id="download-cv-footer" class="contact-link" style="cursor: pointer; background: rgba(255,255,255,0.1); border: none;">
                     <span class="contact-icon"><i class="fas fa-download"></i></span>
-                    <span>Descargar CV ATS</span>
+                    <span>Descargar CV</span>
                 </button>
             </div>
             <p class="contact-quote">
@@ -1286,53 +1336,41 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2023 Diego Cabrera - Todos los derechos reservados</p>
+            <p>&copy; 2025 Diego Cabrera - Todos los derechos reservados</p>
         </div>
     </footer>
 
     <script>
-        // Inicializar jsPDF
         const { jsPDF } = window.jspdf;
 
-        // Función para generar y descargar el PDF
         function generatePDF() {
-            // Crear instancia de jsPDF
             const doc = new jsPDF();
-            
-            // Configuración inicial
             const pageWidth = doc.internal.pageSize.getWidth();
             let yPosition = 20;
             const lineHeight = 7;
             const margin = 20;
             
-            // Establecer fuente y tamaño
             doc.setFont("helvetica", "normal");
-            doc.setFontSize(16);
             
-            // Título principal
             doc.setFontSize(18);
-            doc.setTextColor(26, 58, 95); // Color primary
+            doc.setTextColor(26, 58, 95);
             doc.text("DIEGO CABRERA", pageWidth / 2, yPosition, { align: "center" });
             yPosition += lineHeight;
             
             doc.setFontSize(14);
-            doc.setTextColor(44, 90, 160); // Color secondary
-            doc.text("Líder de Operaciones, Facility Management y Estrategia Patrimonial", pageWidth / 2, yPosition, { align: "center" });
+            doc.setTextColor(44, 90, 160);
+            doc.text("Business Operations & Infrastructure Strategy Leader", pageWidth / 2, yPosition, { align: "center" });
             yPosition += lineHeight * 2;
             
-            // Información de contacto
             doc.setFontSize(10);
             doc.setTextColor(0, 0, 0);
             doc.text("+54 11 3246-4964 | cabrerd1@me.com | Buenos Aires, Argentina", pageWidth / 2, yPosition, { align: "center" });
             yPosition += lineHeight;
-            
             doc.text("LinkedIn: www.linkedin.com/in/diego-angel-cabrera-", pageWidth / 2, yPosition, { align: "center" });
             yPosition += lineHeight;
-            
             doc.text("Portfolio: https://diegocabrerd-cpu.github.io/", pageWidth / 2, yPosition, { align: "center" });
             yPosition += lineHeight * 2;
             
-            // RESUMEN EJECUTIVO
             doc.setFontSize(14);
             doc.setTextColor(26, 58, 95);
             doc.text("RESUMEN EJECUTIVO", margin, yPosition);
@@ -1340,140 +1378,126 @@
             
             doc.setFontSize(10);
             doc.setTextColor(0, 0, 0);
-            const summaryText = "Profesional con más de 15 años de experiencia ascendente en Liderazgo Operacional, Facility Management, Seguridad Patrimonial y Logística. Experto en Optimización de Procesos, Gestión de Crisis, Mejora Continua y Negociación Sindical.";
+            const summaryText = "Profesional con más de 17 años de experiencia evolucionando desde la gestión operacional de infraestructura crítica hacia el desarrollo estratégico de negocio, monetización de activos y transformación de modelos comerciales. Experto en integrar operaciones, tecnología, regulación y generación de ingresos para convertir activos subutilizados en flujos de valor escalables.";
             const splitSummary = doc.splitTextToSize(summaryText, pageWidth - 2 * margin);
             doc.text(splitSummary, margin, yPosition);
             yPosition += splitSummary.length * lineHeight + lineHeight;
             
-            // Palabras clave ATS
-            doc.setFontSize(10);
-            doc.setTextColor(0, 0, 0);
-            const keywords = "Palabras Clave ATS: Liderazgo de Equipos Multidisciplinarios, KPIs, Reducción de Costos, Optimización Logística, Gestión de Presupuesto, Normas ISO, Lean Management, WMS, SAP, Resolución de Conflictos, Resiliencia, Planificación Estratégica, Seguridad e Higiene, Continuidad de Negocio.";
+            const keywords = "Competencias clave: Transformación de Negocio, Optimización de Ingresos, Monetización de Infraestructura, Dark Fiber, Control de Gestión, Negociación Estratégica, KPIs, Reducción de Costos, Optimización Logística, Normas ISO, Lean Management, SAP.";
             const splitKeywords = doc.splitTextToSize(keywords, pageWidth - 2 * margin);
             doc.text(splitKeywords, margin, yPosition);
             yPosition += splitKeywords.length * lineHeight + lineHeight * 2;
             
-            // EXPERIENCIA PROFESIONAL
             doc.setFontSize(14);
             doc.setTextColor(26, 58, 95);
             doc.text("EXPERIENCIA PROFESIONAL", margin, yPosition);
             yPosition += lineHeight;
             
-            // Experiencia 1 - Autopistas del Sol
+            // Responsable Negocios Auxiliares
+            doc.setFontSize(11);
+            doc.setTextColor(44, 90, 160);
+            doc.text("Responsable de Negocios Auxiliares", margin, yPosition);
+            yPosition += lineHeight;
+            doc.setFontSize(10);
+            doc.setTextColor(100, 100, 100);
+            doc.text("Autopistas del Sol / GCO | 2025 – Presente", margin, yPosition);
+            yPosition += lineHeight;
+            doc.setFontSize(9);
+            doc.setTextColor(0, 0, 0);
+            const expNew = [
+                "• Transformación modelo publicidad vial → comunicación vial inteligente (nuevo canon 20%)",
+                "• Reconversión Ducts Leasing → Dark Fiber para monetización",
+                "• Evaluación de oportunidades de negocio y articulación regulatoria"
+            ];
+            expNew.forEach(item => {
+                if (yPosition > 270) { doc.addPage(); yPosition = 20; }
+                const split = doc.splitTextToSize(item, pageWidth - 2 * margin - 10);
+                doc.text(split, margin + 5, yPosition);
+                yPosition += split.length * lineHeight;
+            });
+            yPosition += lineHeight;
+            
+            // Coordinador de Operaciones
+            if (yPosition > 250) { doc.addPage(); yPosition = 20; }
             doc.setFontSize(11);
             doc.setTextColor(44, 90, 160);
             doc.text("Coordinador de Operaciones", margin, yPosition);
             yPosition += lineHeight;
-            
             doc.setFontSize(10);
             doc.setTextColor(100, 100, 100);
-            doc.text("Autopistas del Sol | Agosto 2022 – Actualidad", margin, yPosition);
+            doc.text("Autopistas del Sol | Agosto 2022 – 2025", margin, yPosition);
             yPosition += lineHeight;
-            
             doc.setFontSize(9);
             doc.setTextColor(0, 0, 0);
-            const exp1Items = [
-                "• Lideré la negociación con sindicatos para optimización de dotaciones, resultando en 30% menos liberaciones de tránsito",
-                "• Implementé KPIs de quiebres en troncales, mejorando tasa de cobro en 7% y reduciendo quiebre del 7% a 1%",
-                "• Coordinación de 15 supervisores y 90 peglistas para cobertura óptima de estaciones de peaje"
+            const exp1 = [
+                "• Negociación sindical: 30% menos liberaciones de tránsito",
+                "• KPIs de quiebres: mejora 7% tasa de cobro (7% → 1%)",
+                "• Coordinación de 15 supervisores y 90 peajistas"
             ];
-            
-            exp1Items.forEach(item => {
-                if (yPosition > 270) {
-                    doc.addPage();
-                    yPosition = 20;
-                }
-                const splitItem = doc.splitTextToSize(item, pageWidth - 2 * margin - 10);
-                doc.text(splitItem, margin + 5, yPosition);
-                yPosition += splitItem.length * lineHeight;
+            exp1.forEach(item => {
+                if (yPosition > 270) { doc.addPage(); yPosition = 20; }
+                const split = doc.splitTextToSize(item, pageWidth - 2 * margin - 10);
+                doc.text(split, margin + 5, yPosition);
+                yPosition += split.length * lineHeight;
             });
-            
             yPosition += lineHeight;
             
-            // Experiencia 2 - Metalúrgica La Toma
-            if (yPosition > 250) {
-                doc.addPage();
-                yPosition = 20;
-            }
-            
+            // Jefe de Monitoreo
+            if (yPosition > 240) { doc.addPage(); yPosition = 20; }
             doc.setFontSize(11);
             doc.setTextColor(44, 90, 160);
             doc.text("Jefe de Monitoreo", margin, yPosition);
             yPosition += lineHeight;
-            
             doc.setFontSize(10);
             doc.setTextColor(100, 100, 100);
             doc.text("Metalúrgica La Toma | Marzo 2022 – Agosto 2022", margin, yPosition);
             yPosition += lineHeight;
-            
             doc.setFontSize(9);
             doc.setTextColor(0, 0, 0);
-            const exp2Items = [
-                "• Implementación de KPIs de seguridad con seguimiento semanal, logrando reducción del 30% en incidentes",
-                "• Reorganización de circuito CCTV (25 cámaras IP añadidas) logrando cero evasiones",
-                "• Capacitaciones en Trabajo en Altura y Manejo seguro de autoelevadores, reduciendo riesgos en 40%"
+            const exp2 = [
+                "• Reducción 30% incidentes vía KPIs de seguridad",
+                "• Cero evasiones tras reorganizar CCTV (25 cámaras IP)",
+                "• 40% reducción riesgos en Trabajo en Altura y autoelevadores"
             ];
-            
-            exp2Items.forEach(item => {
-                if (yPosition > 270) {
-                    doc.addPage();
-                    yPosition = 20;
-                }
-                const splitItem = doc.splitTextToSize(item, pageWidth - 2 * margin - 10);
-                doc.text(splitItem, margin + 5, yPosition);
-                yPosition += splitItem.length * lineHeight;
+            exp2.forEach(item => {
+                if (yPosition > 270) { doc.addPage(); yPosition = 20; }
+                const split = doc.splitTextToSize(item, pageWidth - 2 * margin - 10);
+                doc.text(split, margin + 5, yPosition);
+                yPosition += split.length * lineHeight;
             });
-            
             yPosition += lineHeight;
             
-            // Experiencia 3 - Falabella
-            if (yPosition > 230) {
-                doc.addPage();
-                yPosition = 20;
-            }
-            
+            // Jefe de Seguridad Falabella
+            if (yPosition > 230) { doc.addPage(); yPosition = 20; }
             doc.setFontSize(11);
             doc.setTextColor(44, 90, 160);
             doc.text("Jefe de Seguridad y Mantenimiento", margin, yPosition);
             yPosition += lineHeight;
-            
             doc.setFontSize(10);
             doc.setTextColor(100, 100, 100);
             doc.text("Falabella SA | Junio 2008 – Octubre 2021", margin, yPosition);
             yPosition += lineHeight;
-            
             doc.setFontSize(9);
             doc.setTextColor(0, 0, 0);
-            const exp3Items = [
-                "• Gestión de presupuesto, CCTV y equipos (90 vigilancia, 10 mantenimiento)",
-                "• Logré reducción de costos del 15% y rotación de personal del 30%",
-                "• Creación de manual operativo (mejora compliance 20%)",
-                "• Sistema de escaneo de envíos: optimización del 20% en vigilancia física"
+            const exp3 = [
+                "• Reducción costos 15% y rotación personal 30%",
+                "• Manual operativo: mejora compliance 20%",
+                "• Optimización 20% vigilancia física y Lead Time -30%"
             ];
-            
-            exp3Items.forEach(item => {
-                if (yPosition > 270) {
-                    doc.addPage();
-                    yPosition = 20;
-                }
-                const splitItem = doc.splitTextToSize(item, pageWidth - 2 * margin - 10);
-                doc.text(splitItem, margin + 5, yPosition);
-                yPosition += splitItem.length * lineHeight;
+            exp3.forEach(item => {
+                if (yPosition > 270) { doc.addPage(); yPosition = 20; }
+                const split = doc.splitTextToSize(item, pageWidth - 2 * margin - 10);
+                doc.text(split, margin + 5, yPosition);
+                yPosition += split.length * lineHeight;
             });
-            
             yPosition += lineHeight * 2;
             
-            // FORMACIÓN
-            if (yPosition > 250) {
-                doc.addPage();
-                yPosition = 20;
-            }
-            
+            // Formación
+            if (yPosition > 250) { doc.addPage(); yPosition = 20; }
             doc.setFontSize(14);
             doc.setTextColor(26, 58, 95);
             doc.text("FORMACIÓN", margin, yPosition);
             yPosition += lineHeight;
-            
             doc.setFontSize(9);
             doc.setTextColor(0, 0, 0);
             const educationItems = [
@@ -1482,63 +1506,24 @@
                 "• Gerenciador de Seguridad | UMSA (Argentina) | Graduado (2021)",
                 "• Gestión de Mantenimiento Industrial | Tec People (Argentina) | Graduado (2022)"
             ];
-            
             educationItems.forEach(item => {
-                if (yPosition > 270) {
-                    doc.addPage();
-                    yPosition = 20;
-                }
+                if (yPosition > 270) { doc.addPage(); yPosition = 20; }
                 doc.text(item, margin, yPosition);
                 yPosition += lineHeight;
             });
             
-            yPosition += lineHeight * 2;
-            
-            // REFERENCIAS
-            if (yPosition > 250) {
-                doc.addPage();
-                yPosition = 20;
-            }
-            
-            doc.setFontSize(14);
-            doc.setTextColor(26, 58, 95);
-            doc.text("REFERENCIAS", margin, yPosition);
-            yPosition += lineHeight;
-            
-            doc.setFontSize(9);
-            doc.setTextColor(0, 0, 0);
-            const referenceItems = [
-                "• Julio Pages - Actual: Consultor experto en Falabella Cl - Tel: 11 4042-7092",
-                "• Sebastián Marquart - Actual: Gerente regional Mercado Pago - Tel: 11 3687-9912",
-                "• Marco Ortolino - Actual: Intendente Nordelta en AVN - Tel: 11 3926-5601"
-            ];
-            
-            referenceItems.forEach(item => {
-                if (yPosition > 270) {
-                    doc.addPage();
-                    yPosition = 20;
-                }
-                doc.text(item, margin, yPosition);
-                yPosition += lineHeight;
-            });
-            
-            // Guardar el PDF
-            doc.save('CV_Diego_Cabrera_ATS.pdf');
+            doc.save('CV_Diego_Cabrera.pdf');
         }
 
-        // Asignar eventos a los botones de descarga
         document.getElementById('download-cv-main').addEventListener('click', generatePDF);
         document.getElementById('download-cv-pdf').addEventListener('click', generatePDF);
         document.getElementById('download-cv-footer').addEventListener('click', generatePDF);
 
-        // Scroll progress bar
         window.onscroll = function() {
             const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
             const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
             const scrolled = (winScroll / height) * 100;
             document.getElementById("progressBar").style.width = scrolled + "%";
-            
-            // Mostrar/ocultar botón "volver arriba"
             const backToTopButton = document.getElementById('backToTop');
             if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
                 backToTopButton.classList.add('visible');
@@ -1547,29 +1532,19 @@
             }
         };
 
-        // Botón "volver arriba"
         document.getElementById('backToTop').addEventListener('click', function() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
-        // Animación de elementos al hacer scroll
         function checkVisibility() {
             const timelineItems = document.querySelectorAll('.timeline-item');
-            
             timelineItems.forEach(item => {
                 const itemTop = item.getBoundingClientRect().top;
-                const itemBottom = item.getBoundingClientRect().bottom;
-                
-                if (itemTop < window.innerHeight * 0.9 && itemBottom > 0) {
+                if (itemTop < window.innerHeight * 0.9) {
                     item.classList.add('visible');
                 }
             });
         }
-
-        // Ejecutar al cargar y al hacer scroll
         window.addEventListener('load', checkVisibility);
         window.addEventListener('scroll', checkVisibility);
     </script>

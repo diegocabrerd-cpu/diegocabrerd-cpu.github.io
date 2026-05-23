@@ -1038,7 +1038,7 @@
 
                 <div class="result-card">
                     <div class="result-header">
-                        <div class="result-value">7% → 1%</div>
+                        <div class="result-value">8% → 1%</div>
                         <div class="result-title">Mejora en cobro</div>
                     </div>
                     <div class="result-content">
@@ -1079,12 +1079,12 @@
                 <!-- Nuevo rol estratégico (sin cifras monetarias) -->
                 <div class="timeline-item">
                     <div class="timeline-content">
-                        <div class="timeline-date"><i class="far fa-calendar-alt"></i> 2025 - Presente</div>
+                        <div class="timeline-date"><i class="far fa-calendar-alt"></i> 2026 - Presente</div>
                         <div class="timeline-company">Autopistas del Sol / GCO</div>
                         <div class="timeline-position">Responsable de Negocios Auxiliares</div>
                         <ul class="timeline-achievements">
                             <li>Coordinación del proyecto de cartelería fija hacia un ecosistema de comunicación vial inteligente.</li>
-                            <li>Coordinación y seguimiento al proyecto Dark Fiber para monetización de infraestructura de ducts.</li>
+                            <li>Coordinación y seguimiento al proyecto Dark Fiber para monetización de infraestructura de Ducts Leasing.</li>
                             <li>Seguimiento económico y contractual de unidades de negocio.</li>
                             <li>Interacción con ente regulador y stakeholders estratégicos.</li>
                             <li>Impulso de nuevos proyectos de monetización de infraestructura.</li>
@@ -1094,7 +1094,7 @@
                 <!-- Rol anterior en Ausol (base operativa, sin cambios) -->
                 <div class="timeline-item">
                     <div class="timeline-content">
-                        <div class="timeline-date"><i class="far fa-calendar-alt"></i> Agosto 2022 - 2025</div>
+                        <div class="timeline-date"><i class="far fa-calendar-alt"></i> Agosto 2022 - 2026</div>
                         <div class="timeline-company">Autopistas Del Sol</div>
                         <div class="timeline-position">Coordinador de Operaciones</div>
                         <ul class="timeline-achievements">
@@ -1254,7 +1254,7 @@ corporativo por otro)..</p>
                     
                     <div class="cv-job">
                         <div class="cv-job-title">Responsable de Negocios Auxiliares</div>
-                        <div class="cv-job-company">Autopistas del Sol / GCO | 2025 – Presente</div>
+                        <div class="cv-job-company">Autopistas del Sol / GCO | 2026 – Presente</div>
                         <ul class="cv-list">
                             <li>Redefinición estratégica del modelo de cartelería fija hacia comunicación vial inteligente.</li>
                             <li>Reconversión del modelo Ducts Leasing hacia Dark Fiber para monetización de infraestructura.</li>
@@ -1264,10 +1264,10 @@ corporativo por otro)..</p>
                     
                     <div class="cv-job">
                         <div class="cv-job-title">Coordinador de Operaciones</div>
-                        <div class="cv-job-company">Autopistas del Sol | Agosto 2022 – 2025</div>
+                        <div class="cv-job-company">Autopistas del Sol | Agosto 2022 – 2026</div>
                         <ul class="cv-list">
                             <li>Lideré negociación con sindicatos resultando en 30% menos liberaciones de tránsito.</li>
-                            <li>Implementé KPIs de quiebres mejorando tasa de cobro en 7% (reducción del 7% a 1%).</li>
+                            <li>Implementé KPIs de quiebres mejorando tasa de cobro en 7% (reducción del 8% a 1%).</li>
                             <li>Coordinación de 15 supervisores y 90 peajistas.</li>
                         </ul>
                     </div>
@@ -1358,29 +1358,32 @@ corporativo por otro)..</p>
         </div>
     </footer>
 
-    <script>
+        <script>
         const { jsPDF } = window.jspdf;
 
         function generatePDF() {
             const doc = new jsPDF();
             const pageWidth = doc.internal.pageSize.getWidth();
-            let yPosition = 20;
-            const lineHeight = 7;
-            const margin = 20;
+            const pageHeight = doc.internal.pageSize.getHeight();
+            let yPosition = 15;
+            const lineHeight = 5;
+            const margin = 10;
             
             doc.setFont("helvetica", "normal");
             
-            doc.setFontSize(18);
+            // Título principal
+            doc.setFontSize(16);
             doc.setTextColor(26, 58, 95);
             doc.text("DIEGO CABRERA", pageWidth / 2, yPosition, { align: "center" });
-            yPosition += lineHeight;
+            yPosition += lineHeight + 2;
             
-            doc.setFontSize(14);
+            doc.setFontSize(12);
             doc.setTextColor(44, 90, 160);
             doc.text("Business Operations & Infrastructure Strategy Leader", pageWidth / 2, yPosition, { align: "center" });
             yPosition += lineHeight * 2;
             
-            doc.setFontSize(10);
+            // Datos de contacto
+            doc.setFontSize(9);
             doc.setTextColor(0, 0, 0);
             doc.text("+54 11 3246-4964 | cabrerd1@me.com | Buenos Aires, Argentina", pageWidth / 2, yPosition, { align: "center" });
             yPosition += lineHeight;
@@ -1389,154 +1392,152 @@ corporativo por otro)..</p>
             doc.text("Portfolio: https://diegocabrerd-cpu.github.io/", pageWidth / 2, yPosition, { align: "center" });
             yPosition += lineHeight * 2;
             
-            doc.setFontSize(14);
+            // RESUMEN EJECUTIVO
+            doc.setFontSize(11);
             doc.setTextColor(26, 58, 95);
             doc.text("RESUMEN EJECUTIVO", margin, yPosition);
             yPosition += lineHeight;
             
-            doc.setFontSize(10);
+            doc.setFontSize(9);
             doc.setTextColor(0, 0, 0);
-            const summaryText = "Profesional con más de 17 años de experiencia evolucionando desde la gestión operacional de infraestructura crítica hacia el desarrollo estratégico de negocio, monetización de activos y evolución de modelos comerciales. Experto en integrar operaciones, tecnología, regulación y generación de ingresos para convertir activos subutilizados en flujos de valor escalables.";
+            const summaryText = "Profesional con mas de 17 años de experiencia evolucionando desde la gestion operacional de infraestructura critica hacia el desarrollo estrategico de negocio, monetizacion de activos y evolucion de modelos comerciales. Experto en integrar operaciones, tecnologia, regulacion y generacion de ingresos para convertir activos subutilizados en flujos de valor escalables.";
             const splitSummary = doc.splitTextToSize(summaryText, pageWidth - 2 * margin);
             doc.text(splitSummary, margin, yPosition);
             yPosition += splitSummary.length * lineHeight + lineHeight;
             
-            const keywords = "Competencias clave: Evolución de Negocio, Optimización de Ingresos, Monetización de Infraestructura, Dark Fiber, Control de Gestión, Negociación Estratégica, KPIs, Reducción de Costos, Optimización Logística, Normas ISO, Lean Management, SAP.";
+            const keywords = "Competencias clave: Evolucion de Negocio, Optimizacion de Ingresos, Monetizacion de Infraestructura, Dark Fiber, Control de Gestion, Negociacion Estrategica, KPIs, Reduccion de Costos, Optimizacion Logistica, Normas ISO, Lean Management, SAP.";
             const splitKeywords = doc.splitTextToSize(keywords, pageWidth - 2 * margin);
             doc.text(splitKeywords, margin, yPosition);
-            yPosition += splitKeywords.length * lineHeight + lineHeight * 2;
+            yPosition += splitKeywords.length * lineHeight + lineHeight * 1.5;
             
-            doc.setFontSize(14);
+            // EXPERIENCIA PROFESIONAL
+            doc.setFontSize(11);
             doc.setTextColor(26, 58, 95);
             doc.text("EXPERIENCIA PROFESIONAL", margin, yPosition);
             yPosition += lineHeight;
             
-            // Responsable Negocios Auxiliares (sin cifras)
-            doc.setFontSize(11);
+            // Responsable Negocios Auxiliares
+            doc.setFontSize(10);
             doc.setTextColor(44, 90, 160);
             doc.text("Responsable de Negocios Auxiliares", margin, yPosition);
             yPosition += lineHeight;
-            doc.setFontSize(10);
+            doc.setFontSize(9);
             doc.setTextColor(100, 100, 100);
             doc.text("Autopistas del Sol / GCO | 2026 – Presente", margin, yPosition);
             yPosition += lineHeight;
             doc.setFontSize(9);
             doc.setTextColor(0, 0, 0);
             const expNew = [
-                "• Redefinición estratégica del modelo de publicidad vial hacia comunicación inteligente.",
-                "• Reconversión del modelo Ducts Leasing hacia Dark Fiber para monetización.",
-                "• Evaluación de oportunidades de negocio y articulación regulatoria."
+                "  • Redefinicion estrategica del modelo de publicidad vial hacia comunicacion inteligente.",
+                "  • Reconversion del modelo Ducts Leasing hacia Dark Fiber para monetizacion.",
+                "  • Evaluacion de oportunidades de negocio y articulacion regulatoria."
             ];
             expNew.forEach(item => {
-                if (yPosition > 270) { doc.addPage(); yPosition = 20; }
-                const split = doc.splitTextToSize(item, pageWidth - 2 * margin - 10);
-                doc.text(split, margin + 5, yPosition);
+                const split = doc.splitTextToSize(item, pageWidth - 2 * margin);
+                doc.text(split, margin, yPosition);
                 yPosition += split.length * lineHeight;
             });
             yPosition += lineHeight;
             
             // Coordinador de Operaciones
-            if (yPosition > 250) { doc.addPage(); yPosition = 20; }
-            doc.setFontSize(11);
+            doc.setFontSize(10);
             doc.setTextColor(44, 90, 160);
             doc.text("Coordinador de Operaciones", margin, yPosition);
             yPosition += lineHeight;
-            doc.setFontSize(10);
+            doc.setFontSize(9);
             doc.setTextColor(100, 100, 100);
             doc.text("Autopistas del Sol | Agosto 2022 – 2026", margin, yPosition);
             yPosition += lineHeight;
             doc.setFontSize(9);
             doc.setTextColor(0, 0, 0);
             const exp1 = [
-                "• Negociación sindical: 30% menos liberaciones de tránsito.",
-                "• KPIs de quiebres: mejora 7% tasa de cobro (7% → 1%).",
-                "• Coordinación de 15 supervisores y 90 peajistas."
+                "  • Negociacion sindical: 30% menos liberaciones de transito.",
+                "  • KPIs de quiebres: mejora 7% tasa de cobro (reduccion de 8% a 1%).",
+                "  • Coordinacion de 15 supervisores y 90 peajistas."
             ];
             exp1.forEach(item => {
-                if (yPosition > 270) { doc.addPage(); yPosition = 20; }
-                const split = doc.splitTextToSize(item, pageWidth - 2 * margin - 10);
-                doc.text(split, margin + 5, yPosition);
+                const split = doc.splitTextToSize(item, pageWidth - 2 * margin);
+                doc.text(split, margin, yPosition);
                 yPosition += split.length * lineHeight;
             });
             yPosition += lineHeight;
             
             // Jefe de Monitoreo
-            if (yPosition > 240) { doc.addPage(); yPosition = 20; }
-            doc.setFontSize(11);
+            doc.setFontSize(10);
             doc.setTextColor(44, 90, 160);
             doc.text("Jefe de Monitoreo", margin, yPosition);
             yPosition += lineHeight;
-            doc.setFontSize(10);
+            doc.setFontSize(9);
             doc.setTextColor(100, 100, 100);
-            doc.text("Metalúrgica La Toma | Marzo 2022 – Agosto 2022", margin, yPosition);
+            doc.text("Metalurgica La Toma | Marzo 2022 – Agosto 2022", margin, yPosition);
             yPosition += lineHeight;
             doc.setFontSize(9);
             doc.setTextColor(0, 0, 0);
             const exp2 = [
-                "• Reducción 30% incidentes vía KPIs de seguridad.",
-                "• Cero evasiones tras reorganizar CCTV (25 cámaras IP).",
-                "• 40% reducción riesgos en Trabajo en Altura y autoelevadores."
+                "  • Reducción 30% incidentes via KPIs de seguridad.",
+                "  • Cero evasiones tras reorganizar CCTV (25 camaras IP).",
+                "  • 40% reduccion riesgos en Trabajo en Altura y autoelevadores."
             ];
             exp2.forEach(item => {
-                if (yPosition > 270) { doc.addPage(); yPosition = 20; }
-                const split = doc.splitTextToSize(item, pageWidth - 2 * margin - 10);
-                doc.text(split, margin + 5, yPosition);
+                const split = doc.splitTextToSize(item, pageWidth - 2 * margin);
+                doc.text(split, margin, yPosition);
                 yPosition += split.length * lineHeight;
             });
             yPosition += lineHeight;
             
             // Jefe de Seguridad Falabella
-            if (yPosition > 230) { doc.addPage(); yPosition = 20; }
-            doc.setFontSize(11);
+            doc.setFontSize(10);
             doc.setTextColor(44, 90, 160);
             doc.text("Jefe de Seguridad y Mantenimiento", margin, yPosition);
             yPosition += lineHeight;
-            doc.setFontSize(10);
+            doc.setFontSize(9);
             doc.setTextColor(100, 100, 100);
             doc.text("Falabella SA | Junio 2008 – Octubre 2021", margin, yPosition);
             yPosition += lineHeight;
             doc.setFontSize(9);
             doc.setTextColor(0, 0, 0);
             const exp3 = [
-                "• Reducción costos 15% y rotación personal 30%.",
-                "• Manual operativo: mejora compliance 20%.",
-                "• Optimización 20% vigilancia física y Lead Time -30%."
+                "  • Reduccion costos 15% y rotacion personal 30%.",
+                "  • Manual operativo: mejora compliance 20%.",
+                "  • Optimizacion 20% vigilancia fisica y Lead Time -30%."
             ];
             exp3.forEach(item => {
-                if (yPosition > 270) { doc.addPage(); yPosition = 20; }
-                const split = doc.splitTextToSize(item, pageWidth - 2 * margin - 10);
-                doc.text(split, margin + 5, yPosition);
+                const split = doc.splitTextToSize(item, pageWidth - 2 * margin);
+                doc.text(split, margin, yPosition);
                 yPosition += split.length * lineHeight;
             });
-            yPosition += lineHeight * 2;
+            yPosition += lineHeight * 1.5;
             
-            // Formación
-            if (yPosition > 250) { doc.addPage(); yPosition = 20; }
-            doc.setFontSize(14);
+            // FORMACIÓN
+            doc.setFontSize(11);
             doc.setTextColor(26, 58, 95);
-            doc.text("FORMACIÓN", margin, yPosition);
+            doc.text("FORMACION", margin, yPosition);
             yPosition += lineHeight;
+            
             doc.setFontSize(9);
             doc.setTextColor(0, 0, 0);
             const educationItems = [
-                "• Ingeniería Industrial | UTEL (México) | Graduado (2021-2025)",
-                "• Diplomado en Industria 4.0 | USAL (Argentina) | Graduado (2022)",
-                "• Gerenciador de Seguridad | UMSA (Argentina) | Graduado (2021)",
-                "• Gestión de Mantenimiento Industrial | Tec People (Argentina) | Graduado (2022)"
+                "  • Ingenieria Industrial | UTEL (Mexico) | Graduado (2021-2025)",
+                "  • Diplomado en Industria 4.0 | USAL (Argentina) | Graduado (2022)",
+                "  • Gerenciador de Seguridad | UMSA (Argentina) | Graduado (2021)",
+                "  • Gestion de Mantenimiento Industrial | Tec People (Argentina) | Graduado (2022)"
             ];
             educationItems.forEach(item => {
-                if (yPosition > 270) { doc.addPage(); yPosition = 20; }
-                doc.text(item, margin, yPosition);
-                yPosition += lineHeight;
+                const split = doc.splitTextToSize(item, pageWidth - 2 * margin);
+                doc.text(split, margin, yPosition);
+                yPosition += split.length * lineHeight;
             });
             
+            // Guardar PDF
             doc.save('CV_Diego_Cabrera.pdf');
         }
 
+        // Asignar eventos (mantener igual)
         document.getElementById('download-cv-main').addEventListener('click', generatePDF);
         document.getElementById('download-cv-pdf').addEventListener('click', generatePDF);
         document.getElementById('download-cv-footer').addEventListener('click', generatePDF);
 
+        // Scroll progress bar y back to top (sin cambios)
         window.onscroll = function() {
             const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
             const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
@@ -1566,5 +1567,3 @@ corporativo por otro)..</p>
         window.addEventListener('load', checkVisibility);
         window.addEventListener('scroll', checkVisibility);
     </script>
-</body>
-</html>

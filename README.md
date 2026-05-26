@@ -1,44 +1,80 @@
+
+<!-- Encabezado principal -->
 <div align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=1A3A5F&height=200&section=header&text=Diego%20Cabrera&fontSize=60&animation=fadeIn&fontColor=fff&desc=Business%20Operations%20%26%20Infrastructure%20Strategy%20Leader&descAlignY=65&descSize=18&fontAlignY=35" width="100%" />
+  <h1>📊 Diego Cabrera</h1>
+  <h3>Business Operations & Infrastructure Strategy Leader</h3>
+  <p><em>“Transformo operaciones complejas en modelos escalables de eficiencia, rentabilidad y crecimiento. Especializado en monetizar infraestructura y convertir problemas sistémicos en resultados de negocio.”</em></p>
 </div>
 
+<br>
+
+<!-- Badges de contacto -->
 <div align="center">
-  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&pause=1000&color=2C5AA0&center=true&vCenter=true&width=600&lines=Business+Operations+Leader;Infrastructure+Strategy+Expert;17%2B+Years+of+Experience;Revenue+Optimization+Specialist;Dark+Fiber+%26+Asset+Monetization" />
+  <a href="https://diegocabrerd-cpu.github.io/">
+    <img src="https://img.shields.io/badge/🌐_Portfolio-1A3A5F?style=for-the-badge&logo=githubpages&logoColor=white" />
+  </a>
+  <a href="https://www.linkedin.com/in/diego-angel-cabrera-">
+    <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" />
+  </a>
+  <a href="mailto:cabrerd1@me.com">
+    <img src="https://img.shields.io/badge/✉️_cabrerd1@me.com-D14836?style=for-the-badge&logo=gmail&logoColor=white" />
+  </a>
 </div>
+
+<br>
 
 ---
 
-## 👋 Sobre mí
+## 💼 Competencias Clave
 
-Soy un profesional con **más de 17 años de experiencia** evolucionando desde la gestión operacional de infraestructura crítica hacia el desarrollo estratégico de negocio, monetización de activos y evolución de modelos comerciales.
-
-🎯 **Mi enfoque:** Integrar operaciones, tecnología, regulación y generación de ingresos para convertir activos subutilizados en flujos de valor escalables.
-
-📍 **Ubicación:** Buenos Aires, Argentina  
-💼 **Rol actual:** Responsable de Negocios Auxiliares en Autopistas del Sol / GCO
+| 🎯 Estrategia y Negocios | ⚙️ Operaciones | 🛡️ Infraestructura | 📊 Control de Gestión |
+|-------------------------|----------------|---------------------|----------------------|
+| Evolución de Negocio    | KPIs de Rendimiento | Dark Fiber           | Revenue Optimization  |
+| Monetización de activos | Optimización Logística | Facility Management  | Negociación Estratégica |
+| Modelos de negocio      | Gestión de Presupuesto | Seguridad Patrimonial | Lean Management       |
 
 ---
 
-## 🏆 Logros Destacados
+## 🏢 Experiencia Profesional
 
-<div align="left">
+### 📌 Responsable de Negocios Auxiliares
+**Autopistas del Sol / GCO** · 2026 – Presente
+- Redefinición estratégica del modelo de publicidad vial hacia comunicación inteligente.
+- Reconversión del modelo Ducts Leasing hacia Dark Fiber para monetización de infraestructura.
+- Evaluación de oportunidades de negocio, análisis económico-financiero y articulación regulatoria.
 
-| 🎯 KPI | 📊 Impacto |
-|--------|-----------|
-| Liberaciones de tránsito | **↓ 30%** mediante negociación sindical |
-| Tasa de quiebres | **↓ 86%** (de 8% a 1%) vía KPIs |
-| Incidentes de seguridad | **↓ 30%** con sistema de KPIs |
-| Costos operativos | **↓ 15%** optimizando procesos |
-| Lead Time mantenimiento | **↓ 30%** en Falabella SA |
-| Rotación de personal | **↓ 30%** mediante mejora operativa |
+### 🚗 Coordinador de Operaciones
+**Autopistas del Sol** · Agosto 2022 – 2026
+- Liderazgo de 15 supervisores y 90 peajistas.
+- Negociación sindical: 30% menos liberaciones de tránsito.
+- Implementación de KPIs de quiebres: mejora del 7% en tasa de cobro (reducción del 7% al 1%).
 
-</div>
+### 🔒 Jefe de Monitoreo
+**Metalúrgica La Toma** · Marzo 2022 – Agosto 2022
+- Reducción del 30% de incidentes vía KPIs de seguridad.
+- Cero evasiones tras reorganización de CCTV (25 cámaras IP añadidas).
+- 40% reducción de riesgos en trabajos en altura y autoelevadores.
+
+### 🛡️ Jefe de Seguridad y Mantenimiento
+**Falabella SA** · Junio 2008 – Octubre 2021
+- Reducción de costos del 15% y rotación de personal del 30%.
+- Creación de manual operativo: mejora del compliance en 20%.
+- Optimización del 20% en vigilancia física y reducción del Lead Time en un 30%.
+
+---
+
+## 🎓 Formación Académica
+
+| Título | Institución | Período |
+|--------|-------------|---------|
+| Ingeniería Industrial | UTEL (México) | 2021 – 2025 |
+| Diplomado en Industria 4.0 | USAL (Argentina) | 2022 |
+| Gerenciador de Seguridad | UMSA (Argentina) | 2021 |
+| Gestión de Mantenimiento Industrial | Tec People (Argentina) | 2022 |
 
 ---
 
 ## 🚀 Áreas de Experiencia
-
-<div align="center">
 
 ```mermaid
 mindmap
@@ -59,4 +95,8 @@ mindmap
       SAP
       KPIs Avanzados
       Lean Management
+```
 
+📬 Contacto
+<div align="center"> <a href="https://diegocabrerd-cpu.github.io/"> <img src="https://img.shields.io/badge/🌐_Portfolio-1A3A5F?style=for-the-badge&logo=githubpages&logoColor=white" /> </a> <a href="https://www.linkedin.com/in/diego-angel-cabrera-"> <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" /> </a> <a href="mailto:cabrerd1@me.com"> <img src="https://img.shields.io/badge/✉️_cabrerd1@me.com-D14836?style=for-the-badge&logo=gmail&logoColor=white" /> </a> </div><div align="center"> <img src="https://komarev.com/ghpvc/?username=diegocabrerd-cpu&label=Visitas+al+perfil&color=2C5AA0&style=for-the-badge" /> </div>
+<div align="center"> <img src="https://capsule-render.vercel.app/api?type=waving&color=1A3A5F&height=100&section=footer" width="100%" /> </div><p align="center"> <em>“Convirtiendo activos subutilizados en flujos de valor escalables”</em> </p> 

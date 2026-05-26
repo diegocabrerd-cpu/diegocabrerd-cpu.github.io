@@ -26,7 +26,7 @@ Soy un profesional con **más de 17 años de experiencia** evolucionando desde l
 | 🎯 KPI | 📊 Impacto |
 |--------|-----------|
 | Liberaciones de tránsito | **↓ 30%** mediante negociación sindical |
-| Tasa de quiebres | **↓ 86%** (de 7% a 1%) vía KPIs |
+| Tasa de quiebres | **↓ 86%** (de 8% a 1%) vía KPIs |
 | Incidentes de seguridad | **↓ 30%** con sistema de KPIs |
 | Costos operativos | **↓ 15%** optimizando procesos |
 | Lead Time mantenimiento | **↓ 30%** en Falabella SA |

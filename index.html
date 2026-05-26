@@ -3,1941 +3,957 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Diego Cabrera - Business Operations & Infrastructure Strategy Leader. +17 años transformando operaciones complejas en modelos escalables de eficiencia, rentabilidad y crecimiento.">
-    <meta name="keywords" content="operaciones, infraestructura, estrategia, transformación digital, facility management, seguridad patrimonial, monetización de activos, Continuidad Operacional & Gestión de Riesgos, liderazgo">
-    <meta name="author" content="Diego Cabrera">
-    <meta name="robots" content="index, follow">
-    
-    <!-- Open Graph / LinkedIn -->
-    <meta property="og:title" content="Diego Cabrera - Business Operations & Infrastructure Strategy Leader">
-    <meta property="og:description" content="Transformo operaciones complejas en modelos escalables de eficiencia, rentabilidad y crecimiento.">
-    <meta property="og:type" content="profile">
-    
     <title>Diego Cabrera | Business Operations & Infrastructure Strategy Leader</title>
-    
-    <!-- Preconnect para performance -->
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
-    
-    <!-- Structured Data para SEO profesional -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Diego Cabrera",
-      "jobTitle": "Business Operations & Infrastructure Strategy Leader",
-      "description": "Profesional con +17 años liderando estrategia, infraestructura y transformación de negocio. Especializado en monetizar infraestructura y convertir problemas sistémicos en resultados de negocio.",
-      "url": "https://diegocabrerd-cpu.github.io/",
-      "sameAs": [
-        "https://www.linkedin.com/in/diego-angel-cabrera-"
-      ],
-      "worksFor": {
-        "@type": "Organization",
-        "name": "Autopistas del Sol / GCO"
-      },
-      "alumniOf": {
-        "@type": "EducationalOrganization",
-        "name": "UTEL, México"
-      },
-      "skills": [
-        "Gestión de Operaciones", "Facility Management", "Seguridad Patrimonial", 
-        "Liderazgo Estratégico", "Estrategia y Nuevos Negocios", "Monetización de Infraestructura",
-        "Continuidad Operacional & Gestión de Riesgos", "Control de Gestión", "Negociación Estratégica"
-      ]
-    }
-    </script>
-    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        :root {
-            /* Paleta profesional sobria */
-            --primary: #1a3a5f;
-            --primary-dark: #0f2a44;
-            --secondary: #2c5aa0;
-            --secondary-light: #4a7bc9;
-            --accent: #2e7d32;
-            --accent-hover: #1b5e20;
-            --light: #f8f9fa;
-            --lighter: #ffffff;
-            --dark: #212529;
-            --gray: #6c757d;
-            --gray-light: #e9ecef;
-            
-            /* Espaciado consistente */
-            --space-xs: 0.5rem;
-            --space-sm: 1rem;
-            --space-md: 2rem;
-            --space-lg: 4rem;
-            --space-xl: 6rem;
-            
-            /* Transiciones suaves */
-            --transition-fast: 0.2s ease;
-            --transition-normal: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            --transition-slow: 0.5s ease;
-            
-            /* Sombras profesionales */
-            --shadow-sm: 0 1px 2px rgba(0,0,0,0.08);
-            --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
-            --shadow-lg: 0 8px 30px rgba(0,0,0,0.12);
-            --shadow-hover: 0 12px 40px rgba(0,0,0,0.15);
-            
-            /* Bordes */
-            --radius-sm: 4px;
-            --radius-md: 8px;
-            --radius-lg: 16px;
-            --radius-full: 50px;
-        }
-        
-        /* Reset & Base */
-        *, *::before, *::after {
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
-        html {
-            scroll-behavior: smooth;
-            scroll-padding-top: 80px;
+
+        :root {
+            --primary: #2C5AA0;
+            --primary-dark: #1A3A5F;
+            --primary-light: #4A90E2;
+            --accent: #00D4FF;
+            --accent-secondary: #7B61FF;
+            --bg-dark: #0A0E1A;
+            --bg-darker: #060812;
+            --text-primary: #FFFFFF;
+            --text-secondary: #A0AEC0;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
         }
-        
+
         body {
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-            line-height: 1.7;
-            color: var(--dark);
-            background-color: var(--light);
+            font-family: 'Space Grotesk', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
             overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
+            cursor: none;
         }
-        
-        /* Accesibilidad: foco visible */
-        :focus-visible {
-            outline: 3px solid var(--accent);
-            outline-offset: 2px;
+
+        /* Cursor Personalizado */
+        .cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--accent);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.2s ease, width 0.3s ease, height 0.3s ease;
+            mix-blend-mode: difference;
         }
-        
-        /* Skip link para accesibilidad */
-        .skip-link {
-            position: absolute;
-            top: -40px;
-            left: 0;
-            background: var(--primary);
-            color: white;
-            padding: 8px 16px;
-            z-index: 1000;
-            transition: top var(--transition-fast);
+
+        .cursor-dot {
+            position: fixed;
+            width: 5px;
+            height: 5px;
+            background: var(--accent);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
         }
-        .skip-link:focus {
-            top: 0;
-        }
-        
-        /* Contenedor responsivo */
-        .container {
-            width: min(92%, 1200px);
-            margin: 0 auto;
-            padding: 0 var(--space-sm);
-        }
-        
-        /* Tipografía jerárquica */
-        h1, h2, h3, h4 {
-            font-weight: 700;
-            line-height: 1.2;
-            color: var(--primary);
-        }
-        
-        h1 { font-size: clamp(2rem, 5vw, 3.5rem); }
-        h2 { font-size: clamp(1.75rem, 4vw, 2.5rem); }
-        h3 { font-size: clamp(1.25rem, 3vw, 1.5rem); }
-        
-        p { margin-bottom: var(--space-sm); }
-        
-        /* Barra de progreso de lectura */
-        .progress-container {
+
+        /* Fondo Animado */
+        .background-gradient {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            height: 3px;
-            background: transparent;
-            z-index: 1000;
-            pointer-events: none;
-        }
-        .progress-bar {
             height: 100%;
-            background: linear-gradient(90deg, var(--accent), var(--secondary));
-            width: 0%;
-            transition: width var(--transition-fast);
+            background: linear-gradient(135deg, var(--bg-darker) 0%, var(--bg-dark) 50%, #0F1729 100%);
+            z-index: -2;
         }
-        
-        /* Header profesional */
-        header {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            color: white;
-            padding: clamp(60px, 12vw, 100px) 0 clamp(50px, 10vw, 80px);
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        header::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: 
-                radial-gradient(circle at 20% 80%, rgba(255,255,255,0.08) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(255,255,255,0.06) 0%, transparent 50%);
-            pointer-events: none;
-        }
-        
-        .header-content {
-            position: relative;
-            z-index: 1;
-            animation: fadeInUp 0.6s ease;
-        }
-        
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .header-content h1 {
-            margin-bottom: var(--space-xs);
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            position: relative;
-            display: inline-block;
-        }
-        
-        .header-content h1::after {
-            content: '';
-            position: absolute;
-            bottom: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 70px;
-            height: 3px;
-            background: var(--accent);
-            border-radius: 2px;
-        }
-        
-        .header-content h2 {
-            font-size: clamp(1.1rem, 2.5vw, 1.5rem);
-            font-weight: 400;
-            margin: var(--space-md) auto var(--space-sm);
-            max-width: 900px;
-            opacity: 0.95;
-            color: rgba(255,255,255,0.95);
-        }
-        
-        .tagline {
-            font-size: clamp(1rem, 2vw, 1.2rem);
-            max-width: 750px;
-            margin: 0 auto var(--space-md);
-            font-style: italic;
-            opacity: 0.9;
-            color: rgba(255,255,255,0.9);
-        }
-        
-        /* Botones CTA */
-        .cta-group {
-            display: flex;
-            gap: var(--space-sm);
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-top: var(--space-md);
-        }
-        
-        .cta-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: var(--accent);
-            color: white;
-            padding: 14px 28px;
-            border-radius: var(--radius-full);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1rem;
-            transition: var(--transition-normal);
-            border: none;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            box-shadow: var(--shadow-md);
-        }
-        
-        .cta-button::before {
-            content: '';
-            position: absolute;
+
+        .floating-shapes {
+            position: fixed;
             top: 0;
-            left: -100%;
+            left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.5s;
+            z-index: -1;
+            overflow: hidden;
         }
-        
-        .cta-button:hover::before {
-            left: 100%;
-        }
-        
-        .cta-button:hover {
-            background: var(--accent-hover);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-hover);
-        }
-        
-        .cta-button.secondary {
-            background: transparent;
-            border: 2px solid rgba(255,255,255,0.9);
-        }
-        
-        .cta-button.secondary:hover {
-            background: rgba(255,255,255,0.15);
-        }
-        
-        .cta-button i {
-            font-size: 0.9em;
-        }
-        
-        /* Indicador de scroll */
-        .scroll-indicator {
+
+        .shape {
             position: absolute;
-            bottom: 25px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 26px;
-            height: 42px;
-            border: 2px solid rgba(255,255,255,0.5);
-            border-radius: 15px;
-            display: flex;
-            justify-content: center;
-            animation: bounce 2s infinite;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.3;
+            animation: float 20s infinite ease-in-out;
         }
-        
-        .scroll-indicator::before {
-            content: '';
-            width: 4px;
-            height: 10px;
-            background: rgba(255,255,255,0.8);
-            border-radius: 2px;
-            margin-top: 8px;
-            animation: scrollDot 2s infinite;
+
+        .shape-1 {
+            width: 500px;
+            height: 500px;
+            background: var(--primary);
+            top: -10%;
+            left: -10%;
+            animation-delay: 0s;
         }
-        
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
-            40% { transform: translateX(-50%) translateY(-8px); }
-            60% { transform: translateX(-50%) translateY(-4px); }
+
+        .shape-2 {
+            width: 400px;
+            height: 400px;
+            background: var(--accent-secondary);
+            bottom: -10%;
+            right: -10%;
+            animation-delay: -7s;
         }
-        
-        @keyframes scrollDot {
-            0% { opacity: 0; transform: translateY(-5px); }
-            50% { opacity: 1; }
-            100% { opacity: 0; transform: translateY(5px); }
-        }
-        
-        /* Secciones base */
-        section {
-            padding: var(--space-lg) 0;
-            position: relative;
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: var(--space-lg);
-            position: relative;
-        }
-        
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 3px;
+
+        .shape-3 {
+            width: 300px;
+            height: 300px;
             background: var(--accent);
-            margin: var(--space-sm) auto 0;
-            border-radius: 2px;
+            top: 50%;
+            left: 50%;
+            animation-delay: -14s;
         }
-        
-        /* About - Texto centrado con mejor legibilidad */
-        .about-text {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-            font-size: 1.1rem;
-            color: var(--gray);
-            line-height: 1.9;
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(50px, -50px) rotate(90deg); }
+            50% { transform: translate(100px, 50px) rotate(180deg); }
+            75% { transform: translate(50px, 100px) rotate(270deg); }
         }
-        
-        .about-text p + p {
-            margin-top: var(--space-sm);
+
+        /* Grid Pattern */
+        .grid-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(44, 90, 160, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(44, 90, 160, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+            animation: grid-move 20s linear infinite;
         }
-        
-        /* Value Proposition - Nueva sección estratégica */
-        .value-prop {
-            background: white;
-            border-left: 4px solid var(--accent);
-            padding: var(--space-md);
-            border-radius: 0 var(--radius-md) var(--radius-md) 0;
-            margin: var(--space-lg) auto;
-            max-width: 900px;
-            box-shadow: var(--shadow-sm);
+
+        @keyframes grid-move {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
         }
-        
-        .value-prop h3 {
-            color: var(--primary);
-            margin-bottom: var(--space-sm);
+
+        /* Navegación */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 2rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            backdrop-filter: blur(20px);
+            background: rgba(10, 14, 26, 0.7);
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--primary-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
             display: flex;
             align-items: center;
-            gap: 10px;
+            justify-content: center;
+            padding: 6rem 4rem 4rem;
+            position: relative;
         }
-        
-        .value-prop h3 i {
-            color: var(--accent);
-        }
-        
-        .value-list {
-            list-style: none;
+
+        .hero-content {
+            max-width: 1400px;
+            width: 100%;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: var(--space-sm);
-            margin-top: var(--space-sm);
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
         }
-        
-        .value-list li {
-            position: relative;
-            padding-left: 24px;
-            font-size: 0.95rem;
+
+        .hero-text {
+            animation: fadeInUp 1s ease-out;
         }
-        
-        .value-list li::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 50px;
+            font-size: 0.875rem;
             color: var(--accent);
-            font-weight: 700;
-            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            backdrop-filter: blur(10px);
         }
-        
-        /* Expertise Cards - Diseño limpio y profesional */
-        .expertise-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: var(--space-md);
+
+        .hero-badge i {
+            font-size: 0.75rem;
         }
-        
-        .expertise-card {
-            background: white;
-            padding: var(--space-md);
-            border-radius: var(--radius-md);
-            box-shadow: var(--shadow-md);
-            transition: var(--transition-normal);
-            border-top: 3px solid var(--secondary);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .expertise-card::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            opacity: 0;
-            transition: opacity var(--transition-normal);
-            z-index: 0;
-        }
-        
-        .expertise-card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-hover);
-        }
-        
-        .expertise-card:hover::before {
-            opacity: 0.04;
-        }
-        
-        .expertise-card > * {
-            position: relative;
-            z-index: 1;
-        }
-        
-        .expertise-icon {
-            font-size: 2.5rem;
-            color: var(--secondary);
-            margin-bottom: var(--space-sm);
-            display: block;
-        }
-        
-        .expertise-card h3 {
-            margin-bottom: var(--space-sm);
-            color: var(--primary);
-        }
-        
-        .expertise-card ul {
-            list-style: none;
-            text-align: left;
-        }
-        
-        .expertise-card li {
-            padding: 4px 0 4px 22px;
-            position: relative;
-            font-size: 0.95rem;
-            color: var(--gray);
-        }
-        
-        .expertise-card li::before {
-            content: '•';
-            position: absolute;
-            left: 0;
-            color: var(--accent);
-            font-weight: bold;
-            font-size: 1.3rem;
-            line-height: 1;
-            top: 2px;
-        }
-        
-        /* Results - Sin cifras económicas, enfoque estratégico */
-        .results {
-            background: var(--light);
-        }
-        
-        .results-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: var(--space-md);
-        }
-        
-        .result-card {
-            background: white;
-            border-radius: var(--radius-md);
-            overflow: hidden;
-            box-shadow: var(--shadow-md);
-            transition: var(--transition-normal);
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .result-card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-hover);
-        }
-        
-        .result-header {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            padding: var(--space-sm) var(--space-md);
-            text-align: center;
-        }
-        
-        .result-value {
-            font-size: 2rem;
+
+        .hero-title {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
             font-weight: 700;
             line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
-        
-        .result-title {
-            font-size: 0.95rem;
-            opacity: 0.95;
-            font-weight: 400;
+
+        .hero-title .highlight {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--primary-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            display: inline-block;
         }
-        
-        .result-content {
-            padding: var(--space-md);
-            flex-grow: 1;
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .typing-effect {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--accent);
+            font-size: 1rem;
+            margin-bottom: 2rem;
+            min-height: 2rem;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 3rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .stat {
             display: flex;
             flex-direction: column;
         }
-        
-        .result-content h3 {
-            color: var(--primary);
-            margin-bottom: var(--space-xs);
-            font-size: 1.2rem;
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent);
+            line-height: 1;
         }
-        
-        .result-content p {
-            color: var(--gray);
-            font-size: 0.95rem;
-            margin: 0;
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-top: 0.5rem;
         }
-        
-        /* Timeline - Experiencia profesional */
-        .timeline {
+
+        /* Tarjetas Principales */
+        .hero-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 2rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: var(--space-sm) 0;
+            overflow: hidden;
+            cursor: none;
         }
-        
-        .timeline::before {
+
+        .card::before {
             content: '';
             position: absolute;
-            left: 50%;
             top: 0;
-            bottom: 0;
-            width: 2px;
-            background: linear-gradient(to bottom, var(--primary), var(--secondary));
-            transform: translateX(-50%);
-        }
-        
-        .timeline-item {
-            position: relative;
-            margin-bottom: var(--space-lg);
+            left: 0;
             width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1) 0%, rgba(123, 97, 255, 0.1) 100%);
             opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.5s ease, transform 0.5s ease;
+            transition: opacity 0.4s ease;
         }
-        
-        .timeline-item.visible {
+
+        .card:hover {
+            transform: translateY(-8px) scale(1.02);
+            border-color: var(--accent);
+            box-shadow: 0 20px 60px rgba(0, 212, 255, 0.2);
+        }
+
+        .card:hover::before {
             opacity: 1;
-            transform: translateY(0);
         }
-        
-        .timeline-item:nth-child(odd) .timeline-content { margin-left: auto; margin-right: 0; }
-        .timeline-item:nth-child(even) .timeline-content { margin-left: 0; margin-right: auto; }
-        
-        .timeline-content {
-            width: calc(50% - 30px);
-            padding: var(--space-md);
-            background: white;
-            border-radius: var(--radius-md);
-            box-shadow: var(--shadow-md);
-            position: relative;
-            border-left: 3px solid var(--accent);
-            transition: var(--transition-normal);
-        }
-        
-        .timeline-content:hover {
-            box-shadow: var(--shadow-hover);
-        }
-        
-        .timeline-content::after {
-            content: '';
-            position: absolute;
-            top: 28px;
-            width: 16px;
-            height: 16px;
-            background: var(--secondary);
-            border-radius: 50%;
-            box-shadow: 0 0 0 4px white, 0 0 0 6px var(--secondary);
-            z-index: 1;
-        }
-        
-        .timeline-item:nth-child(odd) .timeline-content::after {
-            left: -38px;
-        }
-        
-        .timeline-item:nth-child(even) .timeline-content::after {
-            right: -38px;
-        }
-        
-        .timeline-date {
+
+        .card-header {
             display: flex;
             align-items: center;
-            gap: 8px;
-            font-weight: 600;
-            color: var(--secondary);
-            margin-bottom: var(--space-xs);
-            font-size: 0.95rem;
-        }
-        
-        .timeline-company {
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 2px;
-            font-size: 1.2rem;
-        }
-        
-        .timeline-position {
-            font-style: italic;
-            color: var(--gray);
-            margin-bottom: var(--space-sm);
-            font-size: 0.95rem;
-        }
-        
-        .timeline-achievements {
-            list-style: none;
-            margin-top: var(--space-xs);
-        }
-        
-        .timeline-achievements li {
-            padding: 4px 0 4px 20px;
+            gap: 1rem;
+            margin-bottom: 1rem;
             position: relative;
-            font-size: 0.95rem;
-            color: var(--dark);
+            z-index: 1;
         }
-        
-        .timeline-achievements li::before {
-            content: '•';
-            position: absolute;
-            left: 0;
-            color: var(--accent);
-            font-weight: bold;
-            font-size: 1.2rem;
-            line-height: 1;
-            top: 3px;
-        }
-        
-        /* Validation - Competencias y testimonios */
-        .validation-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: var(--space-lg);
-            align-items: start;
-        }
-        
-        .competency-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-            gap: var(--space-sm);
-            margin: var(--space-md) 0;
-        }
-        
-        .competency-item {
-            background: white;
-            padding: var(--space-sm) var(--space-xs);
-            border-radius: var(--radius-md);
-            text-align: center;
-            box-shadow: var(--shadow-sm);
-            transition: var(--transition-normal);
-            border: 1px solid var(--gray-light);
-        }
-        
-        .competency-item:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
-            border-color: var(--secondary-light);
-        }
-        
-        .competency-value {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--secondary);
-            line-height: 1;
-        }
-        
-        .competency-name {
-            font-weight: 600;
-            color: var(--primary);
-            font-size: 0.9rem;
-            margin-top: 4px;
-        }
-        
-        .values-highlight {
-            background: var(--light);
-            padding: var(--space-sm);
-            border-radius: var(--radius-md);
-            margin-top: var(--space-md);
-            font-size: 0.95rem;
-        }
-        
-        .values-highlight strong {
-            color: var(--primary);
-        }
-        
-        /* Testimonios */
-        .testimonials {
+
+        .card-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            border-radius: 12px;
             display: flex;
-            flex-direction: column;
-            gap: var(--space-md);
-        }
-        
-        .testimonial {
-            background: white;
-            padding: var(--space-md);
-            border-radius: var(--radius-md);
-            border-left: 4px solid var(--secondary);
-            box-shadow: var(--shadow-md);
-            transition: var(--transition-normal);
-            position: relative;
-        }
-        
-        .testimonial:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-hover);
-        }
-        
-        .testimonial::before {
-            content: '"';
-            font-size: 3.5rem;
-            color: rgba(0,0,0,0.06);
-            position: absolute;
-            top: -10px;
-            left: 12px;
-            line-height: 1;
-            font-family: Georgia, serif;
-        }
-        
-        .testimonial p {
-            font-style: italic;
-            margin-bottom: var(--space-sm);
-            position: relative;
-            z-index: 1;
-            font-size: 0.95rem;
-            line-height: 1.8;
-        }
-        
-        .testimonial-author {
-            font-weight: 700;
-            color: var(--primary);
-            font-size: 1rem;
-        }
-        
-        .testimonial-contact {
-            font-size: 0.85rem;
-            color: var(--gray);
-            font-style: normal;
-        }
-        
-        /* Education */
-        .education-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: var(--space-md);
-        }
-        
-        .education-card {
-            background: white;
-            padding: var(--space-md);
-            border-radius: var(--radius-md);
-            border-left: 4px solid var(--accent);
-            box-shadow: var(--shadow-sm);
-            transition: var(--transition-normal);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .education-card::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            opacity: 0;
-            transition: opacity var(--transition-normal);
-        }
-        
-        .education-card:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-hover);
-        }
-        
-        .education-card:hover::before {
-            opacity: 0.03;
-        }
-        
-        .education-card > * {
-            position: relative;
-            z-index: 1;
-        }
-        
-        .education-title {
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 4px;
-        }
-        
-        .education-institution {
-            font-weight: 600;
-            color: var(--secondary);
-            margin-bottom: 2px;
-            font-size: 0.95rem;
-        }
-        
-        .education-date {
-            color: var(--gray);
-            font-size: 0.9rem;
-            margin-bottom: var(--space-xs);
-        }
-        
-        .education-status {
-            display: inline-block;
-            background: var(--accent);
-            color: white;
-            padding: 3px 10px;
-            border-radius: var(--radius-full);
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-        
-        /* CV Section - Optimizado para impresión y PDF */
-        .cv-section-block {
-            background: white;
-        }
-        
-        .cv-content {
-            max-width: 800px;
-            margin: 0 auto;
-            background: var(--light);
-            padding: var(--space-lg);
-            border-radius: var(--radius-lg);
-            border: 1px solid var(--gray-light);
-            font-family: 'Segoe UI', Arial, sans-serif;
-            line-height: 1.6;
-            box-shadow: var(--shadow-md);
-        }
-        
-        .cv-header {
-            text-align: center;
-            margin-bottom: var(--space-md);
-            padding-bottom: var(--space-md);
-            border-bottom: 2px solid var(--primary);
-        }
-        
-        .cv-header h1 {
-            font-size: 1.8rem;
-            margin-bottom: 4px;
-            color: var(--primary);
-        }
-        
-        .cv-header h2 {
-            font-size: 1.1rem;
-            font-weight: 400;
-            color: var(--secondary);
-            margin-bottom: var(--space-xs);
-        }
-        
-        .cv-header p {
-            margin: 2px 0;
-            font-size: 0.9rem;
-            color: var(--gray);
-        }
-        
-        .cv-section {
-            margin-bottom: var(--space-md);
-        }
-        
-        .cv-section-title {
-            color: var(--primary);
-            border-bottom: 2px solid var(--accent);
-            padding-bottom: 6px;
-            margin-bottom: var(--space-sm);
-            font-size: 1.2rem;
-            font-weight: 700;
-        }
-        
-        .cv-job {
-            margin-bottom: var(--space-md);
-            padding-bottom: var(--space-sm);
-            border-bottom: 1px dashed var(--gray-light);
-        }
-        
-        .cv-job:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-            padding-bottom: 0;
-        }
-        
-        .cv-job-title {
-            color: var(--secondary);
-            font-weight: 700;
-            font-size: 1.05rem;
-            margin-bottom: 2px;
-        }
-        
-        .cv-job-company {
-            font-style: italic;
-            color: var(--gray);
-            margin-bottom: var(--space-xs);
-            font-size: 0.95rem;
-        }
-        
-        .cv-list {
-            padding-left: 20px;
-            margin: 0;
-        }
-        
-        .cv-list li {
-            margin-bottom: 6px;
-            font-size: 0.95rem;
-            position: relative;
-            padding-left: 18px;
-        }
-        
-        .cv-list li::before {
-            content: '▸';
-            position: absolute;
-            left: 0;
-            color: var(--accent);
-            font-weight: bold;
-        }
-        
-        /* Contact - Fondo profesional con CTAs claros */
-        .contact {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            color: white;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .contact::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: 
-                radial-gradient(circle at 10% 90%, rgba(255,255,255,0.08) 0%, transparent 40%),
-                radial-gradient(circle at 90% 10%, rgba(255,255,255,0.06) 0%, transparent 40%);
-            pointer-events: none;
-        }
-        
-        .contact > .container {
-            position: relative;
-            z-index: 1;
-        }
-        
-        .contact .section-title {
-            color: white;
-        }
-        
-        .contact .section-title::after {
-            background: white;
-        }
-        
-        .contact-links {
-            display: flex;
+            align-items: center;
             justify-content: center;
-            flex-wrap: wrap;
-            gap: var(--space-sm);
-            margin: var(--space-lg) auto;
-            max-width: 900px;
+            font-size: 1.5rem;
+            color: var(--text-primary);
         }
-        
-        .contact-link {
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .card-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .card-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .feature-tag {
+            padding: 0.5rem 1rem;
+            background: rgba(44, 90, 160, 0.2);
+            border: 1px solid rgba(44, 90, 160, 0.3);
+            border-radius: 8px;
+            font-size: 0.75rem;
+            color: var(--primary-light);
+        }
+
+        .card-button {
             display: inline-flex;
             align-items: center;
-            gap: 10px;
-            color: white;
-            text-decoration: none;
-            padding: 12px 24px;
-            background: rgba(255,255,255,0.12);
-            border-radius: var(--radius-full);
-            transition: var(--transition-normal);
-            backdrop-filter: blur(4px);
-            border: 1px solid rgba(255,255,255,0.2);
-            font-weight: 500;
-            font-size: 0.95rem;
-        }
-        
-        .contact-link:hover {
-            background: rgba(255,255,255,0.22);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
-        }
-        
-        .contact-link i {
-            font-size: 1.1rem;
-            width: 20px;
-            text-align: center;
-        }
-        
-        .contact-quote {
-            max-width: 650px;
-            margin: var(--space-lg) auto 0;
-            opacity: 0.95;
-            font-style: italic;
-            font-size: 1.1rem;
-            line-height: 1.7;
-            padding: 0 var(--space-sm);
-        }
-        
-        /* Footer */
-        footer {
-            background: var(--dark);
-            color: rgba(255,255,255,0.85);
-            text-align: center;
-            padding: var(--space-md) 0;
-            font-size: 0.9rem;
-        }
-        
-        footer a {
-            color: var(--accent);
-            text-decoration: none;
-        }
-        
-        /* Back to top */
-        .back-to-top {
-            position: fixed;
-            bottom: 25px;
-            right: 25px;
-            width: 44px;
-            height: 44px;
-            background: var(--primary);
-            color: white;
+            gap: 0.75rem;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
             border: none;
+            border-radius: 12px;
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: none;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .card-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
             border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+        }
+
+        .card-button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .card-button i {
+            transition: transform 0.3s ease;
+        }
+
+        .card-button:hover i {
+            transform: translateX(5px);
+        }
+
+        /* Sección de Habilidades */
+        .skills-section {
+            padding: 6rem 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            margin-bottom: 4rem;
+            font-size: 1.125rem;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            cursor: none;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-light);
+        }
+
+        .skill-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        .skill-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: var(--text-primary);
+        }
+
+        .skill-description {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 4rem;
+            text-align: center;
+            border-top: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+        }
+
+        .social-links {
             display: flex;
             justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            display: flex;
             align-items: center;
-            font-size: 1rem;
-            cursor: pointer;
-            opacity: 0;
-            visibility: hidden;
-            transition: var(--transition-normal);
-            z-index: 999;
-            box-shadow: var(--shadow-md);
+            justify-content: center;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1.5rem;
         }
-        
-        .back-to-top.visible {
-            opacity: 1;
-            visibility: visible;
+
+        .social-link:hover {
+            background: var(--primary);
+            color: var(--text-primary);
+            transform: translateY(-5px);
         }
-        
-        .back-to-top:hover {
-            background: var(--secondary);
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-hover);
+
+        .footer-text {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
         }
-        
-        /* Animaciones al scroll */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(15px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .animate-on-scroll {
-            animation: fadeIn 0.5s ease forwards;
-        }
-        
+
         /* Responsive */
-        @media (max-width: 992px) {
-            .timeline::before { left: 22px; }
-            .timeline-content {
-                width: calc(100% - 52px) !important;
-                margin-left: 52px !important;
-                margin-right: 0 !important;
-            }
-            .timeline-content::after {
-                left: -40px !important;
-                right: auto !important;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            :root {
-                --space-lg: 3rem;
-                --space-xl: 4rem;
-            }
-            
-            .cta-group {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .cta-button {
-                width: 100%;
-                max-width: 300px;
-                justify-content: center;
-            }
-            
-            section {
-                padding: var(--space-lg) 0;
-            }
-            
-            .cv-content {
-                padding: var(--space-md);
-            }
-            
-            .contact-links {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .contact-link {
-                width: 100%;
-                max-width: 320px;
-                justify-content: center;
-            }
-        }
-        
-        @media (max-width: 576px) {
-            h1 { font-size: 2rem; }
-            h2 { font-size: 1.6rem; }
-            
-            .expertise-grid,
-            .results-grid,
-            .education-grid,
-            .competency-grid {
+        @media (max-width: 968px) {
+            .hero-content {
                 grid-template-columns: 1fr;
+                gap: 3rem;
             }
-            
-            .timeline-content {
-                padding: var(--space-sm);
+
+            .nav {
+                padding: 1.5rem 2rem;
             }
-            
-            .cv-content {
-                padding: var(--space-sm);
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding: 6rem 2rem 4rem;
+            }
+
+            .hero-stats {
+                gap: 2rem;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .skills-section {
+                padding: 4rem 2rem;
             }
         }
-        
-        /* Print styles para CV */
-        @media print {
-            body {
-                background: white;
-                color: black;
-                font-size: 11pt;
+
+        @media (max-width: 640px) {
+            .hero-stats {
+                flex-direction: column;
+                gap: 1.5rem;
             }
-            
-            header, .progress-container, .back-to-top, 
-            .cta-group, .contact, footer, .scroll-indicator {
-                display: none !important;
+
+            .hero-title {
+                font-size: 2.5rem;
             }
-            
-            section {
-                padding: 0;
-                page-break-inside: avoid;
+
+            .card {
+                padding: 1.5rem;
             }
-            
-            .cv-content {
-                box-shadow: none;
-                border: none;
-                padding: 0;
-                max-width: 100%;
-                background: white;
-            }
-            
-            .cv-section {
-                page-break-inside: avoid;
-            }
-            
-            a {
-                text-decoration: none;
-                color: black;
-            }
+        }
+
+        /* Animaciones de scroll */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
 <body>
-    <!-- Accesibilidad: Skip link -->
-    <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
-    
-    <!-- Barra de progreso -->
-    <div class="progress-container" aria-hidden="true">
-        <div class="progress-bar" id="progressBar"></div>
+    <!-- Cursor Personalizado -->
+    <div class="cursor"></div>
+    <div class="cursor-dot"></div>
+
+    <!-- Fondo Animado -->
+    <div class="background-gradient"></div>
+    <div class="floating-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
     </div>
+    <div class="grid-pattern"></div>
 
-    <!-- Botón volver arriba -->
-    <button class="back-to-top" id="backToTop" aria-label="Volver arriba">
-        <i class="fas fa-chevron-up"></i>
-    </button>
+    <!-- Navegación -->
+    <nav class="nav">
+        <div class="logo">DC</div>
+        <ul class="nav-links">
+            <li><a href="#home">Inicio</a></li>
+            <li><a href="#cv">CV</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#contact">Contacto</a></li>
+        </ul>
+    </nav>
 
-    <header>
-        <div class="container">
-            <div class="header-content">
-                <h1>DIEGO CABRERA</h1>
-                <h2>Business Operations & Infrastructure Strategy Leader</h2>
-                <p class="tagline">"Transformo operaciones complejas en modelos escalables de eficiencia, rentabilidad y crecimiento. Especializado en monetizar infraestructura y convertir problemas sistémicos en resultados de negocio."</p>
-                <div class="cta-group">
-                    <a href="#results" class="cta-button">
-                        <i class="fas fa-chart-line"></i> Ver Logros
-                    </a>
-                    <button id="download-cv-main" class="cta-button secondary">
-                        <i class="fas fa-download"></i> Descargar CV
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="hero-text">
+                <div class="hero-badge">
+                    <i class="fas fa-circle"></i>
+                    Disponible para nuevos proyectos
+                </div>
+                <h1 class="hero-title">
+                    Diego Cabrera<br>
+                    <span class="highlight">Business Operations</span><br>
+                    & Strategy Leader
+                </h1>
+                <p class="hero-subtitle">
+                    Más de 17 años transformando infraestructura crítica en flujos de valor escalables.
+                </p>
+                <div class="typing-effect" id="typing-effect"></div>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number" data-target="17">0</span>
+                        <span class="stat-label">Años de Experiencia</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number" data-target="30">0</span>
+                        <span class="stat-label">% Reducción Costos</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number" data-target="90">0</span>
+                        <span class="stat-label">Personas Lideradas</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-cards">
+                <!-- Tarjeta CV -->
+                <div class="card" id="cv">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-file-pdf"></i>
+                        </div>
+                        <h3 class="card-title">Curriculum Vitae</h3>
+                    </div>
+                    <p class="card-description">
+                        Descarga mi CV completo en formato PDF con experiencia detallada, logros cuantificables y formación académica.
+                    </p>
+                    <div class="card-features">
+                        <span class="feature-tag">PDF Interactivo</span>
+                        <span class="feature-tag">Experiencia Detallada</span>
+                        <span class="feature-tag">Logros Cuantificables</span>
+                    </div>
+                    <button class="card-button" id="download-cv-main">
+                        Descargar CV
+                        <i class="fas fa-arrow-right"></i>
                     </button>
+                </div>
+
+                <!-- Tarjeta Portfolio -->
+                <div class="card" id="portfolio">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <h3 class="card-title">Portfolio</h3>
+                    </div>
+                    <p class="card-description">
+                        Explora mi portfolio completo con proyectos, casos de estudio y mi trayectoria profesional detallada.
+                    </p>
+                    <div class="card-features">
+                        <span class="feature-tag">Proyectos Destacados</span>
+                        <span class="feature-tag">Casos de Éxito</span>
+                        <span class="feature-tag">Experiencia Visual</span>
+                    </div>
+                    <a href="https://diegocabrerd-cpu.github.io/" target="_blank" class="card-button">
+                        Ver Portfolio
+                        <i class="fas fa-external-link-alt"></i>
+                    </a>
                 </div>
             </div>
         </div>
-        <div class="scroll-indicator" aria-hidden="true"></div>
-    </header>
+    </section>
 
-    <main id="main-content">
-        <section class="about" id="about">
-            <div class="container">
-                <h2 class="section-title">Acerca de Mí</h2>
-                <div class="about-text">
-                    <p>Construí mi carrera liderando operaciones complejas en logística, seguridad, mantenimiento e infraestructura crítica, evolucionando desde roles operativos hasta posiciones estratégicas orientadas a resultados de negocio.</p>
-                    <p>Mi diferencial está en conectar operación, tecnología, personas y estrategia para transformar problemas sistémicos en eficiencia, rentabilidad y crecimiento sostenible.</p>
-                    <p>Hoy enfoco mi trabajo en el desarrollo de nuevas unidades de negocio, optimización de activos e infraestructura, control de gestión y negociación estratégica con stakeholders públicos y privados.</p>
+    <!-- Sección de Habilidades -->
+    <section class="skills-section">
+        <h2 class="section-title fade-in">Áreas de Experiencia</h2>
+        <p class="section-subtitle fade-in">Competencias clave que impulsan resultados</p>
+        
+        <div class="skills-grid">
+            <div class="skill-card fade-in">
+                <div class="skill-icon">
+                    <i class="fas fa-chart-line"></i>
                 </div>
-                
-                <!-- Nueva sección: Value Proposition -->
-                <div class="value-prop">
-                    <h3><i class="fas fa-bullseye"></i> ¿Cómo puedo ayudarte?</h3>
-                    <ul class="value-list">
-                        <li>Transformar operaciones complejas en modelos escalables</li>
-                        <li>Monetizar infraestructura subutilizada (espacios, activos)</li>
-                        <li>Optimizar costos operativos sin comprometer calidad</li>
-                        <li>Negociar estratégicamente con stakeholders clave</li>
-                        <li>Continuidad Operacional & Gestión de Riesgos</li>
-                        <li>Implementar KPIs que generen visibilidad y acción</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <section class="expertise" id="expertise">
-            <div class="container">
-                <h2 class="section-title">Áreas de Expertise</h2>
-                <div class="expertise-grid">
-                    <article class="expertise-card">
-                        <span class="expertise-icon"><i class="fas fa-cogs"></i></span>
-                        <h3>Gestión de Operaciones</h3>
-                        <ul>
-                            <li>Optimización de Dotaciones</li>
-                            <li>KPIs de Rendimiento</li>
-                            <li>Eficiencia de Tasa de Cobro</li>
-                            <li>Gestión de Presupuesto</li>
-                        </ul>
-                    </article>
-                    
-                    <article class="expertise-card">
-                        <span class="expertise-icon"><i class="fas fa-building"></i></span>
-                        <h3>Facility Management</h3>
-                        <ul>
-                            <li>Mantenimiento Preventivo</li>
-                            <li>Gestión de Contratistas</li>
-                            <li>Equipos Críticos</li>
-                            <li>Continuidad de Negocio</li>
-                        </ul>
-                    </article>
-                    
-                    <article class="expertise-card">
-                        <span class="expertise-icon"><i class="fas fa-shield-alt"></i></span>
-                        <h3>Seguridad Patrimonial</h3>
-                        <ul>
-                            <li>Reducción de Acortamiento</li>
-                            <li>CCTV Estratégico</li>
-                            <li>Protocolos de Crisis</li>
-                            <li>Gestión de Riesgos</li>
-                        </ul>
-                    </article>
-                    
-                    <article class="expertise-card">
-                        <span class="expertise-icon"><i class="fas fa-users"></i></span>
-                        <h3>Liderazgo Estratégico</h3>
-                        <ul>
-                            <li>Negociación con Sindicatos</li>
-                            <li>Coaching de Equipos</li>
-                            <li>Great Place to Work</li>
-                            <li>Gestión del Cambio</li>
-                        </ul>
-                    </article>
-                    
-                    <article class="expertise-card">
-                        <span class="expertise-icon"><i class="fas fa-chart-line"></i></span>
-                        <h3>Estrategia & Nuevos Negocios</h3>
-                        <ul>
-                            <li>Revenue Optimization</li>
-                            <li>Modelos de Negocio</li>
-                            <li>Continuidad Operacional & Gestión de Riesgos</li>
-                            <li>Control de Gestión</li>
-                        </ul>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <section class="results" id="results">
-            <div class="container">
-                <h2 class="section-title">Resultados de Negocio</h2>
-                <div class="results-grid">
-                    <article class="result-card">
-                        <div class="result-header">
-                            <div class="result-value">Evolución</div>
-                            <div class="result-title">Modelo de negocio</div>
-                        </div>
-                        <div class="result-content">
-                            <h3>Comunicación Vial Inteligente</h3>
-                            <p>Coordiné la redefinición estratégica del modelo de cartelería hacia un ecosistema de smart road communication, orientado a generar mayor valor operativo y comercial.</p>
-                        </div>
-                    </article>
-
-                    <article class="result-card">
-                        <div class="result-header">
-                            <div class="result-value">Nuevas líneas</div>
-                            <div class="result-title">Monetización de activos</div>
-                        </div>
-                        <div class="result-content">
-                            <h3>Dark Fiber</h3>
-                            <p>Coordiné el proyecto del modelo Ducts Leasing hacia Dark Fiber, potenciando la explotación de infraestructura existente y abriendo oportunidades de ingresos escalables.</p>
-                        </div>
-                    </article>
-
-                    <article class="result-card">
-                        <div class="result-header">
-                            <div class="result-value">30%</div>
-                            <div class="result-title">Reducción</div>
-                        </div>
-                        <div class="result-content">
-                            <h3>Eficiencia Operativa</h3>
-                            <p>Menos liberaciones de tránsito por optimización de personal en Autopistas del Sol.</p>
-                        </div>
-                    </article>
-
-                    <article class="result-card">
-                        <div class="result-header">
-                            <div class="result-value">8% → 1%</div>
-                            <div class="result-title">Mejora en cobro</div>
-                        </div>
-                        <div class="result-content">
-                            <h3>Control de Pérdidas</h3>
-                            <p>Reducción de la tasa de quiebre en troncales de cobro (superando la meta de 2.8%).</p>
-                        </div>
-                    </article>
-
-                    <article class="result-card">
-                        <div class="result-header">
-                            <div class="result-value">40%</div>
-                            <div class="result-title">Reducción de riesgos</div>
-                        </div>
-                        <div class="result-content">
-                            <h3>Seguridad y Capacitación</h3>
-                            <p>Disminución de riesgos en Trabajo en Altura y Autoelevadores mediante capacitación especializada.</p>
-                        </div>
-                    </article>
-
-                    <article class="result-card">
-                        <div class="result-header">
-                            <div class="result-value">15%</div>
-                            <div class="result-title">Ahorro de costos</div>
-                        </div>
-                        <div class="result-content">
-                            <h3>Optimización Integral</h3>
-                            <p>Reducción de costos operativos y rotación de personal del 30% en Falabella.</p>
-                        </div>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <section class="experience" id="experience">
-            <div class="container">
-                <h2 class="section-title">Experiencia Profesional</h2>
-                <div class="timeline">
-                    <article class="timeline-item">
-                        <div class="timeline-content">
-                            <div class="timeline-date"><i class="far fa-calendar-alt"></i> 2026 - Presente</div>
-                            <div class="timeline-company">Autopistas del Sol / GCO</div>
-                            <div class="timeline-position">Responsable de Negocios Auxiliares</div>
-                            <ul class="timeline-achievements">
-                                <li>Coordinación del proyecto de cartelería fija hacia un ecosistema de comunicación vial inteligente.</li>
-                                <li>Coordinación y seguimiento al proyecto Dark Fiber para monetización de infraestructura de Ducts Leasing.</li>
-                                <li>Seguimiento económico y contractual de unidades de negocio.</li>
-                                <li>Interacción con ente regulador y stakeholders estratégicos.</li>
-                                <li>Impulso de nuevos proyectos de monetización de infraestructura.</li>
-                            </ul>
-                        </div>
-                    </article>
-                    
-                    <article class="timeline-item">
-                        <div class="timeline-content">
-                            <div class="timeline-date"><i class="far fa-calendar-alt"></i> Ago 2022 - 2026</div>
-                            <div class="timeline-company">Autopistas Del Sol</div>
-                            <div class="timeline-position">Coordinador de Operaciones</div>
-                            <ul class="timeline-achievements">
-                                <li>Coordinación de equipos (15 supervisores, 90 peajistas).</li>
-                                <li>Mejora del 7% en tasa de cobro mediante KPIs de quiebres.</li>
-                                <li>30% menos liberaciones por optimización de dotación.</li>
-                                <li>Negociación exitosa con sindicatos.</li>
-                            </ul>
-                        </div>
-                    </article>
-                    
-                    <article class="timeline-item">
-                        <div class="timeline-content">
-                            <div class="timeline-date"><i class="far fa-calendar-alt"></i> Mar - Ago 2022</div>
-                            <div class="timeline-company">Metalúrgica La Toma</div>
-                            <div class="timeline-position">Jefe de Monitoreo</div>
-                            <ul class="timeline-achievements">
-                                <li>Gestión integral de seguridad para 3 plantas industriales.</li>
-                                <li>Reducción del 30% en incidentes mediante KPIs de seguridad.</li>
-                                <li>Cero evasiones tras reorganizar circuito CCTV.</li>
-                                <li>40% reducción de riesgos en Trabajo en Altura.</li>
-                            </ul>
-                        </div>
-                    </article>
-                    
-                    <article class="timeline-item">
-                        <div class="timeline-content">
-                            <div class="timeline-date"><i class="far fa-calendar-alt"></i> Jun 2008 - Oct 2021</div>
-                            <div class="timeline-company">Falabella SA</div>
-                            <div class="timeline-position">Jefe de Seguridad y Mantenimiento</div>
-                            <ul class="timeline-achievements">
-                                <li>Gestión de presupuesto, CCTV y equipos (90 vigilancia, 10 mantenimiento).</li>
-                                <li>Reducción de costos del 15% y rotación de personal del 30%.</li>
-                                <li>Creación de manual operativo (mejora compliance 20%).</li>
-                                <li>Optimización del 20% en vigilancia física.</li>
-                            </ul>
-                        </div>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <section class="validation" id="validation">
-            <div class="container">
-                <h2 class="section-title">Validación y Competencias</h2>
-                <div class="validation-content">
-                    <div class="skills-section">
-                        <h3>Competencias Validadas (Talentview 3D)</h3>
-                        <div class="competency-grid">
-                            <div class="competency-item">
-                                <div class="competency-value">90/100</div>
-                                <div class="competency-name">Liderazgo</div>
-                            </div>
-                            <div class="competency-item">
-                                <div class="competency-value">90/100</div>
-                                <div class="competency-name">Análisis</div>
-                            </div>
-                            <div class="competency-item">
-                                <div class="competency-value">90/100</div>
-                                <div class="competency-name">Adaptación</div>
-                            </div>
-                            <div class="competency-item">
-                                <div class="competency-value">90/100</div>
-                                <div class="competency-name">Decisiones</div>
-                            </div>
-                            <div class="competency-item">
-                                <div class="competency-value">80/100</div>
-                                <div class="competency-name">Resiliencia</div>
-                            </div>
-                        </div>
-                        <div class="values-highlight">
-                            <p><strong>Orientación a resultados:</strong> Enfoque decidido en alcanzar metas con eficiencia.</p>
-                            <p><strong>Valores:</strong> Respeto • Honestidad • Responsabilidad • Compromiso • Integridad</p>
-                        </div>
-                    </div>
-                    
-                    <div class="testimonials">
-                        <h3>Testimonios</h3>
-                        <blockquote class="testimonial">
-                            <p>Diego ha sido un factor fundamental en el éxito de la operación logística de Falabella. Su dedicación, compromiso y rigurosidad hicieron que el departamento de Seguridad y Mantenimiento que guió con tanto criterio, hiciera un aporte vital para resultados de Control de Inventario, y por lo tanto un bajísimo acortamiento. Además, sus buenas formas ayudaron a la construcción de un equipo con mayúsculas.</p>
-                            <footer>
-                                <cite class="testimonial-author">Julio Pages</cite>
-                                <div class="testimonial-contact">Consultor experto Falabella Cl | 11 4042-7092</div>
-                            </footer>
-                        </blockquote>
-                        
-                        <blockquote class="testimonial">
-                            <p>Es necesario trabajar solo 5 minutos con Diego para darse cuenta su calidad profesional. Pero hay algo mucho más importante: su calidad de persona. Entiende y ataca los problemas desde una perspectiva constructiva, resuelve sin temor al error y expresa muy bien las soluciones. Definitivamente recomiendo a Diego como líder de cualquier equipo con desafíos marcados.</p>
-                            <footer>
-                                <cite class="testimonial-author">Sebastián Marquart</cite>
-                                <div class="testimonial-contact">Gerente regional Mercado Pago | 11 3687-9912</div>
-                            </footer>
-                        </blockquote>
-                        
-                        <blockquote class="testimonial">
-                            <p>Diego tuvo un desempeño notable escalando diferentes puestos a lo largo de 14 años. Entre sus virtudes: Predisposición, Responsabilidad, Afán de Superación, Resolutivo, Proactivo. Supo manejar muy bien la comunicación de acuerdo al interlocutor: delegados de camioneros, personal interno/externo, y Gerencia General.</p>
-                            <footer>
-                                <cite class="testimonial-author">Marco Ortolino</cite>
-                                <div class="testimonial-contact">Intendente Nordelta AVN | 11 3926-5601</div>
-                            </footer>
-                        </blockquote>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="education" id="education">
-            <div class="container">
-                <h2 class="section-title">Formación Académica</h2>
-                <div class="education-grid">
-                    <article class="education-card">
-                        <div class="education-title">Ingeniería Industrial</div>
-                        <div class="education-institution">UTEL (México)</div>
-                        <div class="education-date">2021 - 2025</div>
-                        <span class="education-status">Graduado</span>
-                    </article>
-                    
-                    <article class="education-card">
-                        <div class="education-title">Diplomado Industria 4.0</div>
-                        <div class="education-institution">USAL (Argentina)</div>
-                        <div class="education-date">2022</div>
-                        <span class="education-status">Graduado</span>
-                    </article>
-                    
-                    <article class="education-card">
-                        <div class="education-title">Gestión de Mantenimiento</div>
-                        <div class="education-institution">Tec People (Argentina)</div>
-                        <div class="education-date">2022</div>
-                        <span class="education-status">Graduado</span>
-                    </article>
-                    
-                    <article class="education-card">
-                        <div class="education-title">Gerenciador de Seguridad</div>
-                        <div class="education-institution">UMSA (Argentina)</div>
-                        <div class="education-date">2021</div>
-                        <span class="education-status">Graduado</span>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <section id="cv" class="cv-section-block">
-            <div class="container">
-                <h2 class="section-title">Currículum Vitae</h2>
-                <div class="cv-content" id="cv-content" role="document">
-                    <div class="cv-header">
-                        <h1>DIEGO CABRERA</h1>
-                        <h2>Business Operations & Infrastructure Strategy Leader</h2>
-                        <p>+54 11 3246-4964 | cabrerd1@me.com | Buenos Aires, Argentina</p>
-                        <p>LinkedIn: linkedin.com/in/diego-angel-cabrera-</p>
-                        <p>Portfolio: diegocabrerd-cpu.github.io</p>
-                    </div>
-                    
-                    <div class="cv-section">
-                        <h3 class="cv-section-title">RESUMEN EJECUTIVO</h3>
-                        <p>Profesional con más de 17 años de experiencia evolucionando desde la gestión operacional de infraestructura crítica hacia el desarrollo estratégico de negocio, monetización de activos y transformación de modelos comerciales. Experto en integrar operaciones, tecnología, regulación y generación de ingresos para convertir activos subutilizados en flujos de valor escalables.</p>
-                        <p><strong>Competencias clave:</strong> Evolución de Negocio • Optimización de Ingresos • Monetización de Infraestructura • Continuidad Operacional & Gestión de Riesgos • Control de Gestión • Negociación Estratégica • KPIs • Reducción de Costos • Optimización Logística • Normas ISO • Lean Management • SAP</p>
-                    </div>
-                    
-                    <div class="cv-section">
-                        <h3 class="cv-section-title">EXPERIENCIA PROFESIONAL</h3>
-                        
-                        <div class="cv-job">
-                            <div class="cv-job-title">Responsable de Negocios Auxiliares</div>
-                            <div class="cv-job-company">Autopistas del Sol / GCO | 2026 – Presente</div>
-                            <ul class="cv-list">
-                                <li>Redefinición estratégica del modelo de cartelería fija hacia comunicación vial inteligente.</li>
-                                <li>Reconversión del modelo Ducts Leasing hacia Dark Fiber para monetización de infraestructura.</li>
-                                <li>Participación en evaluación de oportunidades de negocio, análisis económico-financiero y articulación regulatoria.</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="cv-job">
-                            <div class="cv-job-title">Coordinador de Operaciones</div>
-                            <div class="cv-job-company">Autopistas del Sol | Ago 2022 – 2026</div>
-                            <ul class="cv-list">
-                                <li>Lideré negociación con sindicatos resultando en 30% menos liberaciones de tránsito.</li>
-                                <li>Implementé KPIs de quiebres mejorando tasa de cobro en 7% (reducción del 8% a 1%).</li>
-                                <li>Coordinación de 15 supervisores y 90 peajistas.</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="cv-job">
-                            <div class="cv-job-title">Jefe de Monitoreo</div>
-                            <div class="cv-job-company">Metalúrgica La Toma | Mar 2022 – Ago 2022</div>
-                            <ul class="cv-list">
-                                <li>Reducción del 30% en incidentes vía KPIs de seguridad.</li>
-                                <li>Cero evasiones tras reorganizar CCTV (25 cámaras IP añadidas).</li>
-                                <li>40% reducción de riesgos en Trabajo en Altura y autoelevadores.</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="cv-job">
-                            <div class="cv-job-title">Jefe de Seguridad y Mantenimiento</div>
-                            <div class="cv-job-company">Falabella SA | Jun 2008 – Oct 2021</div>
-                            <ul class="cv-list">
-                                <li>Reducción de costos del 15% y rotación de personal del 30%.</li>
-                                <li>Creación de manual operativo (mejora compliance 20%).</li>
-                                <li>Optimización del 20% en vigilancia física y reducción de Lead Time 30%.</li>
-                            </ul>
-                        </div>
-                    </div>
-                    
-                    <div class="cv-section">
-                        <h3 class="cv-section-title">FORMACIÓN</h3>
-                        <ul class="cv-list">
-                            <li>Ingeniería Industrial | UTEL (México) | Graduado (2021-2025)</li>
-                            <li>Diplomado en Industria 4.0 | USAL (Argentina) | Graduado (2022)</li>
-                            <li>Gerenciador de Seguridad | UMSA (Argentina) | Graduado (2021)</li>
-                            <li>Gestión de Mantenimiento Industrial | Tec People (Argentina) | Graduado (2022)</li>
-                        </ul>
-                    </div>
-
-                    <div class="cv-section">
-                        <h3 class="cv-section-title">REFERENCIAS</h3>
-                        <ul class="cv-list">
-                            <li><strong>Julio Pages</strong> - Consultor experto Falabella Cl | 11 4042-7092</li>
-                            <li><strong>Sebastián Marquart</strong> - Gerente regional Mercado Pago | 11 3687-9912</li>
-                            <li><strong>Marco Ortolino</strong> - Intendente Nordelta AVN | 11 3926-5601</li>
-                        </ul>
-                    </div>
-                    
-                    <div style="text-align: center; margin-top: var(--space-md);">
-                        <button id="download-cv-pdf" class="cta-button">
-                            <i class="fas fa-download"></i> Descargar CV (PDF)
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="contact" id="contact">
-            <div class="container">
-                <h2 class="section-title">Contacto</h2>
-                <div class="contact-links">
-                    <a href="https://www.linkedin.com/in/diego-angel-cabrera-" class="contact-link" target="_blank" rel="noopener">
-                        <i class="fab fa-linkedin"></i> LinkedIn
-                    </a>
-                    <a href="mailto:cabrerd1@me.com" class="contact-link">
-                        <i class="fas fa-envelope"></i> cabrerd1@me.com
-                    </a>
-                    <a href="tel:+541132464964" class="contact-link">
-                        <i class="fas fa-phone"></i> +54 11 3246-4964
-                    </a>
-                    <a href="https://diegocabrerd-cpu.github.io/" class="contact-link" target="_blank" rel="noopener">
-                        <i class="fas fa-globe"></i> Portfolio
-                    </a>
-                    <button id="download-cv-footer" class="contact-link" style="cursor: pointer;">
-                        <i class="fas fa-download"></i> Descargar CV
-                    </button>
-                </div>
-                <p class="contact-quote">
-                    "Innovar no es solo adoptar tecnología, sino transformar procesos con una visión humana y estratégica."
+                <h3 class="skill-title">Estrategia de Negocio</h3>
+                <p class="skill-description">
+                    Evolución de modelos comerciales y monetización de activos subutilizados.
                 </p>
             </div>
-        </section>
-    </main>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2026 Diego Cabrera - Todos los derechos reservados</p>
+            <div class="skill-card fade-in">
+                <div class="skill-icon">
+                    <i class="fas fa-cogs"></i>
+                </div>
+                <h3 class="skill-title">Operaciones</h3>
+                <p class="skill-description">
+                    Gestión de infraestructura crítica y optimización de procesos operativos.
+                </p>
+            </div>
+
+            <div class="skill-card fade-in">
+                <div class="skill-icon">
+                    <i class="fas fa-handshake"></i>
+                </div>
+                <h3 class="skill-title">Negociación</h3>
+                <p class="skill-description">
+                    Negociación estratégica sindical y articulación regulatoria.
+                </p>
+            </div>
+
+            <div class="skill-card fade-in">
+                <div class="skill-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3 class="skill-title">Liderazgo</h3>
+                <p class="skill-description">
+                    Gestión de equipos de hasta 90+ personas con enfoque en resultados.
+                </p>
+            </div>
+
+            <div class="skill-card fade-in">
+                <div class="skill-icon">
+                    <i class="fas fa-network-wired"></i>
+                </div>
+                <h3 class="skill-title">Dark Fiber</h3>
+                <p class="skill-description">
+                    Reconversión de infraestructura pasiva hacia monetización activa.
+                </p>
+            </div>
+
+            <div class="skill-card fade-in">
+                <div class="skill-icon">
+                    <i class="fas fa-tachometer-alt"></i>
+                </div>
+                <h3 class="skill-title">KPIs & Control</h3>
+                <p class="skill-description">
+                    Implementación de sistemas de control de gestión y métricas avanzadas.
+                </p>
+            </div>
         </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="social-links">
+            <a href="mailto:cabrerd1@me.com" class="social-link" title="Email">
+                <i class="fas fa-envelope"></i>
+            </a>
+            <a href="tel:+541132464964" class="social-link" title="Teléfono">
+                <i class="fas fa-phone"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/diego-angel-cabrera-" target="_blank" class="social-link" title="LinkedIn">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="https://github.com/diegocabrerd-cpu" target="_blank" class="social-link" title="GitHub">
+                <i class="fab fa-github"></i>
+            </a>
+            <a href="https://diegocabrerd-cpu.github.io/" target="_blank" class="social-link" title="Portfolio">
+                <i class="fas fa-globe"></i>
+            </a>
+        </div>
+        <p class="footer-text">
+            © 2026 Diego Cabrera. Todos los derechos reservados.<br>
+            Business Operations & Infrastructure Strategy Leader
+        </p>
     </footer>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
     <script>
-        // Esperar a que jsPDF cargue
-        document.addEventListener('DOMContentLoaded', function() {
-            const { jsPDF } = window.jspdf || {};
-            
-            // Función para generar PDF profesional
-            function generatePDF() {
-                if (!jsPDF) {
-                    alert('Cargando generador de PDF... Intenta en unos segundos.');
-                    return;
-                }
-                
-                const doc = new jsPDF({
-                    orientation: 'portrait',
-                    unit: 'mm',
-                    format: 'a4'
-                });
-                
-                const pageWidth = doc.internal.pageSize.getWidth();
-                const margin = 15;
-                let y = 20;
-                const lineHeight = 5;
-                
-                // Estilos base
-                doc.setFont('helvetica');
-                
-                // Header
-                doc.setFontSize(18);
-                doc.setTextColor(26, 58, 95);
-                doc.setFont('helvetica', 'bold');
-                doc.text('DIEGO CABRERA', pageWidth/2, y, { align: 'center' });
-                y += 8;
-                
-                doc.setFontSize(11);
-                doc.setTextColor(44, 90, 160);
-                doc.setFont('helvetica', 'normal');
-                doc.text('Business Operations & Infrastructure Strategy Leader', pageWidth/2, y, { align: 'center' });
-                y += 10;
-                
-                // Contacto
-                doc.setFontSize(9);
-                doc.setTextColor(108, 117, 125);
-                const contactLines = [
-                    '+54 11 3246-4964 | cabrerd1@me.com | Buenos Aires, Argentina',
-                    'LinkedIn: linkedin.com/in/diego-angel-cabrera-',
-                    'Portfolio: diegocabrerd-cpu.github.io'
-                ];
-                contactLines.forEach(line => {
-                    doc.text(line, pageWidth/2, y, { align: 'center' });
-                    y += 4;
-                });
-                y += 8;
-                
-                // Resumen
-                doc.setFontSize(11);
-                doc.setTextColor(26, 58, 95);
-                doc.setFont('helvetica', 'bold');
-                doc.text('RESUMEN EJECUTIVO', margin, y);
-                y += 6;
-                
-                doc.setFontSize(9);
-                doc.setTextColor(0, 0, 0);
-                doc.setFont('helvetica', 'normal');
-                const summary = 'Profesional con mas de 17 anos de experiencia evolucionando desde la gestion operacional de infraestructura critica hacia el desarrollo estrategico de negocio, monetizacion de activos y transformacion de modelos comerciales. Experto en integrar operaciones, tecnologia, regulacion y generacion de ingresos.';
-                const summarySplit = doc.splitTextToSize(summary, pageWidth - 2*margin);
-                doc.text(summarySplit, margin, y);
-                y += summarySplit.length * 4 + 8;
-                
-                // Keywords
-                const keywords = 'Competencias: Evolucion de Negocio, Monetizacion de Infraestructura, Continuidad Operacional & Gestión de Riesgos, Control de Gestion, Negociacion Estrategica, KPIs, Reduccion de Costos, Optimizacion Logistica, Lean Management, SAP.';
-                const kwSplit = doc.splitTextToSize(keywords, pageWidth - 2*margin);
-                doc.text(kwSplit, margin, y);
-                y += kwSplit.length * 4 + 10;
-                
-                // Experiencia
-                doc.setFontSize(11);
-                doc.setTextColor(26, 58, 95);
-                doc.setFont('helvetica', 'bold');
-                doc.text('EXPERIENCIA PROFESIONAL', margin, y);
-                y += 7;
-                
-                const roles = [
-                    {
-                        title: 'Responsable de Negocios Auxiliares',
-                        company: 'Autopistas del Sol / GCO | 2026 – Presente',
-                        points: [
-                            'Redefinicion estrategica de carteleria hacia comunicacion vial inteligente',
-                            'Reconversion de Ducts Leasing hacia Dark Fiber para monetizacion',
-                            'Evaluacion de oportunidades y articulacion regulatoria'
-                        ]
-                    },
-                    {
-                        title: 'Coordinador de Operaciones',
-                        company: 'Autopistas del Sol | Ago 2022 – 2026',
-                        points: [
-                            'Negociacion sindical: 30% menos liberaciones de transito',
-                            'KPIs de quiebres: mejora 7% tasa de cobro (8% a 1%)',
-                            'Coordinacion de 15 supervisores y 90 peajistas'
-                        ]
-                    },
-                    {
-                        title: 'Jefe de Monitoreo',
-                        company: 'Metalurgica La Toma | Mar 2022 – Ago 2022',
-                        points: [
-                            'Reduccion 30% incidentes via KPIs de seguridad',
-                            'Cero evasiones tras reorganizar CCTV (25 camaras IP)',
-                            '40% reduccion riesgos en Trabajo en Altura'
-                        ]
-                    },
-                    {
-                        title: 'Jefe de Seguridad y Mantenimiento',
-                        company: 'Falabella SA | Jun 2008 – Oct 2021',
-                        points: [
-                            'Reduccion costos 15% y rotacion personal 30%',
-                            'Manual operativo: mejora compliance 20%',
-                            'Optimizacion 20% vigilancia fisica y Lead Time -30%'
-                        ]
-                    }
-                ];
-                
-                roles.forEach((role, idx) => {
-                    doc.setFontSize(10);
-                    doc.setTextColor(44, 90, 160);
-                    doc.setFont('helvetica', 'bold');
-                    doc.text(role.title, margin, y);
-                    y += 5;
-                    
-                    doc.setFontSize(9);
-                    doc.setTextColor(108, 117, 125);
-                    doc.setFont('helvetica', 'italic');
-                    doc.text(role.company, margin, y);
-                    y += 5;
-                    
-                    doc.setFontSize(9);
-                    doc.setTextColor(0, 0, 0);
-                    doc.setFont('helvetica', 'normal');
-                    role.points.forEach(point => {
-                        const pt = '  • ' + point;
-                        const ptSplit = doc.splitTextToSize(pt, pageWidth - 2*margin - 5);
-                        doc.text(ptSplit, margin + 3, y);
-                        y += ptSplit.length * 4;
-                    });
-                    y += 6;
-                    
-                    // Salto de página si es necesario
-                    if (y > 270 && idx < roles.length - 1) {
-                        doc.addPage();
-                        y = 25;
-                    }
-                });
-                
-                // Formación
-                if (y > 240) { doc.addPage(); y = 25; }
-                doc.setFontSize(11);
-                doc.setTextColor(26, 58, 95);
-                doc.setFont('helvetica', 'bold');
-                doc.text('FORMACION', margin, y);
-                y += 7;
-                
-                doc.setFontSize(9);
-                doc.setTextColor(0, 0, 0);
-                doc.setFont('helvetica', 'normal');
-                const education = [
-                    '  • Ingenieria Industrial | UTEL (Mexico) | Graduado (2021-2025)',
-                    '  • Diplomado Industria 4.0 | USAL (Argentina) | Graduado (2022)',
-                    '  • Gerenciador de Seguridad | UMSA (Argentina) | Graduado (2021)',
-                    '  • Gestion de Mantenimiento | Tec People (Argentina) | Graduado (2022)'
-                ];
-                education.forEach(edu => {
-                    const eduSplit = doc.splitTextToSize(edu, pageWidth - 2*margin);
-                    doc.text(eduSplit, margin, y);
-                    y += eduSplit.length * 4;
-                });
-                
-                // Guardar
-                doc.save('CV_Diego_Cabrera.pdf');
-            }
-            
-            // Event listeners para descarga de CV
-            const downloadButtons = [
-                document.getElementById('download-cv-main'),
-                document.getElementById('download-cv-pdf'),
-                document.getElementById('download-cv-footer')
-            ];
-            
-            downloadButtons.forEach(btn => {
-                if (btn) {
-                    btn.addEventListener('click', (e) => {
-                        e.preventDefault();
-                        generatePDF();
-                    });
-                }
+        // Cursor Personalizado
+        const cursor = document.querySelector('.cursor');
+        const cursorDot = document.querySelector('.cursor-dot');
+
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+            cursorDot.style.left = e.clientX + 'px';
+            cursorDot.style.top = e.clientY + 'px';
+        });
+
+        // Efecto hover en elementos interactivos
+        const interactiveElements = document.querySelectorAll('a, button, .card, .skill-card');
+        interactiveElements.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.style.width = '40px';
+                cursor.style.height = '40px';
+                cursor.style.borderColor = '#00D4FF';
             });
-            
-            // Barra de progreso de scroll
-            const progressBar = document.getElementById('progressBar');
-            window.addEventListener('scroll', () => {
-                const scrollTop = document.documentElement.scrollTop;
-                const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-                const scrolled = (scrollTop / scrollHeight) * 100;
-                if (progressBar) progressBar.style.width = scrolled + '%';
-                
-                // Back to top visibility
-                const backToTop = document.getElementById('backToTop');
-                if (backToTop) {
-                    if (scrollTop > 400) {
-                        backToTop.classList.add('visible');
-                    } else {
-                        backToTop.classList.remove('visible');
-                    }
-                }
+            el.addEventListener('mouseleave', () => {
+                cursor.style.width = '20px';
+                cursor.style.height = '20px';
+                cursor.style.borderColor = '#00D4FF';
             });
+        });
+
+        // Efecto de escritura (Typing Effect)
+        const typingTexts = [
+            'Monetización de Infraestructura',
+            'Dark Fiber & Asset Management',
+            'Business Operations Strategy',
+            'KPIs & Control de Gestión'
+        ];
+        let textIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typingElement = document.getElementById('typing-effect');
+
+        function typeEffect() {
+            const currentText = typingTexts[textIndex];
             
-            // Back to top functionality
-            const backToTopBtn = document.getElementById('backToTop');
-            if (backToTopBtn) {
-                backToTopBtn.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                });
+            if (isDeleting) {
+                typingElement.textContent = currentText.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typingElement.textContent = currentText.substring(0, charIndex + 1);
+                charIndex++;
             }
-            
-            // Animación de elementos al hacer scroll
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
+
+            let typeSpeed = isDeleting ? 50 : 100;
+
+            if (!isDeleting && charIndex === currentText.length) {
+                typeSpeed = 2000;
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                textIndex = (textIndex + 1) % typingTexts.length;
+                typeSpeed = 500;
+            }
+
+            setTimeout(typeEffect, typeSpeed);
+        }
+
+        typeEffect();
+
+        // Contador animado
+        const statNumbers = document.querySelectorAll('.stat-number');
+        const animateCounter = (element) => {
+            const target = parseInt(element.getAttribute('data-target'));
+            const duration = 2000;
+            const increment = target / (duration / 16);
+            let current = 0;
+
+            const updateCounter = () => {
+                current += increment;
+                if (current < target) {
+                    element.textContent = Math.floor(current) + '+';
+                    requestAnimationFrame(updateCounter);
+                } else {
+                    element.textContent = target + '+';
+                }
             };
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, observerOptions);
-            
-            document.querySelectorAll('.timeline-item').forEach(item => {
-                observer.observe(item);
+
+            updateCounter();
+        };
+
+        // Observer para contadores
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounter(entry.target);
+                    counterObserver.unobserve(entry.target);
+                }
             });
-            
-            // Smooth scroll para enlaces internos
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    const href = this.getAttribute('href');
-                    if (href !== '#') {
-                        e.preventDefault();
-                        const target = document.querySelector(href);
-                        if (target) {
-                            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                        }
-                    }
-                });
+        });
+
+        statNumbers.forEach(counter => counterObserver.observe(counter));
+
+        // Animaciones de scroll
+        const fadeElements = document.querySelectorAll('.fade-in');
+        const fadeObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
             });
+        }, { threshold: 0.1 });
+
+        fadeElements.forEach(el => fadeObserver.observe(el));
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Aquí debes incluir tu función de generación de PDF
+        // Esta es una función de ejemplo - reemplázala con tu código real
+        document.getElementById('download-cv-main').addEventListener('click', function() {
+            // Tu código de generatePDF() va aquí
+            console.log('Generando PDF...');
+            alert('Aquí debes integrar tu función generatePDF() del código anterior');
         });
     </script>
 </body>

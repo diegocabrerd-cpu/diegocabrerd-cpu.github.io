@@ -59,5 +59,4 @@ mindmap
       SAP
       KPIs Avanzados
       Lean Management
-</div>
 

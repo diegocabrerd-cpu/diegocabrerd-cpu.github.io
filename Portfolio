@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tablero de Control | AUSOL · GCO</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #eef2f5;
+            font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+            padding: 40px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: linear-gradient(125deg, #0a3b4c 0%, #156f8a 100%);
+            color: white;
+            padding: 32px 40px;
+            border-radius: 24px;
+            margin-bottom: 32px;
+        }
+
+        .header h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            color: #ffde9e;
+            padding: 4px 12px;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-right: 12px;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 24px;
+        }
+
+        .tab-btn {
+            background: white;
+            border: 1px solid #e2e8f0;
+            padding: 12px 24px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: #4a627a;
+        }
+
+        .tab-btn.active {
+            background: #e67e22;
+            border-color: #e67e22;
+            color: white;
+        }
+
+        .tab-panel {
+            display: none;
+            background: white;
+            border-radius: 24px;
+            padding: 32px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        .tab-panel.active {
+            display: block;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.8rem;
+        }
+
+        .data-table th {
+            background: #f8fafc;
+            padding: 12px;
+            text-align: left;
+            color: #0b5e7c;
+            font-weight: 700;
+            border-bottom: 2px solid #eef2f5;
+        }
+
+        .data-table td {
+            padding: 12px;
+            border-bottom: 1px solid #eef2f5;
+        }
+
+        .data-table input, .data-table select {
+            width: 100%;
+            padding: 6px 10px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 0.8rem;
+        }
+
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 32px;
+        }
+
+        .kpi-card {
+            background: #f8fafc;
+            border-radius: 20px;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid #eef2f5;
+        }
+
+        .kpi-number {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #e67e22;
+        }
+
+        .kpi-label {
+            font-size: 0.7rem;
+            color: #4a627a;
+            margin-top: 8px;
+        }
+
+        .btn-excel {
+            background: #1e7e34;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 0.8rem;
+            margin-right: 12px;
+            margin-bottom: 20px;
+        }
+
+        .btn-excel:hover {
+            background: #155d2a;
+        }
+
+        .btn-save {
+            background: #e67e22;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 0.8rem;
+            margin-bottom: 20px;
+        }
+
+        .footer-note {
+            margin-top: 24px;
+            text-align: center;
+            font-size: 0.7rem;
+            color: #6c86a3;
+        }
+
+        @media (max-width: 800px) {
+            body { padding: 20px; }
+            .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+            .data-table { font-size: 0.7rem; }
+            .data-table th, .data-table td { padding: 8px; }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1><i class="fas fa-chart-line"></i> Tablero de Control · AUSOL · GCO</h1>
+        <p>Monitoreo integral del Plan de Modernización AASS 2026</p>
+        <div style="margin-top: 16px;">
+            <span class="badge"><i class="fas fa-gas-pump"></i> Áreas de Servicio</span>
+            <span class="badge"><i class="fas fa-store"></i> Espacios de Cercanía</span>
+            <span class="badge"><i class="fas fa-chart-line"></i> Fibra Óptica</span>
+            <span class="badge"><i class="fas fa-tv"></i> Publicidad Vial</span>
+        </div>
+    </div>
+
+    <div class="tabs">
+        <button class="tab-btn active" data-tab="resumen">📊 Resumen Ejecutivo</button>
+        <button class="tab-btn" data-tab="areas">⛽ Áreas de Servicio</button>
+        <button class="tab-btn" data-tab="cercania">🏪 Espacios de Cercanía</button>
+        <button class="tab-btn" data-tab="fibra">🔌 Fibra Óptica</button>
+        <button class="tab-btn" data-tab="publicidad">📺 Publicidad Vial</button>
+        <button class="tab-btn" data-tab="kpis">🎯 KPIs Financieros</button>
+    </div>
+
+    <!-- Resumen Ejecutivo -->
+    <div id="resumen" class="tab-panel active">
+        <div class="kpi-grid">
+            <div class="kpi-card"><div class="kpi-number" id="total-ingreso">USD 11.72MM</div><div class="kpi-label">Ingreso Anual Consolidado</div></div>
+            <div class="kpi-card"><div class="kpi-number" id="total-inversion">USD 78MM</div><div class="kpi-label">Inversión Total Privada</div></div>
+            <div class="kpi-card"><div class="kpi-number" id="total-puestos">900</div><div class="kpi-label">Puestos de Trabajo</div></div>
+            <div class="kpi-card"><div class="kpi-number" id="total-ubicaciones">24</div><div class="kpi-label">Total Unidades</div></div>
+        </div>
+        <button class="btn-excel" id="exportExcel"><i class="fas fa-file-excel"></i> Exportar Resumen a Excel</button>
+        <table class="data-table">
+            <thead><tr><th>Indicador</th><th>AUSOL</th><th>GCO</th><th>Total</th></tr></thead>
+            <tbody>
+                <tr><td>Áreas de Servicio</td><td id="ausol-areas">9</td><td id="gco-areas">8</td><td id="total-areas">17</td></tr>
+                <tr><td>Espacios de Cercanía</td><td id="ausol-cercania">4</td><td id="gco-cercania">3</td><td id="total-cercania">7</td></tr>
+                <tr><td>Ingreso Anual (USD)</td><td id="ausol-ingreso">4.305.268</td><td id="gco-ingreso">6.410.616</td><td id="total-ingreso-valor">10.715.884</td></tr>
+                <tr><td>Ingreso Cercanía (USD)</td><td id="ausol-ingreso-cerc">576.000</td><td id="gco-ingreso-cerc">432.000</td><td id="total-ingreso-cerc">1.008.000</td></tr>
+                <tr><td>Inversión Áreas (USD)</td><td>38MM</td><td>40MM</td><td>78MM</td></tr>
+                <tr><td>Inversión Cercanía (USD)</td><td>8MM</td><td>6MM</td><td>14MM</td></tr>
+                <tr><td>Puestos Áreas</td><td>410</td><td>380</td><td>790</td></tr>
+                <tr><td>Puestos Cercanía</td><td>70</td><td>40</td><td>110</td></tr>
+            </tbody>
+        </table>
+        <div class="footer-note">Los valores se actualizan automáticamente al editar las tablas de cada sección.</div>
+    </div>
+
+    <!-- Áreas de Servicio AUSOL + GCO -->
+    <div id="areas" class="tab-panel">
+        <button class="btn-excel" id="exportAreasExcel"><i class="fas fa-file-excel"></i> Exportar Áreas de Servicio a Excel</button>
+        <h3 style="margin-bottom: 16px;"><i class="fas fa-gas-pump"></i> Áreas de Servicio · AUSOL</h3>
+        <table class="data-table" id="tabla-areas-ausol">
+            <thead><tr><th>Ubicación</th><th>Tipo</th><th>Estado</th><th>Plazo (meses)</th><th>Puestos</th><th>Ingreso USD anual</th></tr></thead>
+            <tbody>
+                <tr><td>Ramal Tigre Calle Uruguay</td><td>Comida rápida</td><td><select><option>En estudio</option><option>Pendiente</option><option>En construcción</option><option>Operativo</option></select></td><td><input type="text" value="10-15"></td><td><input type="number" value="60"></td><td><input type="number" value="240000"></td></tr>
+                <tr><td>Gral. Paz Altura Autódromo</td><td>Estación combustible</td><td><select><option>En estudio</option><option>Pendiente</option><option>En construcción</option><option>Operativo</option></select></td><td><input type="text" value="18-24"></td><td><input type="number" value="30"></td><td><input type="number" value="914206"></td></tr>
+                <tr><td>Buen Ayre (Descendente)</td><td>Estación combustible</td><td><select><option>En estudio</option><option>Pendiente</option><option>En construcción</option><option>Operativo</option></select></td><td><input type="text" value="18-24"></td><td><input type="number" value="20"></td><td><input type="number" value="362651"></td></tr>
+                <tr><td>Pilar Km 48 (Ascendente)</td><td>Estación combustible</td><td><select><option>En estudio</option><option>Pendiente</option><option>En construcción</option><option>Operativo</option></select></td><td><input type="text" value="18-24"></td><td><input type="number" value="30"></td><td><input type="number" value="914206"></td></tr>
+                <tr><td>Pilar Km 48 (Descendente)</td><td>Estación combustible</td><td><select><option>En estudio</option><option>Pendiente</option><option>En construcción</option><option>Operativo</option></select></td><td><input type="text" value="18-24"></td><td><input type="number" value="30"></td><td><input type="number" value="914206"></td></tr>
+                <tr><td>Pilar Km 48 (Ascendente)</td><td>Comida rápida</td><td><select><option>En estudio</option><option>Pendiente</option><option>En construcción</option><option>Operativo</option></select></td><td><input type="text" value="10-15"></td><td><input type="number" value="60"></td><td><input type="number" value="240000"></td></tr>
+                <tr><td>Pilar Km 48 (Descendente)</td><td>Comida rápida</td><td><select><option>En estudio</option><option>Pendiente</option><option>En construcción</option><option>Operativo</option></select></td><td><input type="text" value="10-15"></td><td><input type="number" value="60"></td><td><input type="number" value="240000"></td></tr>
+                <tr><td>Gral. Paz (Alt. Tecnópolis)</td><td>Comida rápida</td><td><select><option>En estudio</option><option>Pendiente</option><option>En construcción</option><option>Operativo</option></select></td><td><input type="text" value="10-15"></td><td><input type="number" value="60"></td><td><input type="number" value="240000"></td></tr>
+                <tr><td>Buen Ayre (Ascendente)</td><td>Comida rápida</td><td><select><option>En estudio</option><option>Pendiente</option><option>En construcción</option><option>Operativo</option></select></td><td><input type="text" value="10-15"></td><td><input type="number" value="60"></td><td><input type="number" value="240000"></td></tr>
+            </tbody>
+        </table>
+        <h3 style="margin: 24px 0 16px;"><i class="fas fa-truck"></i> Áreas de Servicio · GCO</h3>
+        <table class="data-table" id="tabla-areas-gco">
+            <thead><tr><th>Ubicación</th><th>Tipo</th><th>Estado</th><th>Plazo (meses)</th><th>Puestos</th><th>Ingreso USD anual</th></tr></thead>
+            <tbody>
+                <tr><td>Graham Bell (Ascendente)</td><td>Estación combustible</td><td><select><option>En estudio</option><option>Pendiente</option><option>En construcción</option><option>Operativo</option></select></td><td><input type="text" value="18-24"></td><td><input type="number" value="30"></td><td><input type="number" value="914206"></td></tr>
+                <tr><td>Graham Bell (Descendente)</td><td>Estación combustible</td><td><select><option>En estudio</option><option>Pendiente</option><option>En construcción</option><option>Operativo</option></select></td><td><input type="text" value="18-24"></td><td><input type="number" value="30"></td><td><input type="number" value="914206"></td></tr>
+                <tr><td>Graham Bell (Ascendente)</td><td>Comida rápida</td><td><select><option>En estudio</option><option>Pendiente</option><option>En construcción</option><option>Operativo</option></select></td><td><input type="text" value="10-15"></td><td><input type="number" value="60"></td><td><input type="number" value="240000"></td></tr>
+                <tr><td>Graham Bell (Descendente)</td><td>Comida rápida</td><td><select><option>En estudio</option><option>Pendiente</option><option>En construcción</option><option>Operativo</option></select></td><td><input type="text" value="10-15"></td><td><input type="number" value="60"></td><td><input type="number" value="240000"></td></tr>
+                <tr><td>Km 60 Luján (Ascendente)</td><td>Truck Park · Estación combustible</td><td><select><option>En estudio</option><option>Pendiente</option><option>En construcción</option><option>Operativo</option></select></td><td><input type="text" value="24-30"></td><td><input type="number" value="40"></td><td><input type="number" value="1811102"></td></tr>
+                <tr><td>Km 60 Luján (Descendente)</td><td>Truck Park · Estación combustible</td><td><select><option>En estudio</option><option>Pendiente</option><option>En construcción</option><option>Operativo</option></select></td><td><input type="text" value="24-30"></td><td><input type="number" value="40"></td><td><input type="number" value="1811102"></td></tr>
+                <tr><td>Km 60 Luján (Ascendente)</td><td>Truck Park · Comida rápida</td><td><select><option>En estudio</option><option>Pendiente</option><option>En construcción</option><option>Operativo</option></select></td><td><input type="text" value="10-15"></td><td><input type="number" value="60"></td><td><input type="number" value="240000"></td></tr>
+                <tr><td>Km 60 Luján (Descendente)</td><td>Truck Park · Comida rápida</td><td><select><option>En estudio</option><option>Pendiente</option><option>En construcción</option><option>Operativo</option></select></td><td><input type="text" value="10-15"></td><td><input type="number" value="60"></td><td><input type="number" value="240000"></td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Espacios de Cercanía AUSOL + GCO -->
+    <div id="cercania" class="tab-panel">
+        <button class="btn-excel" id="exportCercaniaExcel"><i class="fas fa-file-excel"></i> Exportar Espacios de Cercanía a Excel</button>
+        <h3 style="margin-bottom: 16px;">Espacios de Cercanía · AUSOL</h3>
+        <table class="data-table" id="tabla-cercania-ausol">
+            <thead><tr><th>Ubicación</th><th>Estado</th><th>Plazo (meses)</th><th>Puestos</th><th>Ingreso USD anual</th></tr></thead>
+            <tbody>
+                <tr><td>Colectora Márquez (Ascendente)</td><td><select><option>En estudio</option><option>Pendiente</option><option>En construcción</option><option>Operativo</option></select></td><td><input type="text" value="10-15"></td><td><input type="number" value="20"></td><td><input type="number" value="144000"></td></tr>
+                <tr><td>Gral. Paz Altura Provincias Unidas</td><td><select><option>En estudio</option><option>Pendiente</option><option>En construcción</option><option>Operativo</option></select></td><td><input type="text" value="10-15"></td><td><input type="number" value="20"></td><td><input type="number" value="144000"></td></tr>
+                <tr><td>Estación de Peaje RN202 (Descendente)</td><td><select><option>En estudio</option><option>Pendiente</option><option>En construcción</option><option>Operativo</option></select></td><td><input type="text" value="10-15"></td><td><input type="number" value="15"></td><td><input type="number" value="144000"></td></tr>
+                <tr><td>Gral. Paz Altura Mil Aires</td><td><select><option>En estudio</option><option>Pendiente</option><option>En construcción</option><option>Operativo</option></select></td><td><input type="text" value="10-15"></td><td><input type="number" value="15"></td><td><input type="number" value="144000"></td></tr>
+            </tbody>
+        </table>
+        <h3 style="margin: 24px 0 16px;">Espacios de Cercanía · GCO</h3>
+        <table class="data-table" id="tabla-cercania-gco">
+            <thead><tr><th>Ubicación</th><th>Estado</th><th>Plazo (meses)</th><th>Puestos</th><th>Ingreso USD anual</th></tr></thead>
+            <tbody>
+                <tr><td>Troncal Ituzaingó (Ascendente)</td><td><select><option>En estudio</option><option>Pendiente</option><option>En construcción</option><option>Operativo</option></select></td><td><input type="text" value="10-15"></td><td><input type="number" value="20"></td><td><input type="number" value="144000"></td></tr>
+                <tr><td>Decalado Ituzaingó (Descendente)</td><td><select><option>En estudio</option><option>Pendiente</option><option>En construcción</option><option>Operativo</option></select></td><td><input type="text" value="10-15"></td><td><input type="number" value="10"></td><td><input type="number" value="144000"></td></tr>
+                <tr><td>Troncal Luján (Descendente)</td><td><select><option>En estudio</option><option>Pendiente</option><option>En construcción</option><option>Operativo</option></select></td><td><input type="text" value="10-15"></td><td><input type="number" value="10"></td><td><input type="number" value="144000"></td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Fibra Óptica -->
+    <div id="fibra" class="tab-panel">
+        <button class="btn-excel" id="exportFibraExcel"><i class="fas fa-file-excel"></i> Exportar Fibra Óptica a Excel</button>
+        <table class="data-table" id="tabla-fibra">
+            <thead><tr><th>Indicador</th><th>Estado</th><th>Avance %</th><th>Responsable</th></tr></thead>
+            <tbody>
+                <tr><td>Relevamiento capacidad ociosa</td><td><select><option>No iniciado</option><option>En curso</option><option>Completado</option></select></td><td><input type="number" value="40" min="0" max="100"></td><td>Consultora ITTEL</td></tr>
+                <tr><td>Migración contratos dark fiber</td><td><select><option>No iniciado</option><option>En curso</option><option>Completado</option></select></td><td><input type="number" value="20" min="0" max="100"></td><td>Legal + Consultora</td></tr>
+                <tr><td>Renegociación ARSAT</td><td><select><option>No iniciado</option><option>En curso</option><option>Completado</option></select></td><td><input type="number" value="15" min="0" max="100"></td><td>Comercial + Legal</td></tr>
+                <tr><td>Nuevos clientes dark fiber</td><td><select><option>No iniciado</option><option>En curso</option><option>Completado</option></select></td><td><input type="number" value="10" min="0" max="100"></td><td>Gerencia Operaciones</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Publicidad Vial -->
+    <div id="publicidad" class="tab-panel">
+        <button class="btn-excel" id="exportPublicidadExcel"><i class="fas fa-file-excel"></i> Exportar Publicidad Vial a Excel</button>
+        <table class="data-table" id="tabla-publicidad">
+            <thead><tr><th>Indicador</th><th>Estado</th><th>Avance %</th><th>Responsable</th></tr></thead>
+            <tbody>
+                <tr><td>Actualización Res. DNV 533/98</td><td><select><option>No iniciado</option><option>En gestión</option><option>Aprobado</option></select></td><td><input type="number" value="30" min="0" max="100"></td><td>Legal + DNV</td></tr>
+                <tr><td>Instalación pantallas LED</td><td><select><option>No iniciado</option><option>En diseño</option><option>En ejecución</option></select></td><td><input type="number" value="5" min="0" max="100"></td><td>Comercial + Ingeniería</td></tr>
+                <tr><td>Modelo de negocio publicitario</td><td><select><option>No iniciado</option><option>En elaboración</option><option>Listo</option></select></td><td><input type="number" value="20" min="0" max="100"></td><td>Gerencia Operaciones</td></tr>
+                <tr><td>Integración con gestión de tráfico</td><td><select><option>No iniciado</option><option>En evaluación</option><option>En desarrollo</option></select></td><td><input type="number" value="10" min="0" max="100"></td><td>Ingeniería</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- KPIs Financieros -->
+    <div id="kpis" class="tab-panel">
+        <button class="btn-excel" id="exportKPIsExcel"><i class="fas fa-file-excel"></i> Exportar KPIs Financieros a Excel</button>
+        <table class="data-table" id="tabla-kpis">
+            <thead><tr><th>KPI</th><th>Valor Actual</th><th>Meta 2026</th><th>Unidad</th></tr></thead>
+            <tbody>
+                <tr><td>Ingreso anual consolidado</td><td><input type="text" id="kpi-ingreso" value="11,723,884"></td><td>15,000,000</td><td>USD</td></tr>
+                <tr><td>Inversión privada ejecutada</td><td><input type="text" id="kpi-inversion" value="0"></td><td>55,000,000</td><td>USD</td></tr>
+                <tr><td>Puestos reconvertidos</td><td><input type="text" id="kpi-puestos" value="0"></td><td>55</td><td>Personas</td></tr>
+                <tr><td>Areas operativas</td><td><input type="text" id="kpi-nodos" value="0"></td><td>5</td><td>Unidades</td></tr>
+                <tr><td>Contratos migrados a dark fiber</td><td><input type="text" id="kpi-contratos" value="0"></td><td>5</td><td>Contratos</td></tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    // Guardar datos en localStorage
+    function guardarTodo() {
+        const datos = {
+            areasAusol: [],
+            areasGco: [],
+            cercaniaAusol: [],
+            cercaniaGco: [],
+            fibra: [],
+            publicidad: [],
+            kpis: { ingreso: document.getElementById('kpi-ingreso')?.value, inversion: document.getElementById('kpi-inversion')?.value, puestos: document.getElementById('kpi-puestos')?.value, nodos: document.getElementById('kpi-nodos')?.value, contratos: document.getElementById('kpi-contratos')?.value }
+        };
+        document.querySelectorAll('#tabla-areas-ausol tbody tr').forEach(row => {
+            datos.areasAusol.push({ estado: row.cells[2].querySelector('select').value, plazo: row.cells[3].querySelector('input').value, puestos: row.cells[4].querySelector('input').value, ingreso: row.cells[5].querySelector('input').value });
+        });
+        document.querySelectorAll('#tabla-areas-gco tbody tr').forEach(row => {
+            datos.areasGco.push({ estado: row.cells[2].querySelector('select').value, plazo: row.cells[3].querySelector('input').value, puestos: row.cells[4].querySelector('input').value, ingreso: row.cells[5].querySelector('input').value });
+        });
+        document.querySelectorAll('#tabla-cercania-ausol tbody tr').forEach(row => {
+            datos.cercaniaAusol.push({ estado: row.cells[1].querySelector('select').value, plazo: row.cells[2].querySelector('input').value, puestos: row.cells[3].querySelector('input').value, ingreso: row.cells[4].querySelector('input').value });
+        });
+        document.querySelectorAll('#tabla-cercania-gco tbody tr').forEach(row => {
+            datos.cercaniaGco.push({ estado: row.cells[1].querySelector('select').value, plazo: row.cells[2].querySelector('input').value, puestos: row.cells[3].querySelector('input').value, ingreso: row.cells[4].querySelector('input').value });
+        });
+        document.querySelectorAll('#tabla-fibra tbody tr').forEach(row => {
+            datos.fibra.push({ estado: row.cells[1].querySelector('select').value, avance: row.cells[2].querySelector('input').value });
+        });
+        document.querySelectorAll('#tabla-publicidad tbody tr').forEach(row => {
+            datos.publicidad.push({ estado: row.cells[1].querySelector('select').value, avance: row.cells[2].querySelector('input').value });
+        });
+        localStorage.setItem('tableroDatos', JSON.stringify(datos));
+    }
+
+    function cargarDatos() {
+        const guardado = localStorage.getItem('tableroDatos');
+        if (!guardado) return;
+        const datos = JSON.parse(guardado);
+        let idx = 0;
+        document.querySelectorAll('#tabla-areas-ausol tbody tr').forEach(row => {
+            if (datos.areasAusol[idx]) { row.cells[2].querySelector('select').value = datos.areasAusol[idx].estado; row.cells[3].querySelector('input').value = datos.areasAusol[idx].plazo; row.cells[4].querySelector('input').value = datos.areasAusol[idx].puestos; row.cells[5].querySelector('input').value = datos.areasAusol[idx].ingreso; }
+            idx++;
+        });
+        idx = 0;
+        document.querySelectorAll('#tabla-areas-gco tbody tr').forEach(row => {
+            if (datos.areasGco[idx]) { row.cells[2].querySelector('select').value = datos.areasGco[idx].estado; row.cells[3].querySelector('input').value = datos.areasGco[idx].plazo; row.cells[4].querySelector('input').value = datos.areasGco[idx].puestos; row.cells[5].querySelector('input').value = datos.areasGco[idx].ingreso; }
+            idx++;
+        });
+        idx = 0;
+        document.querySelectorAll('#tabla-cercania-ausol tbody tr').forEach(row => {
+            if (datos.cercaniaAusol[idx]) { row.cells[1].querySelector('select').value = datos.cercaniaAusol[idx].estado; row.cells[2].querySelector('input').value = datos.cercaniaAusol[idx].plazo; row.cells[3].querySelector('input').value = datos.cercaniaAusol[idx].puestos; row.cells[4].querySelector('input').value = datos.cercaniaAusol[idx].ingreso; }
+            idx++;
+        });
+        idx = 0;
+        document.querySelectorAll('#tabla-cercania-gco tbody tr').forEach(row => {
+            if (datos.cercaniaGco[idx]) { row.cells[1].querySelector('select').value = datos.cercaniaGco[idx].estado; row.cells[2].querySelector('input').value = datos.cercaniaGco[idx].plazo; row.cells[3].querySelector('input').value = datos.cercaniaGco[idx].puestos; row.cells[4].querySelector('input').value = datos.cercaniaGco[idx].ingreso; }
+            idx++;
+        });
+        idx = 0;
+        document.querySelectorAll('#tabla-fibra tbody tr').forEach(row => {
+            if (datos.fibra[idx]) { row.cells[1].querySelector('select').value = datos.fibra[idx].estado; row.cells[2].querySelector('input').value = datos.fibra[idx].avance; }
+            idx++;
+        });
+        idx = 0;
+        document.querySelectorAll('#tabla-publicidad tbody tr').forEach(row => {
+            if (datos.publicidad[idx]) { row.cells[1].querySelector('select').value = datos.publicidad[idx].estado; row.cells[2].querySelector('input').value = datos.publicidad[idx].avance; }
+            idx++;
+        });
+        if (datos.kpis) { if (document.getElementById('kpi-ingreso')) document.getElementById('kpi-ingreso').value = datos.kpis.ingreso; }
+    }
+
+    // Actualizar resumen
+    function actualizarResumen() {
+        let ausolIngreso = 0, gcoIngreso = 0, ausolCercIngreso = 0, gcoCercIngreso = 0;
+        document.querySelectorAll('#tabla-areas-ausol tbody tr').forEach(row => { ausolIngreso += parseFloat(row.cells[5]?.querySelector('input')?.value) || 0; });
+        document.querySelectorAll('#tabla-areas-gco tbody tr').forEach(row => { gcoIngreso += parseFloat(row.cells[5]?.querySelector('input')?.value) || 0; });
+        document.querySelectorAll('#tabla-cercania-ausol tbody tr').forEach(row => { ausolCercIngreso += parseFloat(row.cells[4]?.querySelector('input')?.value) || 0; });
+        document.querySelectorAll('#tabla-cercania-gco tbody tr').forEach(row => { gcoCercIngreso += parseFloat(row.cells[4]?.querySelector('input')?.value) || 0; });
+        document.getElementById('ausol-ingreso').innerText = ausolIngreso.toLocaleString();
+        document.getElementById('gco-ingreso').innerText = gcoIngreso.toLocaleString();
+        document.getElementById('ausol-ingreso-cerc').innerText = ausolCercIngreso.toLocaleString();
+        document.getElementById('gco-ingreso-cerc').innerText = gcoCercIngreso.toLocaleString();
+        const totalIngreso = ausolIngreso + gcoIngreso + ausolCercIngreso + gcoCercIngreso;
+        document.getElementById('total-ingreso').innerHTML = `USD ${(totalIngreso/1000000).toFixed(2)}MM`;
+    }
+
+    // Exportar funciones
+    function exportarTabla(nombreHoja, tablaId, nombreArchivo) {
+        const tabla = document.getElementById(tablaId);
+        const wb = XLSX.utils.book_new();
+        const ws = XLSX.utils.table_to_sheet(tabla, { raw: true });
+        XLSX.utils.book_append_sheet(wb, ws, nombreHoja);
+        XLSX.writeFile(wb, nombreArchivo);
+    }
+
+    document.getElementById('exportExcel').addEventListener('click', () => exportarTabla('Resumen', 'resumen table', 'Resumen_Ejecutivo.xlsx'));
+    document.getElementById('exportAreasExcel').addEventListener('click', () => exportarTabla('AreasServicio', 'tabla-areas-ausol', 'Areas_Servicio_AUSOL.xlsx'));
+    document.getElementById('exportCercaniaExcel').addEventListener('click', () => exportarTabla('EspaciosCercania', 'tabla-cercania-ausol', 'Espacios_Cercania.xlsx'));
+    document.getElementById('exportFibraExcel').addEventListener('click', () => exportarTabla('FibraOptica', 'tabla-fibra', 'Fibra_Optica.xlsx'));
+    document.getElementById('exportPublicidadExcel').addEventListener('click', () => exportarTabla('PublicidadVial', 'tabla-publicidad', 'Publicidad_Vial.xlsx'));
+    document.getElementById('exportKPIsExcel').addEventListener('click', () => exportarTabla('KPIs', 'tabla-kpis', 'KPIs_Financieros.xlsx'));
+
+    document.querySelectorAll('input, select').forEach(el => el.addEventListener('change', () => { guardarTodo(); actualizarResumen(); }));
+    cargarDatos();
+    actualizarResumen();
+
+    // Navegación
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+            btn.classList.add('active');
+            document.getElementById(btn.getAttribute('data-tab')).classList.add('active');
+        });
+    });
+</script>
+</body>
+</html>

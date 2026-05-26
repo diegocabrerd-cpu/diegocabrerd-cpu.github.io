@@ -59,3 +59,107 @@ mindmap
       SAP
       KPIs Avanzados
       Lean Management
+</div>
+
+💼 Competencias Clave
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+💼 Experiencia Profesional
+🏢 Responsable de Negocios Auxiliares
+Autopistas del Sol / GCO · 2026 – Presente
+Redefinición estratégica del modelo de publicidad vial hacia comunicación inteligente
+Reconversión del modelo Ducts Leasing hacia Dark Fiber para monetización
+Evaluación de oportunidades de negocio y articulación regulatoria
+🚗 Coordinador de Operaciones
+Autopistas del Sol · Agosto 2022 – 2026
+Liderazgo de 15 supervisores y 90 peajistas
+Negociación sindical: 30% menos liberaciones de tránsito
+KPIs de quiebres: mejora del 7% en tasa de cobro
+🔒 Jefe de Monitoreo
+Metalúrgica La Toma · Marzo 2022 – Agosto 2022
+Reducción del 30% de incidentes vía KPIs de seguridad
+Cero evasiones tras reorganización de CCTV (25 cámaras IP)
+40% reducción de riesgos en trabajos en altura
+🛡️ Jefe de Seguridad y Mantenimiento
+Falabella SA · Junio 2008 – Octubre 2021
+Reducción de costos 15% y rotación de personal 30%
+Manual operativo: mejora del compliance en 20%
+Optimización 20% vigilancia física y Lead Time -30%
+🎓 Formación Académica
+<div align="left">
+📚 Título
+🏛️ Institución
+📅 Período
+Ingeniería Industrial
+UTEL (México)
+2021-2025
+Diplomado en Industria 4.0
+USAL (Argentina)
+2022
+Gerenciador de Seguridad
+UMSA (Argentina)
+2021
+Gestión de Mantenimiento Industrial
+Tec People (Argentina)
+2022
+</div>
+
+📊 Estadísticas de GitHub
+<div align="center">
+<img src="https://github-readme-stats.vercel.app/api?username=diegocabrerd-cpu&show_icons=true&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=2C5AA0&icon_color=4A90E2&text_color=fff" height="170" />
+<img src="https://github-readme-streak-stats.herokuapp.com/?user=diegocabrerd-cpu&theme=tokyonight&hide_border=true&background=0D1117&stroke=2C5AA0&ring=4A90E2&fire=FF6B6B&currStreakLabel=2C5AA0" height="170" />
+</div>
+
+<div align="center">
+<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=diegocabrerd-cpu&layout=compact&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=2C5AA0&text_color=fff&langs_count=8" />
+</div>
+
+🌐 Portfolio & Proyectos
+<div align="center">
+<a href="https://diegocabrerd-cpu.github.io/">
+<img src="https://img.shields.io/badge/🌐_Visitar_Mi_Portfolio-1A3A5F?style=for-the-badge&logo=githubpages&logoColor=white" />
+</a>
+<a href="https://www.linkedin.com/in/diego-angel-cabrera-">
+<img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" />
+</a>
+</div>
+
+📬 Contacto
+<div align="center">
+
+
+
+
+
+
+
+
+</div>
+
+<div align="center">
+<img src="https://komarev.com/ghpvc/?username=diegocabrerd-cpu&label=Visitas+al+perfil&color=2C5AA0&style=for-the-badge" />
+</div>
+
+<div align="center">
+<img src="https://capsule-render.vercel.app/api?type=waving&color=1A3A5F&height=100&section=footer" width="100%" />
+</div>
+
+<p align="center">
+<em>"Convirtiendo activos subutilizados en flujos de valor escalables"</em>
+</p>
+```

@@ -39,8 +39,8 @@
 
 ### 📌 Responsable de Negocios Auxiliares
 **Autopistas del Sol / GCO** · 2026 – Presente
-- Redefinición estratégica del modelo de publicidad vial hacia comunicación inteligente.
-- Reconversión del modelo Ducts Leasing hacia Dark Fiber para monetización de infraestructura.
+- Coordinacion de la instalacion de comunicación inteligente.
+- Reconversión del modelo tradicional para monetización de infraestructura.
 - Evaluación de oportunidades de negocio, análisis económico-financiero y articulación regulatoria.
 
 ### 🚗 Coordinador de Operaciones

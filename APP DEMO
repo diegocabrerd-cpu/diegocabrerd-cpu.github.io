@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#0b5e7c">
+<title>AUSOL · GCO — Movilidad</title>
+
+<!-- Leaflet (mapa real) -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<style>
+/* =============================== */
+/* VARIABLES DE TEMA (LIGHT/DARK) */
+/* =============================== */
+:root {
+  --ausol: #e67e22;         /* Naranja AUSOL */
+  --ausol-soft: #fef5e8;
+  --ausol-deep: #c96a12;
+  --gco: #0b5e7c;           /* Azul petróleo GCO */
+  --gco-soft: #e7f3f7;
+  --gco-deep: #07415a;
+
+  --bg: #eef2f5;
+  --bg-card: #ffffff;
+  --bg-elevated: #f8fafc;
+  --text-1: #1a2332;
+  --text-2: #4a627a;
+  --text-3: #8a9bb0;
+  --border: #eef2f5;
+  --shadow: 0 8px 24px rgba(11,94,124,0.08);
+  --shadow-strong: 0 16px 40px rgba(11,94,124,0.14);
+  --nav-bg: rgba(255,255,255,0.92);
+}
+
+[data-theme="dark"] {
+  --ausol-soft: #2a1f12;
+  --gco-soft: #0e2530;
+  --bg: #0d1117;
+  --bg-card: #161b22;
+  --bg-elevated: #1c2128;
+  --text-1: #e6edf3;
+  --text-2: #9ca3af;
+  --text-3: #6b7280;
+  --border: #21262d;
+  --shadow: 0 8px 24px rgba(0,0,0,0.35);
+  --shadow-strong: 0 16px 40px rgba(0,0,0,0.5);
+  --nav-bg: rgba(22,27,34,0.92);
+}
+
+/* =============================== */
+/* RESET Y BASE */
+/* =============================== */
+* { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+html, body {
+  height:100%;
+  overflow:hidden;
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',sans-serif;
+  background:var(--bg);
+  color:var(--text-1);
+  transition:background .4s, color .4s;
+}
+
+.app {
+  max-width:430px;
+  height:100dvh;
+  margin:0 auto;
+  display:flex;
+  flex-direction:column;
+  background:var(--bg);
+  position:relative;
+  overflow:hidden;
+}
+
+/* =============================== */
+/* SPLASH SCREEN (Mejora #1) */
+/* =============================== */
+.splash {
+  position:fixed; inset:0; z-index:1000;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  background:linear-gradient(135deg, var(--gco-deep) 0%, var(--gco) 45%, var(--ausol) 100%);
+  transition:opacity .6s ease, visibility .6s;
+}
+.splash.hide { opacity:0; visibility:hidden; }
+.splash-logo { display:flex; align-items:baseline; gap:10px; }
+.splash-logo span {
+  font-size:2.2rem; font-weight:800; color:#fff; letter-spacing:-0.02em;
+  opacity:0; transform:translateY(20px);
+  animation:logoUp .6s cubic-bezier(.2,.8,.2,1) forwards;
+}
+.splash-logo .sep { font-weight:300; color:rgba(255,255,255,.6); animation-delay:.15s; }
+.splash-logo .gco { animation-delay:.3s; }
+.splash-tag {
+  margin-top:12px; color:rgba(255,255,255,.85); font-size:.8rem;
+  letter-spacing:3px; text-transform:uppercase; font-weight:600;
+  opacity:0; animation:logoUp .6s .5s forwards;
+}
+.splash-loader {
+  margin-top:40px; width:120px; height:3px; background:rgba(255,255,255,.25);
+  border-radius:3px; overflow:hidden;
+}
+.splash-loader::after {
+  content:''; display:block; width:40%; height:100%; background:#fff; border-radius:3px;
+  animation:load 1.2s ease-in-out infinite;
+}
+@keyframes logoUp { to { opacity:1; transform:translateY(0); } }
+@keyframes load { 0%{transform:translateX(-100%)} 100%{transform:translateX(350%)} }
+
+/* =============================== */
+/* HEADER */
+/* =============================== */
+.status-bar {
+  display:flex; justify-content:space-between; padding:14px 22px 6px;
+  font-size:.72rem; font-weight:600; color:var(--text-1);
+}
+.app-header {
+  padding:6px 20px 14px;
+  display:flex; justify-content:space-between; align-items:center;
+  border-bottom:1px solid var(--border);
+}
+.logo { font-size:1.25rem; font-weight:800; display:flex; align-items:center; gap:7px; letter-spacing:-0.01em; }
+.logo .ausol { color:var(--ausol); }
+.logo .sep { color:var(--text-3); font-weight:300; }
+.logo .gco { color:var(--gco); }
+.header-actions { display:flex; align-items:center; gap:12px; }
+.theme-toggle {
+  width:38px; height:38px; border-radius:50%; border:1px solid var(--border);
+  background:var(--bg-elevated); display:flex; align-items:center; justify-content:center;
+  cursor:pointer; transition:transform .2s; color:var(--text-2);
+}
+.theme-toggle:active { transform:scale(.9); }
+.theme-toggle svg { width:18px; height:18px; }
+[data-theme="light"] .icon-moon { display:none; }
+[data-theme="dark"] .icon-sun { display:none; }
+.user-avatar {
+  width:40px; height:40px; border-radius:50%;
+  background:linear-gradient(135deg, var(--gco), var(--gco-deep));
+  display:flex; align-items:center; justify-content:center;
+  color:#fff; font-weight:700; font-size:.85rem; cursor:pointer;
+  box-shadow:var(--shadow);
+}
+
+/* =============================== */
+/* CONTENIDO SCROLLEABLE */
+/* =============================== */
+.app-content {
+  flex:1; overflow-y:auto; -webkit-overflow-scrolling:touch;
+  padding:16px 20px 20px; position:relative;
+}
+.app-content::-webkit-scrollbar { width:0; }
+
+/* Pull-to-refresh indicator (Mejora #7) */
+.ptr-indicator {
+  position:absolute; top:-50px; left:50%; transform:translateX(-50%);
+  width:36px; height:36px; border-radius:50%;
+  background:var(--bg-card); box-shadow:var(--shadow);
+  display:flex; align-items:center; justify-content:center;
+  color:var(--ausol); transition:transform .3s;
+}
+.ptr-indicator svg { width:18px; height:18px; animation:spin 1s linear infinite; }
+@keyframes spin { to { transform:rotate(360deg); } }
+
+/* =============================== */
+/* TABS Y TRANSICIONES */
+/* =============================== */
+.tab-content { display:none; }
+.tab-content.active { display:block; animation:slideInRight .35s cubic-bezier(.2,.8,.2,1); }
+.tab-content.slide-left { animation:slideInLeft .35s cubic-bezier(.2,.8,.2,1); }
+@keyframes slideInRight { from{opacity:0; transform:translateX(30px)} to{opacity:1; transform:translateX(0)} }
+@keyframes slideInLeft { from{opacity:0; transform:translateX(-30px)} to{opacity:1; transform:translateX(0)} }
+
+/* Animación staggered para cards */
+.tab-content.active > * { animation:fadeUp .4s cubic-bezier(.2,.8,.2,1) backwards; }
+.tab-content.active > *:nth-child(1){animation-delay:.05s}
+.tab-content.active > *:nth-child(2){animation-delay:.1s}
+.tab-content.active > *:nth-child(3){animation-delay:.15s}
+.tab-content.active > *:nth-child(4){animation-delay:.2s}
+.tab-content.active > *:nth-child(5){animation-delay:.25s}
+.tab-content.active > *:nth-child(6){animation-delay:.3s}
+@keyframes fadeUp { from{opacity:0; transform:translateY(16px)} to{opacity:1; transform:translateY(0)} }
+
+/* =============================== */
+/* COMPONENTES */
+/* =============================== */
+.card {
+  background:var(--bg-card); border-radius:20px; border:1px solid var(--border);
+  box-shadow:var(--shadow); overflow:hidden;
+}
+
+/* Banner campaña seguridad */
+.campaign-banner {
+  background:linear-gradient(135deg, var(--gco-deep), var(--gco));
+  border-radius:20px; padding:18px; color:#fff; position:relative;
+  overflow:hidden; margin-bottom:16px; box-shadow:var(--shadow-strong);
+}
+.campaign-banner::before {
+  content:''; position:absolute; top:-40px; right:-40px; width:140px; height:140px;
+  background:radial-gradient(circle, rgba(230,126,34,.35), transparent 70%); border-radius:50%;
+}
+.campaign-emergency {
+  position:absolute; top:14px; right:14px; background:#dc2626; color:#fff;
+  padding:5px 11px; border-radius:12px; font-size:.6rem; font-weight:700; letter-spacing:.3px;
+}
+.campaign-icon { font-size:1.9rem; margin-bottom:8px; }
+.campaign-title { font-weight:800; font-size:1.05rem; color:#f5b042; line-height:1.25; }
+.campaign-message { font-size:.85rem; opacity:.95; margin:6px 0 10px; line-height:1.45; }
+.campaign-tag {
+  display:inline-block; background:rgba(230,126,34,.25); color:#f5b042;
+  padding:3px 11px; border-radius:12px; font-size:.6rem; font-weight:700; letter-spacing:.5px;
+}
+
+/* Tarjeta usuario */
+.user-card {
+  background:linear-gradient(135deg, var(--gco), var(--gco-deep));
+  border-radius:20px; padding:20px; color:#fff; margin-bottom:16px;
+  position:relative; overflow:hidden; box-shadow:var(--shadow-strong);
+}
+.user-card::after {
+  content:''; position:absolute; bottom:-60px; right:-30px; width:180px; height:180px;
+  background:radial-gradient(circle, rgba(230,126,34,.25), transparent 70%); border-radius:50%;
+}
+.user-card .greeting { font-size:.7rem; opacity:.85; }
+.user-card .name { font-size:1.25rem; font-weight:800; margin:3px 0 4px; }
+.user-card .user-id { font-size:.68rem; opacity:.75; font-family:ui-monospace,monospace; }
+.points-row {
+  display:flex; justify-content:space-between; margin-top:16px; padding-top:16px;
+  border-top:1px solid rgba(255,255,255,.18); position:relative; z-index:1;
+}
+.points-item { text-align:center; flex:1; }
+.points-item .number { font-size:1.25rem; font-weight:800; }
+.points-item .label { font-size:.6rem; opacity:.75; margin-top:2px; }
+
+/* Banner sponsor (Mejora: tono consumer premium) */
+.ad-banner {
+  background:linear-gradient(135deg, var(--ausol-soft), var(--bg-card));
+  border:1px solid var(--ausol); border-radius:20px; padding:18px;
+  margin-bottom:16px; position:relative; overflow:hidden; box-shadow:var(--shadow);
+}
+.ad-label {
+  font-size:.55rem; text-transform:uppercase; letter-spacing:1.5px;
+  color:var(--ausol-deep); font-weight:700; display:flex; align-items:center; gap:5px;
+}
+[data-theme="dark"] .ad-label { color:var(--ausol); }
+.ad-title { font-weight:800; font-size:1.1rem; color:var(--text-1); margin-top:6px; }
+.ad-subtitle { font-size:.8rem; color:var(--text-2); margin:4px 0 14px; }
+.ad-cta {
+  display:inline-flex; align-items:center; gap:6px;
+  background:linear-gradient(135deg, var(--ausol), var(--ausol-deep));
+  color:#fff; padding:9px 20px; border-radius:24px; font-size:.78rem; font-weight:700;
+  border:none; cursor:pointer; box-shadow:0 4px 14px rgba(230,126,34,.35);
+  transition:transform .15s;
+}
+.ad-cta:active { transform:scale(.95); }
+.ad-cupon {
+  position:absolute; top:14px; right:14px; background:var(--ausol); color:#fff;
+  padding:5px 12px; border-radius:12px; font-size:.7rem; font-weight:800;
+  box-shadow:0 4px 10px rgba(230,126,34,.4);
+}
+.ad-geo { font-size:.65rem; color:var(--text-3); margin-top:10px; display:flex; align-items:center; gap:5px; }
+
+/* Títulos de sección */
+.section-title { display:flex; justify-content:space-between; align-items:center; margin:20px 0 12px; }
+.section-title h3 { font-size:1rem; font-weight:800; color:var(--text-1); display:flex; align-items:center; gap:8px; }
+.section-title a { font-size:.72rem; color:var(--ausol); text-decoration:none; font-weight:700; cursor:pointer; }
+
+/* Oferta cards */
+.offer-card {
+  display:flex; background:var(--bg-card); border-radius:18px; padding:15px;
+  margin-bottom:12px; border:1px solid var(--border); align-items:center; gap:14px;
+  box-shadow:var(--shadow); transition:transform .15s;
+}
+.offer-card:active { transform:scale(.98); }
+.offer-icon {
+  width:52px; height:52px; background:var(--ausol-soft); border-radius:14px;
+  display:flex; align-items:center; justify-content:center; flex-shrink:0; color:var(--ausol);
+}
+.offer-icon svg { width:26px; height:26px; }
+.offer-info { flex:1; min-width:0; }
+.offer-info .name { font-weight:700; font-size:.88rem; color:var(--text-1); }
+.offer-info .desc { font-size:.72rem; color:var(--text-2); margin-top:2px; }
+.offer-info .distance { font-size:.62rem; color:var(--text-3); display:flex; align-items:center; gap:4px; margin-top:4px; }
+.offer-btn {
+  background:linear-gradient(135deg, var(--ausol), var(--ausol-deep));
+  color:#fff; border:none; padding:8px 16px; border-radius:20px;
+  font-size:.68rem; font-weight:700; cursor:pointer; flex-shrink:0;
+  box-shadow:0 3px 10px rgba(230,126,34,.3); transition:transform .15s;
+}
+.offer-btn:active { transform:scale(.93); }
+.offer-btn.outline { background:transparent; border:1.5px solid var(--ausol); color:var(--ausol); box-shadow:none; }
+
+/* Rewards grid */
+.rewards-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin:12px 0; }
+.reward-item {
+  background:var(--bg-card); border-radius:18px; padding:16px 8px; text-align:center;
+  border:1px solid var(--border); box-shadow:var(--shadow);
+}
+.reward-item .icon { color:var(--ausol); display:flex; justify-content:center; }
+.reward-item .icon svg { width:28px; height:28px; }
+.reward-item .name { font-size:.65rem; font-weight:700; color:var(--text-1); margin-top:8px; }
+.reward-item .points { font-size:.6rem; color:var(--text-2); margin-top:2px; }
+.btn-redeem {
+  background:var(--gco); color:#fff; border:none; padding:6px 14px; border-radius:14px;
+  font-size:.6rem; font-weight:700; margin-top:8px; cursor:pointer; transition:transform .15s;
+}
+.btn-redeem:active { transform:scale(.93); }
+
+/* =============================== */
+/* MAPA REAL (Mejora #2) */
+/* =============================== */
+.route-header {
+  display:flex; align-items:center; gap:13px; background:var(--bg-card);
+  border-radius:18px; padding:15px 16px; margin-bottom:16px; border:1px solid var(--border);
+  box-shadow:var(--shadow);
+}
+.route-icon { color:var(--ausol); }
+.route-icon svg { width:26px; height:26px; }
+.route-info { flex:1; }
+.route-info .from { font-size:.7rem; color:var(--text-2); }
+.route-info .to { font-size:.92rem; font-weight:800; color:var(--text-1); margin-top:1px; }
+.route-info .time { font-size:.7rem; color:var(--ausol); font-weight:700; margin-top:2px; }
+.btn-start {
+  background:linear-gradient(135deg, var(--ausol), var(--ausol-deep)); color:#fff;
+  border:none; padding:9px 16px; border-radius:24px; font-size:.7rem; font-weight:700;
+  cursor:pointer; box-shadow:0 3px 10px rgba(230,126,34,.3); transition:transform .15s;
+}
+.btn-start:active { transform:scale(.93); }
+
+#map {
+  height:220px; border-radius:20px; margin-bottom:16px;
+  box-shadow:var(--shadow); border:1px solid var(--border); z-index:1;
+}
+
+.route-steps { background:var(--bg-card); border-radius:18px; padding:15px 17px; border:1px solid var(--border); margin-bottom:16px; box-shadow:var(--shadow); }
+.step { display:flex; gap:13px; padding:9px 0; border-bottom:1px solid var(--border); align-items:flex-start; }
+.step:last-child { border-bottom:none; }
+.step .num {
+  width:24px; height:24px; background:linear-gradient(135deg, var(--ausol), var(--ausol-deep));
+  color:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center;
+  font-size:.6rem; font-weight:800; flex-shrink:0; margin-top:1px;
+}
+.step-info { flex:1; }
+.step-info .action { font-size:.82rem; font-weight:700; color:var(--text-1); }
+.step-info .detail { font-size:.68rem; color:var(--text-2); margin-top:1px; }
+.step-info .dist { font-size:.62rem; color:var(--text-3); margin-top:2px; }
+
+/* POI list */
+.poi-list { display:flex; flex-direction:column; gap:9px; }
+.poi-item {
+  display:flex; align-items:center; gap:13px; background:var(--bg-card);
+  padding:13px 15px; border-radius:16px; border:1px solid var(--border); box-shadow:var(--shadow);
+}
+.poi-icon { color:var(--gco); }
+.poi-icon svg { width:22px; height:22px; }
+.poi-info { flex:1; min-width:0; }
+.poi-info .poi-name { font-size:.82rem; font-weight:700; color:var(--text-1); }
+.poi-info .poi-desc { font-size:.66rem; color:var(--text-2); margin-top:1px; }
+
+/* =============================== */
+/* BENEFICIOS */
+/* =============================== */
+.benefits-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; }
+.benefits-header h3 { font-size:1.15rem; color:var(--text-1); font-weight:800; }
+.points-badge { background:linear-gradient(135deg, var(--ausol), var(--ausol-deep)); color:#fff; padding:5px 14px; border-radius:20px; font-size:.68rem; font-weight:800; box-shadow:0 3px 10px rgba(230,126,34,.3); }
+
+.benefit-card {
+  display:flex; background:var(--bg-card); border-radius:18px; padding:16px;
+  margin-bottom:12px; border:1px solid var(--border); align-items:center; gap:15px;
+  box-shadow:var(--shadow);
+}
+.benefit-icon { color:var(--ausol); flex-shrink:0; }
+.benefit-icon svg { width:30px; height:30px; }
+.benefit-info { flex:1; }
+.benefit-info .name { font-weight:800; font-size:.9rem; color:var(--text-1); }
+.benefit-info .desc { font-size:.72rem; color:var(--text-2); margin-top:2px; }
+.benefit-status { font-size:.62rem; padding:5px 12px; border-radius:12px; font-weight:800; flex-shrink:0; }
+.benefit-status.active { background:#e8f5e9; color:#1e7e34; }
+.benefit-status.pending { background:#fff8e1; color:#d97706; }
+[data-theme="dark"] .benefit-status.active { background:rgba(30,126,52,.2); }
+[data-theme="dark"] .benefit-status.pending { background:rgba(217,119,6,.2); }
+
+/* Progreso circular (Mejora #5) */
+.progress-card {
+  background:var(--bg-card); border-radius:20px; padding:20px; margin-top:14px;
+  border:2px dashed var(--ausol); text-align:center; box-shadow:var(--shadow);
+}
+.progress-ring-wrap { position:relative; width:110px; height:110px; margin:12px auto; }
+.progress-ring { transform:rotate(-90deg); }
+.progress-ring .ring-bg { fill:none; stroke:var(--bg-elevated); stroke-width:9; }
+.progress-ring .ring-fill {
+  fill:none; stroke:url(#ringGradient); stroke-width:9; stroke-linecap:round;
+  stroke-dasharray:283; stroke-dashoffset:283;
+  transition:stroke-dashoffset 1.2s cubic-bezier(.2,.8,.2,1);
+}
+.progress-center {
+  position:absolute; inset:0; display:flex; flex-direction:column;
+  align-items:center; justify-content:center;
+}
+.progress-center .pct { font-size:1.3rem; font-weight:800; color:var(--ausol); }
+.progress-center .plabel { font-size:.55rem; color:var(--text-3); text-transform:uppercase; letter-spacing:1px; }
+
+/* =============================== */
+/* CAMPAÑAS */
+/* =============================== */
+.campaigns-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; }
+.campaigns-header h3 { font-size:1.05rem; color:var(--text-1); font-weight:800; }
+.hashtag-pill { background:var(--gco); color:#fff; padding:4px 12px; border-radius:20px; font-size:.6rem; font-weight:800; }
+
+.emergency-tips {
+  background:var(--bg-card); border-radius:18px; padding:17px;
+  border:2px solid var(--ausol); margin-bottom:16px; box-shadow:var(--shadow);
+}
+.tip-title { font-weight:800; font-size:.88rem; color:var(--text-1); display:flex; align-items:flex-start; gap:9px; line-height:1.35; }
+.tip-title svg { width:20px; height:20px; color:#dc2626; flex-shrink:0; margin-top:1px; }
+.tip-step { display:flex; gap:11px; padding:8px 0; border-bottom:1px solid var(--border); align-items:center; }
+.tip-step:last-child { border-bottom:none; }
+.tip-step .step-num {
+  width:24px; height:24px; background:var(--ausol); color:#fff; border-radius:50%;
+  display:flex; align-items:center; justify-content:center; font-size:.62rem; font-weight:800; flex-shrink:0;
+}
+.tip-step .step-text { font-size:.76rem; color:var(--text-1); }
+.emergency-contacts {
+  margin-top:13px; padding-top:13px; border-top:1px solid var(--border);
+  display:flex; justify-content:space-between; font-size:.7rem; color:var(--text-2);
+}
+.emergency-contacts strong { color:var(--text-1); }
+
+.campaigns-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:14px 0; }
+.campaign-mini {
+  background:var(--bg-card); border-radius:18px; padding:16px; text-align:center;
+  border:1px solid var(--border); box-shadow:var(--shadow); transition:transform .15s;
+}
+.campaign-mini:active { transform:scale(.96); }
+.campaign-mini .mini-icon { color:var(--ausol); display:flex; justify-content:center; }
+.campaign-mini .mini-icon svg { width:30px; height:30px; }
+.campaign-mini .mini-title { font-size:.7rem; font-weight:800; color:var(--text-1); margin-top:8px; }
+.campaign-mini .mini-hashtag { font-size:.55rem; color:var(--ausol); font-weight:700; margin-top:3px; }
+
+.campaign-card {
+  background:var(--bg-card); border-radius:18px; padding:16px; margin-bottom:12px;
+  border:1px solid var(--border); display:flex; gap:15px; align-items:flex-start;
+  box-shadow:var(--shadow);
+}
+.campaign-icon-lg { color:var(--ausol); flex-shrink:0; }
+.campaign-icon-lg svg { width:32px; height:32px; }
+.campaign-info { flex:1; }
+.campaign-info .title { font-weight:800; font-size:.9rem; color:var(--text-1); line-height:1.3; }
+.campaign-info .desc { font-size:.74rem; color:var(--text-2); margin:6px 0 8px; line-height:1.45; }
+.campaign-badges { display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.campaign-badge { display:inline-block; padding:3px 11px; border-radius:12px; font-size:.52rem; font-weight:800; text-transform:uppercase; letter-spacing:.5px; }
+.campaign-badge.emergency { background:#dc2626; color:#fff; }
+.campaign-badge.info { background:var(--gco); color:#fff; }
+.campaign-badge.tips { background:var(--ausol); color:#fff; }
+.campaign-badge.telepase { background:var(--gco-deep); color:#fff; }
+.campaign-hashtag { font-size:.62rem; color:var(--ausol); font-weight:700; }
+
+/* =============================== */
+/* PERFIL */
+/* =============================== */
+.profile-header { text-align:center; padding:18px 0; border-bottom:1px solid var(--border); }
+.avatar-large {
+  width:84px; height:84px; background:linear-gradient(135deg, var(--gco), var(--gco-deep));
+  border-radius:50%; display:flex; align-items:center; justify-content:center;
+  color:#fff; font-size:2rem; font-weight:800; margin:0 auto 13px;
+  box-shadow:var(--shadow-strong);
+}
+.name-large { font-size:1.25rem; font-weight:800; color:var(--text-1); }
+.email { font-size:.8rem; color:var(--text-2); margin-top:3px; }
+.profile-stats { display:flex; justify-content:center; gap:26px; margin-top:16px; }
+.profile-stats .stat-num { font-weight:800; font-size:1.05rem; color:var(--ausol); }
+.profile-stats .stat-label { font-size:.6rem; color:var(--text-3); margin-top:2px; }
+
+.profile-menu { margin-top:16px; background:var(--bg-card); border-radius:18px; border:1px solid var(--border); overflow:hidden; box-shadow:var(--shadow); }
+.menu-item {
+  display:flex; align-items:center; gap:15px; padding:15px 17px;
+  border-bottom:1px solid var(--border); cursor:pointer; transition:background .2s;
+}
+.menu-item:last-child { border-bottom:none; }
+.menu-item:active { background:var(--bg-elevated); }
+.menu-icon { color:var(--ausol); width:26px; display:flex; justify-content:center; }
+.menu-icon svg { width:20px; height:20px; }
+.menu-label { flex:1; font-size:.86rem; color:var(--text-1); font-weight:600; }
+.menu-arrow { color:var(--text-3); }
+.menu-arrow svg { width:16px; height:16px; }
+
+.sub-card {
+  background:var(--bg-card); border-radius:18px; padding:16px; margin-top:16px;
+  border:1px solid var(--border); display:flex; align-items:center; gap:13px; box-shadow:var(--shadow);
+}
+.sub-icon { color:var(--gco); }
+.sub-icon svg { width:26px; height:26px; }
+.sub-info { flex:1; }
+.sub-info .sub-name { font-weight:800; font-size:.86rem; color:var(--text-1); }
+.sub-info .sub-detail { font-size:.66rem; color:var(--text-2); margin-top:2px; }
+.sub-active { background:#e8f5e9; color:#1e7e34; padding:4px 11px; border-radius:12px; font-size:.6rem; font-weight:800; }
+[data-theme="dark"] .sub-active { background:rgba(30,126,52,.2); }
+
+/* =============================== */
+/* BOTTOM NAV */
+/* =============================== */
+.bottom-nav {
+  display:flex; justify-content:space-around; padding:10px 0 calc(14px + env(safe-area-inset-bottom));
+  border-top:1px solid var(--border); background:var(--nav-bg);
+  backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px);
+}
+.nav-item {
+  display:flex; flex-direction:column; align-items:center; font-size:.58rem;
+  color:var(--text-3); cursor:pointer; gap:3px; border:none; background:transparent;
+  padding:6px 14px; font-weight:600; transition:color .2s;
+}
+.nav-item svg { width:22px; height:22px; transition:transform .2s; }
+.nav-item.active { color:var(--ausol); }
+.nav-item.active svg { transform:translateY(-2px) scale(1.08); }
+
+/* =============================== */
+/* TOAST (reemplaza alerts) */
+/* =============================== */
+.toast {
+  position:fixed; bottom:90px; left:50%; transform:translateX(-50%) translateY(20px);
+  background:var(--text-1); color:var(--bg); padding:12px 22px; border-radius:24px;
+  font-size:.78rem; font-weight:700; box-shadow:var(--shadow-strong);
+  opacity:0; transition:opacity .3s, transform .3s; z-index:2000;
+  display:flex; align-items:center; gap:8px; white-space:nowrap;
+}
+.toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
+.toast svg { width:16px; height:16px; color:var(--ausol); }
+
+/* Ripple effect (Mejora #4) */
+.ripple { position:relative; overflow:hidden; }
+.ripple::after {
+  content:''; position:absolute; inset:0; background:radial-gradient(circle, rgba(255,255,255,.4) 10%, transparent 10.01%);
+  background-position:center; background-repeat:no-repeat; transform:scale(10); opacity:0; transition:transform .4s, opacity .8s;
+}
+.ripple:active::after { transform:scale(0); opacity:.6; transition:0s; }
+</style>
+</head>
+<body>
+
+<!-- SPLASH SCREEN -->
+<div class="splash" id="splash">
+  <div class="splash-logo">
+    <span class="ausol">AUSOL</span>
+    <span class="sep">·</span>
+    <span class="gco">GCO</span>
+  </div>
+  <div class="splash-tag">Movilidad</div>
+  <div class="splash-loader"></div>
+</div>
+
+<div class="app">
+
+  <!-- Status bar -->
+  <div class="status-bar">
+    <span id="clock">9:41</span>
+    <span style="display:flex; align-items:center; gap:6px;">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>
+      <svg width="16" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="1" y="6" width="18" height="12" rx="2" stroke="currentColor" fill="none" stroke-width="2"/><rect x="3" y="8" width="13" height="8" rx="1" fill="currentColor"/><path d="M23 13v-2"/></svg>
+      100%
+    </span>
+  </div>
+
+  <!-- Header -->
+  <div class="app-header">
+    <div class="logo">
+      <span class="ausol">AUSOL</span><span class="sep">·</span><span class="gco">GCO</span>
+    </div>
+    <div class="header-actions">
+      <button class="theme-toggle" onclick="toggleTheme()" aria-label="Cambiar tema">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <div class="user-avatar" onclick="switchTab('perfil')">JP</div>
+    </div>
+  </div>
+
+  <!-- Contenido -->
+  <div class="app-content" id="appContent">
+    <div class="ptr-indicator" id="ptrIndicator" style="opacity:0;">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>
+    </div>
+
+    <!-- ===================== TAB INICIO ===================== -->
+    <div id="tab-inicio" class="tab-content active">
+
+      <div class="campaign-banner">
+        <div class="campaign-emergency">140 EMERGENCIAS</div>
+        <div class="campaign-icon" id="campaignIcon">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+        </div>
+        <div class="campaign-title" id="campaignTitle">El mensaje que envió mi papá le costó la vida</div>
+        <div class="campaign-message" id="campaignMessage">El celular puede esperar. Conducir exige toda tu atención.</div>
+        <div class="campaign-tag" id="campaignTag">#CeroChoques</div>
+      </div>
+
+      <div class="user-card">
+        <div class="greeting">👋 Buen día</div>
+        <div class="name">Juan Pérez</div>
+        <div class="user-id">AUSOL·GCO · AB 123 CD</div>
+        <div class="points-row">
+          <div class="points-item"><div class="number">1.280</div><div class="label">Puntos</div></div>
+          <div class="points-item"><div class="number">18</div><div class="label">Pasadas</div></div>
+          <div class="points-item"><div class="number">Oro</div><div class="label">Nivel</div></div>
+        </div>
+      </div>
+
+      <div class="ad-banner">
+        <div class="ad-label">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l18-5v12L3 13v-2z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg>
+          Patrocinado · Havanna
+        </div>
+        <div class="ad-title">☕ Café + Medialuna</div>
+        <div class="ad-subtitle">Exclusivo AUSOL·GCO · A 3 km en tu ruta</div>
+        <button class="ad-cta ripple" onclick="showToast('Cupón aplicado · Válido 30 min')">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 4v6h-6"/><path d="M1 20v-6h6"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+          Canjear ahora
+        </button>
+        <div class="ad-cupon">-20%</div>
+        <div class="ad-geo">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          A 3 km · Sentido Pilar
+        </div>
+      </div>
+
+      <div class="section-title"><h3>🛍️ Ofertas en tu ruta</h3><a onclick="switchTab('beneficios')">Ver todas →</a></div>
+
+      <div class="offer-card">
+        <div class="offer-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="22" x2="15" y2="22"/><line x1="4" y1="9" x2="14" y2="9"/><path d="M14 22V4a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v18"/><path d="M14 13h2a2 2 0 0 1 2 2v2a2 2 0 0 0 2 2a2 2 0 0 0 2-2V9.83a2 2 0 0 0-.59-1.42L18 5"/></svg>
+        </div>
+        <div class="offer-info">
+          <div class="name">Puma Energy · Km 35</div>
+          <div class="desc">Combustible <strong>5% off</strong> + combos café</div>
+          <div class="distance">📍 A 4 km · Próxima salida</div>
+        </div>
+        <button class="offer-btn ripple" onclick="showToast('Oferta guardada')">Ver</button>
+      </div>
+
+      <div class="offer-card">
+        <div class="offer-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+        </div>
+        <div class="offer-info">
+          <div class="name">McDonald's · Truck Stop</div>
+          <div class="desc">Combo Big Mac <strong>$3.200</strong></div>
+          <div class="distance">📍 A 7 km · Sentido Tigre</div>
+        </div>
+        <button class="offer-btn outline ripple" onclick="showToast('Cupón aplicado')">Canjear</button>
+      </div>
+
+      <div class="section-title" style="margin-top:22px;"><h3>⭐ Canjea tus puntos</h3><a onclick="switchTab('beneficios')">Ver todos →</a></div>
+
+      <div class="rewards-grid">
+        <div class="reward-item"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/></svg></div><div class="name">Café Havanna</div><div class="points">200 pts</div><button class="btn-redeem ripple" onclick="showToast('Canjeando 200 pts')">Canjear</button></div>
+        <div class="reward-item"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="22" x2="15" y2="22"/><line x1="4" y1="9" x2="14" y2="9"/><path d="M14 22V4a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v18"/></svg></div><div class="name">10% nafta</div><div class="points">350 pts</div><button class="btn-redeem ripple" onclick="showToast('Canjeando 350 pts')">Canjear</button></div>
+        <div class="reward-item"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg></div><div class="name">Lavado</div><div class="points">500 pts</div><button class="btn-redeem ripple" onclick="showToast('Canjeando 500 pts')">Canjear</button></div>
+      </div>
+
+      <div style="background:var(--bg-card); border-radius:16px; padding:14px; text-align:center; margin-top:18px; border:1px solid var(--border); box-shadow:var(--shadow);">
+        <span style="font-size:.6rem; color:var(--text-3);">Patrocinado por</span>
+        <div style="font-weight:800; color:var(--gco); font-size:.9rem; margin-top:4px;">☕ Havanna · Mobility Partner</div>
+      </div>
+    </div>
+
+    <!-- ===================== TAB RUTA ===================== -->
+    <div id="tab-ruta" class="tab-content">
+      <div class="route-header">
+        <div class="route-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <div class="route-info">
+          <div class="from">Desde: <strong>Tortugas Open Mall</strong></div>
+          <div class="to">Hacia: <strong>Unicenter</strong></div>
+          <div class="time">🕐 18 min · 12.5 km · Panamericana</div>
+        </div>
+        <button class="btn-start ripple" onclick="showToast('Iniciando navegación...')">Iniciar</button>
+      </div>
+
+      <div id="map"></div>
+
+      <div class="route-steps">
+        <div class="step"><div class="num">1</div><div class="step-info"><div class="action">Salir de Tortugas Open Mall</div><div class="detail">Girar a la derecha hacia Av. Panamericana</div><div class="dist">0.5 km · 2 min</div></div></div>
+        <div class="step"><div class="num">2</div><div class="step-info"><div class="action">Incorporarse a Panamericana · Ramal Pilar</div><div class="detail">Carril central · Velocidad sugerida 80 km/h</div><div class="dist">8.2 km · 10 min</div></div></div>
+        <div class="step"><div class="num">3</div><div class="step-info"><div class="action">Salida hacia Martínez</div><div class="detail">Tomar salida km 18 · Av. Santa Fe</div><div class="dist">2.5 km · 3 min</div></div></div>
+        <div class="step"><div class="num">4</div><div class="step-info"><div class="action">Llegada a Unicenter</div><div class="detail">Entrada por Av. Paraná · Estacionamiento disponible</div><div class="dist">1.3 km · 3 min</div></div></div>
+      </div>
+
+      <div class="section-title"><h3>📍 Puntos de interés</h3></div>
+      <div class="poi-list">
+        <div class="poi-item"><div class="poi-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="22" x2="15" y2="22"/><line x1="4" y1="9" x2="14" y2="9"/><path d="M14 22V4a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v18"/></svg></div><div class="poi-info"><div class="poi-name">Puma Energy · Km 22</div><div class="poi-desc">Combustible · Tienda · A 4 km</div></div><button class="offer-btn ripple" onclick="showToast('Navegando a Puma')">Parar</button></div>
+        <div class="poi-item"><div class="poi-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/></svg></div><div class="poi-info"><div class="poi-name">Havanna · Truck Stop</div><div class="poi-desc">Café · 20% off · A 6 km</div></div><button class="offer-btn outline ripple" onclick="showToast('Cupón aplicado')">Canjear</button></div>
+        <div class="poi-item"><div class="poi-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 16.9V19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-2.1"/><path d="M22 16.9V19a2 2 0 0 1-2 2h-2"/><path d="M2 11l2-7h16l2 7"/><path d="M2 11h20v5H2z"/></svg></div><div class="poi-info"><div class="poi-name">Área de descanso · Km 16</div><div class="poi-desc">Wi-Fi · Baños · A 8 km</div></div><button class="offer-btn ripple" style="background:var(--gco);" onclick="showToast('Área seleccionada')">Detener</button></div>
+        <div class="poi-item"><div class="poi-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div><div class="poi-info"><div class="poi-name">Carga EV · YPF</div><div class="poi-desc">Carga rápida · 2 disponibles · A 10 km</div></div><button class="offer-btn ripple" onclick="showToast('Reservando cargador...')">Reservar</button></div>
+      </div>
+    </div>
+
+    <!-- ===================== TAB BENEFICIOS ===================== -->
+    <div id="tab-beneficios" class="tab-content">
+      <div class="benefits-header">
+        <h3>⭐ Mis Beneficios</h3>
+        <span class="points-badge">1.280 pts</span>
+      </div>
+
+      <div class="benefit-card"><div class="benefit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/></svg></div><div class="benefit-info"><div class="name">Café gratis · Havanna</div><div class="desc">200 pts · Café con medialuna</div></div><span class="benefit-status active">Disponible</span></div>
+      <div class="benefit-card"><div class="benefit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="22" x2="15" y2="22"/><line x1="4" y1="9" x2="14" y2="9"/><path d="M14 22V4a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v18"/></svg></div><div class="benefit-info"><div class="name">10% off · Puma Energy</div><div class="desc">Hasta 30/06 · 350 pts</div></div><span class="benefit-status active">Disponible</span></div>
+      <div class="benefit-card"><div class="benefit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg></div><div class="benefit-info"><div class="name">Lavado gratis · Puma</div><div class="desc">Lavado básico · 500 pts</div></div><span class="benefit-status pending">Faltan 500 pts</span></div>
+      <div class="benefit-card"><div class="benefit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg></div><div class="benefit-info"><div class="name">Combo McDonald's</div><div class="desc">2x1 · Exclusivo GCO Plus</div></div><span class="benefit-status active">Disponible</span></div>
+      <div class="benefit-card"><div class="benefit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div><div class="benefit-info"><div class="name">Carga EV gratis</div><div class="desc">Primera carga · YPF</div></div><span class="benefit-status active">Disponible</span></div>
+      <div class="benefit-card"><div class="benefit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg></div><div class="benefit-info"><div class="name">Estacionamiento gratis</div><div class="desc">1h en Unicenter · Socio Oro</div></div><span class="benefit-status active">Disponible</span></div>
+
+      <!-- Progreso circular -->
+      <div class="progress-card">
+        <span style="font-size:.72rem; color:var(--text-2); font-weight:700;">🔄 Próximo nivel</span>
+        <div style="font-weight:800; color:var(--text-1); font-size:1.15rem; margin-top:4px;">Nivel Platino</div>
+        <div class="progress-ring-wrap">
+          <svg class="progress-ring" width="110" height="110" viewBox="0 0 110 110">
+            <defs>
+              <linearGradient id="ringGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#e67e22"/>
+                <stop offset="100%" stop-color="#0b5e7c"/>
+              </linearGradient>
+            </defs>
+            <circle class="ring-bg" cx="55" cy="55" r="45"/>
+            <circle class="ring-fill" id="ringFill" cx="55" cy="55" r="45"/>
+          </svg>
+          <div class="progress-center">
+            <div class="pct" id="progressPct">0%</div>
+            <div class="plabel">completo</div>
+          </div>
+        </div>
+        <div style="font-size:.68rem; color:var(--text-2);">Faltan <strong>720 pts</strong> · Beneficios exclusivos</div>
+      </div>
+    </div>
+
+    <!-- ===================== TAB CAMPAÑAS ===================== -->
+    <div id="tab-campanas" class="tab-content">
+      <div class="campaigns-header">
+        <h3>🚦 Seguridad Vial</h3>
+        <span class="hashtag-pill">#CeroChoques</span>
+      </div>
+
+      <div class="emergency-tips">
+        <div class="tip-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          <span>Detención de emergencia en autopista</span>
+        </div>
+        <div class="tip-step"><div class="step-num">1</div><div class="step-text">Detener y apagar el vehículo.</div></div>
+        <div class="tip-step"><div class="step-num">2</div><div class="step-text">Encender las balizas.</div></div>
+        <div class="tip-step"><div class="step-num">3</div><div class="step-text">Chaleco reflectivo y descender con pasajeros.</div></div>
+        <div class="tip-step"><div class="step-num">4</div><div class="step-text">Ubicarse detrás de la defensa, alejado del vehículo.</div></div>
+        <div class="emergency-contacts">
+          <span>📞 <strong>140</strong> · Emergencias 24h</span>
+          <span>💬 <strong>+54 9 11 2842-2613</strong></span>
+        </div>
+      </div>
+
+      <div class="campaigns-grid">
+        <div class="campaign-mini"><div class="mini-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div><div class="mini-title">No uses el celular</div><div class="mini-hashtag">#ElCelularPuedeEsperar</div></div>
+        <div class="campaign-mini"><div class="mini-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></div><div class="mini-title">No te pegues</div><div class="mini-hashtag">#DistanciaSegura</div></div>
+        <div class="campaign-mini"><div class="mini-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div class="mini-title">Usá el cinturón</div><div class="mini-hashtag">#TodosAtados</div></div>
+        <div class="campaign-mini"><div class="mini-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg></div><div class="mini-title">Sin TelePASE es multa</div><div class="mini-hashtag">#TelePASE</div></div>
+      </div>
+
+      <div class="campaign-card"><div class="campaign-icon-lg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div><div class="campaign-info"><div class="title">"El mensaje que envió mi papá le costó la vida"</div><div class="desc">El celular puede esperar. Conducir exige toda tu atención. Mantené la vista en el camino.</div><div class="campaign-badges"><span class="campaign-badge emergency">Emergencia</span><span class="campaign-hashtag">#CeroChoques</span></div></div></div>
+
+      <div class="campaign-card"><div class="campaign-icon-lg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></div><div class="campaign-info"><div class="title">Mantené distancia segura</div><div class="desc">No te pegues al auto de adelante. La distancia de frenado es tu mejor aliada en autopista.</div><div class="campaign-badges"><span class="campaign-badge tips">Seguridad</span><span class="campaign-hashtag">#DistanciaSegura</span></div></div></div>
+
+      <div class="campaign-card"><div class="campaign-icon-lg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div class="campaign-info"><div class="title">Usá el cinturón de seguridad</div><div class="desc">Todas las personas del vehículo deben usar el cinturón. Salva vidas.</div><div class="campaign-badges"><span class="campaign-badge info">Obligatorio</span><span class="campaign-hashtag">#TodosAtados</span></div></div></div>
+
+      <div class="campaign-card"><div class="campaign-icon-lg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div><div class="campaign-info"><div class="title">Sin TelePASE es multa</div><div class="desc">Art. 3° Res. DNV 3202/14. Manual pagás doble tarifa. TelePASE pagás menos.</div><div class="campaign-badges"><span class="campaign-badge telepase">TelePASE</span><span class="campaign-hashtag">#TelePASE</span></div></div></div>
+
+      <div class="campaign-card"><div class="campaign-icon-lg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg></div><div class="campaign-info"><div class="title">No te detengas en la autopista</div><div class="desc">Si no es emergencia, no te detengas. Usá las áreas de descanso designadas.</div><div class="campaign-badges"><span class="campaign-badge emergency">Seguridad</span><span class="campaign-hashtag">#AutopistaSegura</span></div></div></div>
+    </div>
+
+    <!-- ===================== TAB PERFIL ===================== -->
+    <div id="tab-perfil" class="tab-content">
+      <div class="profile-header">
+        <div class="avatar-large">JP</div>
+        <div class="name-large">Juan D. Pérez</div>
+        <div class="email">juan.perez@email.com</div>
+        <div class="profile-stats">
+          <div><div class="stat-num">1.280</div><div class="stat-label">Puntos</div></div>
+          <div><div class="stat-num">Oro</div><div class="stat-label">Nivel</div></div>
+          <div><div class="stat-num">AB 123 CD</div><div class="stat-label">Patente</div></div>
+        </div>
+      </div>
+
+      <div class="profile-menu">
+        <div class="menu-item" onclick="showToast('Editando perfil...')"><span class="menu-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span><span class="menu-label">Mis datos</span><span class="menu-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></span></div>
+        <div class="menu-item" onclick="showToast('Configuración de cuenta')"><span class="menu-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span><span class="menu-label">Seguridad</span><span class="menu-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></span></div>
+        <div class="menu-item" onclick="showToast('Métodos de pago')"><span class="menu-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></span><span class="menu-label">Métodos de pago</span><span class="menu-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></span></div>
+        <div class="menu-item" onclick="showToast('Vehículos registrados')"><span class="menu-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 16.9V19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-2.1"/><path d="M22 16.9V19a2 2 0 0 1-2 2h-2"/><path d="M2 11l2-7h16l2 7"/><path d="M2 11h20v5H2z"/></svg></span><span class="menu-label">Mis vehículos</span><span class="menu-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></span></div>
+        <div class="menu-item" onclick="showToast('Historial de viajes')"><span class="menu-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></span><span class="menu-label">Historial</span><span class="menu-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></span></div>
+        <div class="menu-item" onclick="showToast('Beneficios y recompensas')"><span class="menu-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span><span class="menu-label">Beneficios</span><span class="menu-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></span></div>
+        <div class="menu-item" onclick="showToast('Ayuda y soporte')"><span class="menu-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span><span class="menu-label">Ayuda</span><span class="menu-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></span></div>
+        <div class="menu-item" onclick="showToast('Configuración de la app')"><span class="menu-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></span><span class="menu-label">Configuración</span><span class="menu-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></span></div>
+      </div>
+
+      <div class="sub-card">
+        <span class="sub-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></span>
+        <div class="sub-info"><div class="sub-name">AUSOL·GCO Plus</div><div class="sub-detail">Suscripción activa · Próximo pago 01/07</div></div>
+        <span class="sub-active">Activo</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Nav -->
+  <div class="bottom-nav">
+    <button class="nav-item active" data-tab="inicio" onclick="switchTab('inicio')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><span>Inicio</span></button>
+    <button class="nav-item" data-tab="ruta" onclick="switchTab('ruta')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg><span>Ruta</span></button>
+    <button class="nav-item" data-tab="beneficios" onclick="switchTab('beneficios')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg><span>Beneficios</span></button>
+    <button class="nav-item" data-tab="campanas" onclick="switchTab('campanas')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span>Seguridad</span></button>
+    <button class="nav-item" data-tab="perfil" onclick="switchTab('perfil')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span>Perfil</span></button>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+  <span id="toastMsg"></span>
+</div>
+
+<script>
+/* ============ SPLASH ============ */
+window.addEventListener('load', () => {
+  setTimeout(() => document.getElementById('splash').classList.add('hide'), 1800);
+});
+
+/* ============ RELOJ REAL ============ */
+function updateClock() {
+  const now = new Date();
+  document.getElementById('clock').textContent =
+    now.getHours() + ':' + String(now.getMinutes()).padStart(2,'0');
+}
+updateClock(); setInterval(updateClock, 30000);
+
+/* ============ DARK MODE ============ */
+function toggleTheme() {
+  const html = document.documentElement;
+  const next = html.dataset.theme === 'light' ? 'dark' : 'light';
+  html.dataset.theme = next;
+  localStorage.setItem('ausol-theme', next);
+  updateMapTheme();
+  showToast(next === 'dark' ? 'Modo oscuro activado' : 'Modo claro activado');
+}
+(function initTheme(){
+  const saved = localStorage.getItem('ausol-theme');
+  if (saved) document.documentElement.dataset.theme = saved;
+})();
+
+/* ============ TOAST ============ */
+let toastTimer;
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  document.getElementById('toastMsg').textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+/* ============ TABS CON TRANSICIÓN DIRECCIONAL ============ */
+const tabOrder = ['inicio','ruta','beneficios','campanas','perfil'];
+let currentTab = 'inicio';
+let mapInit = false;
+
+function switchTab(name) {
+  if (name === currentTab) return;
+  const oldIdx = tabOrder.indexOf(currentTab);
+  const newIdx = tabOrder.indexOf(name);
+  const direction = newIdx > oldIdx ? 'right' : 'left';
+
+  document.querySelectorAll('.tab-content').forEach(el => {
+    el.classList.remove('active','slide-left');
+  });
+  const target = document.getElementById('tab-' + name);
+  if (direction === 'left') target.classList.add('slide-left');
+  target.classList.add('active');
+
+  document.querySelectorAll('.nav-item').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.tab === name);
+  });
+
+  document.getElementById('appContent').scrollTop = 0;
+  currentTab = name;
+
+  if (name === 'ruta') setTimeout(initMap, 100);
+  if (name === 'beneficios') animateProgress();
+}
+
+/* ============ MAPA LEAFLET ============ */
+let map, tileLayer;
+function getTileUrl() {
+  const dark = document.documentElement.dataset.theme === 'dark';
+  return dark
+    ? 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png'
+    : 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png';
+}
+function initMap() {
+  if (mapInit) { map.invalidateSize(); return; }
+  mapInit = true;
+
+  map = L.map('map', { zoomControl:false, attributionControl:true }).setView([-34.4660,-58.5800], 12);
+  tileLayer = L.tileLayer(getTileUrl(), { attribution:'© OpenStreetMap © CARTO', maxZoom:19 }).addTo(map);
+
+  // Ruta Panamericana (trazado aproximado Acceso Norte)
+  const route = [
+    [-34.4432,-58.6550],[-34.4480,-58.6400],[-34.4550,-58.6200],
+    [-34.4620,-58.5900],[-34.4700,-58.5600],[-34.4800,-58.5300],[-34.4898,-58.5087]
+  ];
+  L.polyline(route, { color:'#e67e22', weight:5, opacity:.9, dashArray:null }).addTo(map);
+
+  const iconDot = (color, emoji) => L.divIcon({
+    html:`<div style="width:26px;height:26px;border-radius:50%;background:${color};border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.3);display:flex;align-items:center;justify-content:center;font-size:12px;">${emoji}</div>`,
+    className:'', iconSize:[26,26], iconAnchor:[13,13]
+  });
+
+  L.marker(route[0], {icon:iconDot('#0b5e7c','📍')}).addTo(map).bindPopup('Tortugas Open Mall');
+  L.marker(route[route.length-1], {icon:iconDot('#0b5e7c','🏁')}).addTo(map).bindPopup('Unicenter');
+  L.marker([-34.4550,-58.6150], {icon:iconDot('#e67e22','⛽')}).addTo(map).bindPopup('Puma Energy · Km 22');
+  L.marker([-34.4650,-58.5750], {icon:iconDot('#e67e22','☕')}).addTo(map).bindPopup('Havanna Truck Stop');
+
+  map.fitBounds(L.latLngBounds(route).pad(0.2));
+}
+function updateMapTheme() {
+  if (tileLayer) tileLayer.setUrl(getTileUrl());
+}
+
+/* ============ PROGRESO CIRCULAR ============ */
+function animateProgress() {
+  const pct = 45;
+  const circ = 2 * Math.PI * 45;
+  const offset = circ * (1 - pct/100);
+  setTimeout(() => {
+    document.getElementById('ringFill').style.strokeDashoffset = offset;
+    let count = 0;
+    const el = document.getElementById('progressPct');
+    const interval = setInterval(() => {
+      count += 1;
+      el.textContent = count + '%';
+      if (count >= pct) clearInterval(interval);
+    }, 20);
+  }, 200);
+}
+
+/* ============ CAMPAÑAS ROTATIVAS ============ */
+const campaigns = [
+  { title:"El mensaje que envió mi papá le costó la vida", message:"El celular puede esperar. Conducir exige toda tu atención.", tag:"#CeroChoques",
+    icon:'<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>' },
+  { title:"Mantené distancia segura", message:"No te pegues al auto de adelante. Tu vida depende de los segundos de reacción.", tag:"#DistanciaSegura",
+    icon:'<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>' },
+  { title:"Usá el cinturón de seguridad", message:"Todas las personas del vehículo deben usar el cinturón. Salva vidas.", tag:"#TodosAtados",
+    icon:'<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>' },
+  { title:"Sin TelePASE es multa", message:"Art. 3° Res. DNV 3202/14. Manual pagás doble tarifa.", tag:"#TelePASE",
+    icon:'<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>' },
+  { title:"No te detengas en la autopista", message:"Si no es emergencia, usá las áreas de descanso designadas.", tag:"#AutopistaSegura",
+    icon:'<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>' }
+];
+let campaignIndex = 0;
+function rotateCampaign() {
+  const c = campaigns[campaignIndex];
+  const banner = document.querySelector('.campaign-banner');
+  banner.style.opacity = '0'; banner.style.transform = 'translateY(8px)';
+  banner.style.transition = 'opacity .3s, transform .3s';
+  setTimeout(() => {
+    document.getElementById('campaignTitle').textContent = c.title;
+    document.getElementById('campaignMessage').textContent = c.message;
+    document.getElementById('campaignTag').textContent = c.tag;
+    document.getElementById('campaignIcon').innerHTML = c.icon;
+    banner.style.opacity = '1'; banner.style.transform = 'translateY(0)';
+  }, 300);
+  campaignIndex = (campaignIndex + 1) % campaigns.length;
+}
+setInterval(rotateCampaign, 8000);
+
+/* ============ PULL-TO-REFRESH ============ */
+const content = document.getElementById('appContent');
+const ptr = document.getElementById('ptrIndicator');
+let startY = 0, pulling = false;
+
+content.addEventListener('touchstart', e => {
+  if (currentTab === 'inicio' && content.scrollTop === 0) {
+    startY = e.touches[0].pageY; pulling = true;
+  }
+}, {passive:true});
+
+content.addEventListener('touchmove', e => {
+  if (!pulling) return;
+  const diff = e.touches[0].pageY - startY;
+  if (diff > 0 && diff < 120) {
+    ptr.style.opacity = Math.min(diff/80, 1);
+    ptr.style.transform = `translateX(-50%) translateY(${diff*0.5}px)`;
+  }
+}, {passive:true});
+
+content.addEventListener('touchend', e => {
+  if (!pulling) return;
+  pulling = false;
+  const diff = e.changedTouches[0].pageY - startY;
+  if (diff > 70) {
+    ptr.style.opacity = 1;
+    setTimeout(() => { rotateCampaign(); showToast('Contenido actualizado'); }, 600);
+  }
+  ptr.style.opacity = 0;
+  ptr.style.transform = 'translateX(-50%) translateY(0)';
+});
+</script>
+</body>
+</html>

@@ -2,7 +2,7 @@
 <!-- Encabezado principal -->
 <div align="center">
   <h1>📊 Diego Cabrera</h1>
-  <h3>Business Operations & Infrastructure Strategy Leader</h3>
+  <h3>Líder de Estrategia de Operaciones e Infraestructura Comercial</h3>
   <p><em>“Transformo operaciones complejas en modelos escalables de eficiencia, rentabilidad y crecimiento. Especializado en monetizar infraestructura y convertir problemas sistémicos en resultados de negocio.”</em></p>
 </div>
 
@@ -29,7 +29,7 @@
 
 | 🎯 Estrategia y Negocios | ⚙️ Operaciones | 🛡️ Infraestructura | 📊 Control de Gestión |
 |-------------------------|----------------|---------------------|----------------------|
-| Evolución de Negocio    | KPIs de Rendimiento | Dark Fiber           | Revenue Optimization  |
+| Evolución de Negocio    | KPIs de Rendimiento | Desarrollo de negocios | Revenue Optimization  |
 | Monetización de activos | Optimización Logística | Facility Management  | Negociación Estratégica |
 | Modelos de negocio      | Gestión de Presupuesto | Seguridad Patrimonial | Lean Management       |
 
@@ -39,9 +39,11 @@
 
 ### 📌 Responsable de Negocios Auxiliares
 **Autopistas del Sol / GCO** · 2026 – Presente
-- Coordinacion de la instalacion de comunicación inteligente.
-- Reconversión del modelo tradicional para monetización de infraestructura.
-- Evaluación de oportunidades de negocio, análisis económico-financiero y articulación regulatoria.
+- Gestiono la evolución de negocios existentes e impulso nuevas oportunidades de "desarrollo y monetización de activos e infraestructura".
+- Desarrollo "evaluaciones económicas y modelos de negocio** para analizar viabilidad, rentabilidad y potencial de nuevas iniciativas.
+- Lidero la coordinación transversal de "proyectos de nuevas instalaciones y soluciones", articulando áreas operativas, técnicas, comerciales y administrativas y realizando seguimiento de hitos, cronogramas y entregables.
+- Participo en la estructuración de "licitaciones, PET, contratos y propuestas regulatorias", trabajando con Compras, Legales y organismos involucrados para viabilizar nuevos negocios.
+- Elaboro y presento a Dirección "KPIs, evolución de negocios, estado de proyectos y principales desvíos", aportando información para la toma de decisiones.
 
 ### 🚗 Coordinador de Operaciones
 **Autopistas del Sol** · Agosto 2022 – 2026

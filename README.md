@@ -39,11 +39,10 @@
 
 ### 📌 Responsable de Negocios Auxiliares
 **Autopistas del Sol / GCO** · 2026 – Presente
-- Gestiono la evolución de negocios existentes e impulso nuevas oportunidades de "desarrollo y monetización de activos e infraestructura".
-- Desarrollo "evaluaciones económicas y modelos de negocio** para analizar viabilidad, rentabilidad y potencial de nuevas iniciativas.
-- Lidero la coordinación transversal de "proyectos de nuevas instalaciones y soluciones", articulando áreas operativas, técnicas, comerciales y administrativas y realizando seguimiento de hitos, cronogramas y entregables.
-- Participo en la estructuración de "licitaciones, PET, contratos y propuestas regulatorias", trabajando con Compras, Legales y organismos involucrados para viabilizar nuevos negocios.
-- Elaboro y presento a Dirección "KPIs, evolución de negocios, estado de proyectos y principales desvíos", aportando información para la toma de decisiones.
+- Desarrollo de oportunidades de negocio: evalúo alternativas de monetización de infraestructura y nuevas líneas de ingresos, integrando viabilidad económica, rentabilidad y potencial comercial.
+- Estructuración y avance de proyectos: articulo áreas operativas, técnicas, comerciales y administrativas para convertir oportunidades en iniciativas concretas, con seguimiento de hitos, plazos y entregables.
+- Viabilización contractual y regulatoria: participo en el diseño de modelos de contratación, licitaciones, PET y propuestas regulatorias para habilitar nuevos negocios y formalizar su implementación.
+- Gestión y seguimiento del negocio: estructuro indicadores, reportes de evolución y análisis de desvíos para dar visibilidad sobre el desempeño, el estado de las iniciativas y las decisiones pendientes.
 
 ### 🚗 Coordinador de Operaciones
 **Autopistas del Sol** · Agosto 2022 – 2026

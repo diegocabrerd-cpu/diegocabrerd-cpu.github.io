@@ -837,7 +837,7 @@ body {
           <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
           <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
         </button>
-        <div class="user-avatar" onclick="switchTab('perfil')">JP</div>
+        <div class="user-avatar" onclick="switchTab('perfil')">DC</div>
       </div>
     </div>
 
@@ -861,7 +861,7 @@ body {
 
         <div class="user-card">
           <div class="greeting">👋 Buen día</div>
-          <div class="name">Ezequiel Hermida</div>
+          <div class="name">Diego Cardone</div>
           <div class="user-id">AUSOL·GCO · AB 123 CD</div>
           <div class="points-row">
             <div class="points-item"><div class="number">1.280</div><div class="label">Puntos</div></div>
@@ -1079,8 +1079,8 @@ body {
       <!-- ===================== TAB PERFIL ===================== -->
       <div id="tab-perfil" class="tab-content">
         <div class="profile-header">
-          <div class="avatar-large">JP</div>
-          <div class="name-large">Ezequiel Hermida</div>
+          <div class="avatar-large">DC</div>
+          <div class="name-large">Diego Cardone</div>
           <div class="email">Ehermida@email.com</div>
           <div class="profile-stats">
             <div><div class="stat-num">1.280</div><div class="stat-label">Puntos</div></div>
@@ -1140,7 +1140,7 @@ window.addEventListener('load', () => {
 function enterApp() {
   document.getElementById('loginScreen').classList.add('hide');
   document.getElementById('appRoot').style.visibility = 'visible';
-  showToast('Bienvenido, Ezequiel');
+  showToast('Bienvenido, Diego');
 }
 
 /* ============ RELOJ REAL ============ */
